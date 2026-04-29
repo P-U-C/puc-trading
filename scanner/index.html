@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Convergence Scanner</title>
+<style>
+  :root { --bg:#0a0a0f; --card:#12121a; --accent:#c8a96e; --green:#10b981; --red:#ef4444; --blue:#60a5fa; --text:#e0e0e0; --dim:#666; --border:#1e1e2e; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--text); padding:20px; max-width:1100px; margin:0 auto; }
+  h1 { font-size:1.6rem; color:var(--accent); text-align:center; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; }
+  .sub { text-align:center; color:var(--dim); font-size:0.75rem; margin-bottom:24px; }
+  .meta { display:flex; justify-content:center; gap:24px; font-size:0.7rem; color:var(--dim); margin-bottom:20px; flex-wrap:wrap; }
+  .meta span { background:var(--card); padding:6px 12px; border-radius:4px; }
+
+  .themes { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-bottom:24px; }
+  .theme-card { background:var(--card); border-radius:8px; padding:14px; border-left:3px solid var(--accent); }
+  .theme-card .name { font-size:0.8rem; font-weight:600; color:var(--accent); }
+  .theme-card .status { font-size:0.65rem; text-transform:uppercase; letter-spacing:1px; margin-top:2px; }
+  .theme-card .status.growing { color:var(--green); }
+  .theme-card .status.peak_hype { color:var(--red); }
+  .theme-card .status.emerging { color:var(--blue); }
+  .theme-card .count { font-size:1.4rem; font-weight:700; color:var(--text); margin-top:6px; }
+  .theme-card .label { font-size:0.6rem; color:var(--dim); }
+
+  h2 { font-size:1rem; color:var(--accent); margin:20px 0 12px; text-transform:uppercase; letter-spacing:1px; }
+
+  table { width:100%; border-collapse:collapse; font-size:0.72rem; }
+  th { background:var(--card); color:var(--accent); padding:8px 6px; text-align:left; font-size:0.65rem; text-transform:uppercase; letter-spacing:0.5px; position:sticky; top:0; }
+  td { padding:8px 6px; border-bottom:1px solid var(--border); }
+  tr:hover { background:#1a1a2e; }
+  .score { color:var(--green); font-weight:700; font-size:0.85rem; }
+  .ticker { font-weight:700; color:var(--accent); font-size:0.8rem; }
+  .theme-tag { font-size:0.6rem; padding:2px 6px; border-radius:3px; background:#1e1e2e; color:var(--dim); }
+  .otm { color:var(--blue); }
+  .iv { color:var(--red); }
+
+  .convergence-bar { display:flex; align-items:center; gap:4px; }
+  .conv-fill { height:6px; border-radius:3px; background:var(--green); }
+  .conv-bg { height:6px; border-radius:3px; background:#222; width:60px; overflow:hidden; }
+
+  .footer { text-align:center; margin-top:30px; padding:16px; font-size:0.6rem; color:var(--dim); border-top:1px solid var(--border); }
+
+  @media(max-width:600px) { table { font-size:0.65rem; } th,td { padding:6px 4px; } .themes { grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<h1>LLM Convergence Scanner</h1>
+<p class="sub">Asymmetric options ranked by convergence score x IV-inverse x liquidity</p>
+
+<div class="meta" id="scanMeta">
+  <span>Loading scan data...</span>
+</div>
+
+<div class="themes" id="themeCards"></div>
+
+<h2>Top Ranked Contracts</h2>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Ticker</th>
+      <th>Strike</th>
+      <th>Expiry</th>
+      <th>DTE</th>
+      <th>OTM</th>
+      <th>Ask</th>
+      <th>IV</th>
+      <th>Conv.</th>
+      <th>Score</th>
+      <th>Theme</th>
+    </tr>
+  </thead>
+  <tbody id="resultsBody">
+    <tr><td colspan="11" style="text-align:center;color:var(--dim);">Loading...</td></tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  Research signal ranking only. No trade advice or instructions.<br>
+  Paper-safe, read-only IBKR scan. No capital deployed.<br>
+  <span id="footerTime"></span>
+</div>
+
+<script>
+fetch('/scanner/scan-results.json')
+  .then(function(r) { return r.ok ? r.json() : null; })
+  .then(function(d) {
+    if (!d) return;
+
+    // Meta bar
+    var m = d.scan_meta;
+    document.getElementById('scanMeta').innerHTML =
+      '<span>Scanned: ' + m.scanned_at + '</span>' +
+      '<span>Tickers: ' + m.tickers_scanned + '</span>' +
+      '<span>Fetched: ' + m.contracts_fetched + '</span>' +
+      '<span>Passed: ' + m.contracts_passed + '</span>';
+
+    // Theme cards
+    var themes = d.scan_meta.themes || {};
+    var convMap = {};
+    (d.convergence || []).forEach(function(c) {
+      if (!convMap[c.theme]) convMap[c.theme] = { tickers: [], status: c.status, total_score: 0 };
+      convMap[c.theme].tickers.push(c.ticker);
+      convMap[c.theme].total_score += c.score;
+    });
+
+    var cardsHtml = '';
+    Object.keys(convMap).forEach(function(theme) {
+      var info = convMap[theme];
+      var contracts = themes[theme] ? themes[theme].contracts : 0;
+      var statusClass = (info.status || '').replace(' ', '_');
+      cardsHtml += '<div class="theme-card">' +
+        '<div class="name">' + theme + '</div>' +
+        '<div class="status ' + statusClass + '">' + (info.status || '') + '</div>' +
+        '<div class="count">' + contracts + '</div>' +
+        '<div class="label">contracts passed</div>' +
+        '<div style="font-size:0.6rem;color:var(--dim);margin-top:4px;">' + info.tickers.join(', ') + '</div>' +
+        '</div>';
+    });
+    document.getElementById('themeCards').innerHTML = cardsHtml;
+
+    // Results table
+    var results = d.results || [];
+    var rows = '';
+    results.forEach(function(r, i) {
+      var convPct = Math.round(r.convergence * 100);
+      var scoreColor = r.asymmetry_score > 5 ? 'var(--green)' : (r.asymmetry_score > 2 ? 'var(--blue)' : 'var(--dim)');
+      var price = r.ask > 0 ? r.ask : r.mid;
+      rows += '<tr>' +
+        '<td>' + (i + 1) + '</td>' +
+        '<td class="ticker">' + r.ticker + '</td>' +
+        '<td>$' + r.strike + '</td>' +
+        '<td>' + r.expiry.substring(0,4) + '-' + r.expiry.substring(4,6) + '-' + r.expiry.substring(6) + '</td>' +
+        '<td>' + r.dte + 'd</td>' +
+        '<td class="otm">' + r.otm_pct + '%</td>' +
+        '<td>$' + price.toFixed(2) + '</td>' +
+        '<td class="iv">' + r.iv + '%</td>' +
+        '<td><div class="convergence-bar"><div class="conv-bg"><div class="conv-fill" style="width:' + convPct + '%"></div></div><span style="font-size:0.6rem;">' + convPct + '%</span></div></td>' +
+        '<td style="color:' + scoreColor + ';font-weight:700;">' + (r.asymmetry_score || '--') + '</td>' +
+        '<td><span class="theme-tag">' + r.theme + '</span></td>' +
+        '</tr>';
+    });
+
+    if (!rows) {
+      rows = '<tr><td colspan="11" style="text-align:center;color:var(--dim);">No contracts passed filters. Markets may be closed or IV too high.</td></tr>';
+    }
+
+    document.getElementById('resultsBody').innerHTML = rows;
+    document.getElementById('footerTime').textContent = 'Last scan: ' + m.scanned_at;
+  });
+</script>
+
+</body>
+</html>
