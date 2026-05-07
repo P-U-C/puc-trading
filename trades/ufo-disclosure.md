@@ -91,4 +91,50 @@ These names appear in BOTH the UFOD holdings AND our existing convergence scanne
 
 ---
 
-*Added to puc-trading repo April 29, 2026. The trade is the attention spike, not the content of the files.*
+## Missed-execution / What-If P&L — 2026-05-07
+
+Trade was written 2026-04-29. Not executed at original sizing. Patel announcement 2026-05-06 confirmed UFO files delivered for release — the catalyst the thesis was built around. Marking what the original book would have done if any expression had been opened at 2026-04-29 close.
+
+### Underlying moves (2026-04-29 → 2026-05-07)
+
+| Asset | 2026-04-29 | 2026-05-07 | Move |
+|-------|-----------:|-----------:|-----:|
+| AMTM (#1 UFOD holding) | $25.34 | $24.89 | -1.78% |
+| AMSC (alien-propulsion narrative) | $47.70 | $57.07 | **+19.65%** |
+| UFOD ETF | ~$25.50 | $26.35 | +3.3% |
+
+### Original $2,400 lottery book P&L
+
+| Leg | Qty | Entry | Last | Cost | Now | P&L | % |
+|-----|----:|------:|-----:|-----:|----:|----:|--:|
+| AMTM Jul'26 $32.50C | 10 | $0.65 | $0.55 | $650 | $550 | -$100 | -15.4% |
+| AMTM Jul'26 $35.00C | 10 | $0.50 | $0.40 | $500 | $400 | -$100 | -20.0% |
+| AMSC Jun'26 $70.00C | 5 | $2.50 | $4.70 | $1,250 | $2,350 | **+$1,100** | **+88.0%** |
+| **Book** | | | | **$2,400** | **$3,300** | **+$900** | **+37.5%** |
+
+### $1K compressed plan attempted 2026-05-06
+
+When Patel announcement landed, Chad attempted a single-contract expression of the trade at the open. **Blocked by IBKR — account had no options trading permissions.** The plan, marked at 2026-05-07 close to show what was missed:
+
+| Plan | Qty | Limit | Last | Cost | Now | P&L | % |
+|------|----:|------:|-----:|-----:|----:|----:|--:|
+| AMTM Jul'26 $30C | 13 | $0.75 | $0.85 | $975 | $1,105 | +$130 | +13.3% |
+
+Modest gain because **AMTM specifically did not run** with the catalyst — only AMSC did. The $1K plan picked the wrong leg given how the move actually played out.
+
+### Reads
+
+- **AMSC is where the alien-propulsion narrative converged.** AMSC stock +19.65%, AMSC Jun $70C +88%. The convergence-corpus thesis ("retail searches for alien tech stocks, LLMs surface UFOD holdings") fired through the propulsion narrative, not through the defense-services holding (AMTM).
+- **AMTM was the obvious-trade-everyone-knows that never moved.** #1 UFOD weight, biggest open interest, biggest sell-side coverage. Result: stock flat, calls bled theta. Convergence is necessary but not sufficient — the *narrative* still has to attach to one specific story arc, and "alien propulsion" attached to superconductors, not defense services.
+- **Account-permissions risk is real and was undersized in planning.** The $1K compressed plan was technically right about leg sizing but ignored the precondition: IBKR options-trading approval takes 1-2 business days. The trade was unexecutable on the day the catalyst fired. **Approval is now submitted in parallel** for the next event-driven options setup.
+- **The $1K plan picked AMTM over AMSC for "AMTM is the safer pick / AMSC has already moved."** AMSC had moved 9.4% pre-market and continued to +19.65% by close. Lesson: when a narrative is *already* attaching to a specific name pre-catalyst, that's a signal it will keep attaching, not a signal to fade. Don't anti-momentum-bias when the catalyst is hours away.
+
+### Lessons applied for the next setup
+
+1. Pre-approve options trading at IBKR (and any other broker we route through) **before** an event-driven thesis hits go-live. Approval is a blocker, not a paperwork detail.
+2. When a single name in a basket is *already running* on a partial signal, weight it heavier in compressed-bankroll plans, not lighter. The narrative-attachment effect compounds.
+3. Original-book sizing: the AMSC leg ($1,250 cost) returned more in absolute dollars than the entire AMTM leg ($1,150 cost) lost. Even at the original $2,400 book, the propulsion bet covered the dud holdings 9-1 in P&L. Don't trim AMSC in future basket sizing.
+
+---
+
+*Added to puc-trading repo April 29, 2026. P&L append 2026-05-07. The trade is the attention spike, not the content of the files.*
