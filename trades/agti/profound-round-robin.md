@@ -125,6 +125,43 @@ If picking one expression: **3 + 4 = $2,500 retail-feasible setup**. If running 
 
 ---
 
+## Missed-execution / What-If P&L — 2026-05-07
+
+Trade was written 2026-05-05 from the AGTI Tracker post (2026-05-02). Chad did not execute. Marking what the book would have done if any expression had been opened at 2026-05-05 close.
+
+### Underlying moves (2026-05-05 close → 2026-05-07 close)
+
+| Asset | 2026-05-05 | 2026-05-07 | Move |
+|-------|-----------:|-----------:|-----:|
+| 9984.T | ¥5,424 | ¥6,213 | **+14.55%** |
+| SFTBY ADR | $18.26 | $19.88 | **+8.87%** |
+| Nikkei 225 | 59,513 | 62,721 | +5.39% |
+| SKM | $37.80 | $36.88 | -2.43% |
+| ARM (deferred-short reference) | $208.84 | $237.30 | +13.63% |
+
+### Expression P&L
+
+| Expression | Cost | Now | P&L | % |
+|------------|-----:|----:|----:|--:|
+| A — 9984.T long / NIYM6 short hedged pair | $2,500 | $2,614 | **+$114** | +4.6% on gross (hedge isolates SOTP spread) |
+| B — SFTBY ADR equity (82 shares) | $1,497 | $1,630 | **+$133** | **+8.9%** |
+| C — SKM Jan'27 $45C (2 contracts at $5.95 mid) | $1,190 | $1,100 | -$90 | -7.6% (theta + SKM stall) |
+| Combined retail (B + C) | $2,687 | $2,730 | +$43 | +1.6% |
+
+### Reads
+
+- **B alone is the trade.** The unhedged SFTBY ADR equity move (+8.87% in 2 days on $1,497) was the cleanest expression and the one this file flagged as highest conviction. The SKM leg stalled — it needs an Anthropic-specific catalyst (next-round print, listing rumor) and got none.
+- **Expression A captured the spread, not the rally.** The hedged 9984/NIYM6 pair returned +4.6% gross on the SOTP spread — exactly what the AGTI Tracker overlay was designed to isolate. It's working as specified, but the unhedged thesis (long 9984 alone) returned 3x as much in absolute terms because the broader Nikkei rally added beta.
+- **The ARM short deferral was correct.** ARM ripped +13.63% over the same window. The deferred-short logic ("ARM has underperformed semis 70pp YoY, not in a rush to short") would have given back ~13.6% of its notional — roughly canceling the long leg. Don't second-guess that decision in future SOTP setups.
+
+### Lessons applied for the next setup
+
+1. When the AGTI Tracker overlay says "5% long X / -5% short Y" but the trade is fundamentally directional on X, the unhedged version of X often beats the hedged pair in absolute return. Decide whether you want the spread or the directional rerate before sizing.
+2. Anthropic-backdoor LEAPs (SKM-style) need a specific catalyst window, not a passive multi-month hold. Reconsider sizing only when an Anthropic round / listing event is in the next 30-60 days.
+3. Foreign-equity speed-to-execution matters. SFTBY ADR is the lowest-friction US-listed expression. If the JP-equity-enabled IBKR account isn't already configured, default to ADR so the trade is one click away the next time the signal fires.
+
+---
+
 ## Source attribution
 
 - AGTI Intelligence Report 2026-05-02 — "The Profound Round Robin: A Peer-Judged Frontier Model Tape"
