@@ -137,4 +137,67 @@ Modest gain because **AMTM specifically did not run** with the catalyst — only
 
 ---
 
-*Added to puc-trading repo April 29, 2026. P&L append 2026-05-07. The trade is the attention spike, not the content of the files.*
+## Release-day P&L and timing analysis -- 2026-05-08
+
+UFO files were actually released today, 2026-05-08. Pulled live underlying + option-chain data through 5/8 close; this section adds the second mark to the missed-execution book and identifies the optimal exit window.
+
+### Underlying moves (entry → release day)
+
+| Asset | 4/29 entry | 5/6 (Patel announcement) | 5/7 | 5/8 (release) | Net from entry |
+|-------|-----------:|-------------------------:|----:|--------------:|---------------:|
+| AMSC | $47.70 | $57.07 close ($57.18 H) | $53.22 | $55.19 close ($55.68 H) | **+15.7%** |
+| AMTM | $25.34 | $24.89 | $24.56 | $24.52 | **-3.2%** |
+| UFOD | ~$25.50 | $26.35 | $25.36 | $25.75 | **+1.0%** |
+
+The peak intraday print on AMSC was 2026-05-06 around 14:00 ET at $57.18. Today's release-day pop was small and short-lived: AMSC opened $54.73, hit the day's high $55.68 within the first 5 minutes (09:35 ET), then drifted to close $55.19. AMTM did not react meaningfully on either announcement or release.
+
+### Original $2,400 lottery book P&L by exit date
+
+| Exit date | AMTM $32.50C (10) | AMTM $35.00C (10) | AMSC $70.00C (5) | Book total | P&L | % |
+|-----------|------------------:|------------------:|------------------:|-----------:|----:|--:|
+| 5/6 close (announcement, AMSC peak) | ~$550 | ~$400 | ~$2,750 | **~$3,700** | +$1,300 | **+54%** ← best |
+| 5/7 close | $550 | $400 | $2,350 | $3,300 | +$900 | +37.5% |
+| 5/8 close (release day) | $550 | $325 | $1,900 | **$2,775** | +$375 | **+15.6%** |
+
+AMSC Jun $70C is the leg that did all the work: from $2.50 entry to ~$5.50 estimated peak on 5/6 (+120%), to $4.70 on 5/7 (+88%), to $3.80 mid today (+52%). Holding to today's actual release gave back ~$925 of peak gains.
+
+### $1K compressed plan (the IBKR-blocked attempt)
+
+AMTM Jul $30C × 13 @ $0.75 entry = $975
+
+| Date | Mid | Mark | P&L | % |
+|------|----:|-----:|----:|--:|
+| 5/6 (entry attempt) | $0.85 | $1,105 | +$130 | +13.3% |
+| 5/8 close (today) | $0.85 | $1,105 | +$130 | +13.3% |
+
+Effectively flat. The AMTM-specific bet would never have paid more than this -- the AMTM stock peaked at $26.67 on 5/1 and went sideways-down through release. The narrative attached to AMSC, not AMTM, and the compressed plan picked the wrong leg. Same lesson as the 5/7 mark, now confirmed by the actual release outcome.
+
+### Best-time-to-sell analysis
+
+**AMSC Jun $70C: 2026-05-06 between 14:00-15:00 ET** -- the day Patel announced the release would happen. AMSC was making its $57+ intraday high during that window. Sell-the-news players who exited at 5/6 close captured peak. By 5/7 morning the call was already ~25% off peak. Today's release-day pop was over within 5 minutes of open and the close was below 5/6's close.
+
+**AMTM legs: no good exit window existed.** AMTM peaked 5/1 at $26.67, only +5% from entry, and decayed steadily after. The $32.50C reached ~$0.75 briefly (call worth ~$0.10 above entry); the $35C never went above entry. Both legs were always going to expire near-worthless given how the catalyst played out.
+
+**Optimal whole-book exit: 2026-05-06 close.** Sell into the announcement, not the release.
+
+### What actually happened vs the original timing plan
+
+Original timing language in the file: *"Once the announcement date leaks, IV spikes and options become expensive. The edge: we're positioned BEFORE the attention arrives."*
+
+That was right about the IV-spike-on-announcement, but the file's implicit exit thesis assumed the *release* would be the bigger move. The actual market behavior:
+
+1. **Pre-positioning phase (4/29 → 5/5)**: AMSC ran from $47.70 → $55.01 (+15%) on speculation alone. AMTM stayed flat. The thesis was already half-paid before any catalyst hit.
+2. **Announcement spike (5/6)**: Patel confirms release. AMSC pops to $57.18 intraday, closes $57.07. AMTM doesn't react. **This was the actual peak.**
+3. **Sell-the-news distribution (5/7-5/8)**: AMSC pulls back as positioned holders take profits. Today's release was the second wave of sell-the-news -- a 5-minute pop and back to drift. AMTM unchanged.
+
+The structural mistake was treating "release" as a single binary catalyst when it was actually a two-stage event: pre-announce → release. The pre-announce stage was the bigger move because it removed binary uncertainty; the release itself was anti-climactic by design (everyone already knew it was coming).
+
+### Lessons added
+
+1. **Announcement = catalyst. Release = noise.** When a hard date for a catalyst is pre-announced or leaked, the announcement IS the event for trading purposes. Treat future event-driven theses with similar structure as having two distinct catalysts (announcement and release), and assume the announcement is the bigger one. Exit on announcement-day strength rather than holding for the release.
+2. **Sizing was right on direction (AMSC > AMTM), wrong on conviction.** AMSC made +$1,500 at peak on $1,250 cost; AMTM made -$275 today on $1,150 cost. Even with AMSC carrying the book +54% at peak, holding both legs split the optimal allocation roughly 50/50 when conviction should have gone 75-100% AMSC.
+3. **The IBKR options permission delay cost ~$1,200 on the original book.** Permission was approved today (5/8); trade peaked 5/6. Two-day delay cost the full announcement-day rip. Pre-trade checklist now requires verified options approval before any event-driven setup goes live.
+
+---
+
+*Added to puc-trading repo April 29, 2026. P&L append 2026-05-07. Release-day analysis 2026-05-08. The trade is the attention spike, not the content of the files -- and the announcement was the spike, not the release.*
