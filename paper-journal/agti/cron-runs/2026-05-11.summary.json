@@ -1,13 +1,36 @@
 {
   "errors": [
-    "could not fetch fill price for DT on 2026-05-11"
+    "could not fetch fill price for DT on 2026-05-11",
+    "could not fetch fill price for DIS on 2026-05-11",
+    "could not fetch fill price for AAPL on 2026-05-11",
+    "could not fetch fill price for NFLX on 2026-05-11",
+    "could not fetch fill price for GOOGL on 2026-05-11",
+    "could not fetch fill price for CRWD on 2026-05-11",
+    "could not fetch fill price for PANW on 2026-05-11",
+    "could not fetch fill price for NTDOY on 2026-05-11",
+    "could not fetch fill price for DJT on 2026-05-11",
+    "could not fetch fill price for INDA on 2026-05-11",
+    "could not fetch fill price for EWU on 2026-05-11",
+    "could not fetch fill price for LION on 2026-05-11",
+    "could not fetch fill price for SONY on 2026-05-11",
+    "could not fetch fill price for CCL on 2026-05-11",
+    "could not fetch fill price for RCL on 2026-05-11",
+    "could not fetch fill price for CMCSA on 2026-05-11",
+    "could not fetch fill price for IMAX on 2026-05-11",
+    "could not fetch fill price for BRK-B on 2026-05-11"
   ],
   "exits_triggered": [],
-  "fills_triggered": [],
-  "marks_computed": 0,
+  "fills_triggered": [
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 1.3631778955459595,
+      "ticker": "GBPUSD=X"
+    }
+  ],
+  "marks_computed": 6,
   "report_fetched": true,
   "report_publication_date": "2026-05-10",
   "report_url": "https://agtico.github.io/intelligence-reports/2026/05/10/attention-intelligence-report-2026-05-09-anthropic-claude-opus-4-6-run-31/",
-  "run_at": "2026-05-11T02:59:25.714641+00:00",
+  "run_at": "2026-05-11T03:02:11.643472+00:00",
   "today": "2026-05-11"
 }
