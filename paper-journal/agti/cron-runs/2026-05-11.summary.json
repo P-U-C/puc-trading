@@ -1,0 +1,13 @@
+{
+  "errors": [
+    "could not fetch fill price for DT on 2026-05-11"
+  ],
+  "exits_triggered": [],
+  "fills_triggered": [],
+  "marks_computed": 0,
+  "report_fetched": true,
+  "report_publication_date": "2026-05-10",
+  "report_url": "https://agtico.github.io/intelligence-reports/2026/05/10/attention-intelligence-report-2026-05-09-anthropic-claude-opus-4-6-run-31/",
+  "run_at": "2026-05-11T02:59:25.714641+00:00",
+  "today": "2026-05-11"
+}

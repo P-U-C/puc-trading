@@ -1,0 +1,9 @@
+AGTI daily-pull cron run -- 2026-05-11T02:59:25.714641+00:00
+  report_fetched: True
+  report_url: https://agtico.github.io/intelligence-reports/2026/05/10/attention-intelligence-report-2026-05-09-anthropic-claude-opus-4-6-run-31/
+  report_pub_date: 2026-05-10
+  marks_computed: 0
+  fills_triggered: 0
+  exits_triggered: 0
+  errors: 1
+  ERR: could not fetch fill price for DT on 2026-05-11

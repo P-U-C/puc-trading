@@ -1,0 +1,28 @@
+{
+  "_comment": "Source of truth for open paper positions. Cron reads this, marks each ticker, applies exit rules, writes back updates. Manually edited when new signals are extracted from a report (extraction is a human-in-loop step, not automated).",
+  "schema_version": "1.0.0",
+  "_field_descriptions": {
+    "ticker": "Yahoo Finance ticker symbol",
+    "direction": "long | short",
+    "report_date": "AGTI report publication date YYYY-MM-DD",
+    "entry_date": "trading-day date the entry filled YYYY-MM-DD; null if pending",
+    "entry_price": "fill price as float; null if pending",
+    "structure": "equity | option (informational only — paper book treats both as equity-equivalent for marking)",
+    "horizon": "T+5_default | catalyst:<date> | T+<n>_explicit",
+    "stop_pct": "stop-loss percent (negative number, e.g. -0.15)",
+    "take_pct": "take-profit percent (positive number, e.g. 0.30)",
+    "status": "pending | open | closed",
+    "ibkr_executable": "true if Stocks/Options approved at IBKR can take it; false otherwise",
+    "notes": "free-text reason or context"
+  },
+  "positions": [
+    {
+      "ticker": "DT", "direction": "long",
+      "report_date": "2026-05-10", "entry_date": null, "entry_price": null,
+      "structure": "equity", "horizon": "T+5_default",
+      "stop_pct": -0.15, "take_pct": 0.30,
+      "status": "pending", "ibkr_executable": true,
+      "notes": "6th consecutive report flag; 4-of-4 backtest hit rate; +6.50 Term Score, highest in 5/8-5/10 batch. Most-actionable still-open per agent."
+    }
+  ]
+}
