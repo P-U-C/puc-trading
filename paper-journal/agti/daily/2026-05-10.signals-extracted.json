@@ -1,0 +1,204 @@
+{
+  "covers_window": "2026-05-09",
+  "report_date": "2026-05-09",
+  "signals": [
+    {
+      "catalyst_text": "UK political realignment; Reform UK surge, Labour collapse, multi-party fragmentation",
+      "direction": "short",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Elevated political uncertainty around next UK general election and fiscal policy direction pressures GBP.",
+      "structure": "forex",
+      "ticker": "GBPUSD=X"
+    },
+    {
+      "catalyst_text": "UK local elections; end-of-two-party-politics framing",
+      "direction": "short",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Policy uncertainty across councils and potential regulatory/fiscal shifts if Reform gains Westminster power.",
+      "structure": "etf",
+      "ticker": "EWU"
+    },
+    {
+      "catalyst_text": "BJP wins West Bengal; TVK disrupts Tamil Nadu; state-level policy shifts",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "New state governments may alter infrastructure, industrial policy, and regulatory environments favorably.",
+      "structure": "etf",
+      "ticker": "INDA"
+    },
+    {
+      "catalyst_text": "Indian state elections; BJP expansion into Bengal",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": false,
+      "notes": "Potential shifts in state capex, land policy, and business climate in two major states.",
+      "structure": "index",
+      "ticker": "^NSEI"
+    },
+    {
+      "catalyst_text": "Michael Jackson biopic record opening; sequel talk",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Box-office outperformance from largest music-biopic debut ever; catalog monetization and sequel optionality.",
+      "structure": "equity",
+      "ticker": "LION"
+    },
+    {
+      "catalyst_text": "MJ catalog streaming surge (+95%); Thriller re-enters Billboard 200",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Music-rights portfolio revaluation driven by biopic-induced catalog lift.",
+      "structure": "equity",
+      "ticker": "SONY"
+    },
+    {
+      "catalyst_text": "Devil Wears Prada 2 strong opening ($77M domestic/$157M worldwide); Streep pay-parity story",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Box-office contribution from 20th Century Studios; franchise extension.",
+      "structure": "equity",
+      "ticker": "DIS"
+    },
+    {
+      "catalyst_text": "Canvas LMS breach by ShinyHunters; May 12 ransom deadline",
+      "direction": "short",
+      "horizon": "catalyst:2026-05-12",
+      "ibkr_executable": false,
+      "notes": "Reputational/operational risk, potential customer churn, and cybersecurity remediation costs; Instructure has been taken private/delisted.",
+      "structure": "equity",
+      "ticker": "INST"
+    },
+    {
+      "catalyst_text": "ShinyHunters extortion campaign; elevated cybersecurity attention",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Demand tailwind for endpoint/cloud security; sector attention from Canvas breach.",
+      "structure": "equity",
+      "ticker": "CRWD"
+    },
+    {
+      "catalyst_text": "Cybersecurity breach cycle; Hacker term ascending",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Sector attention and enterprise security spending narrative.",
+      "structure": "equity",
+      "ticker": "PANW"
+    },
+    {
+      "catalyst_text": "MV Hondius hantavirus outbreak; cruise-ship disease narrative",
+      "direction": "short",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Cruise industry sentiment risk from disease-on-ship framing; sector contagion despite not being directly affected.",
+      "structure": "equity",
+      "ticker": "CCL"
+    },
+    {
+      "catalyst_text": "Hantavirus cruise outbreak; COVID comparison framing",
+      "direction": "short",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Sector sentiment risk; WHO 'not another COVID' messaging cuts both ways.",
+      "structure": "equity",
+      "ticker": "RCL"
+    },
+    {
+      "catalyst_text": "Man on Fire, Lord of the Flies, Apex launches; content pipeline",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Content velocity and subscriber engagement from new originals.",
+      "structure": "equity",
+      "ticker": "NFLX"
+    },
+    {
+      "catalyst_text": "Cape Fear series trailer (Apple TV+, June 5); Ted Lasso S4 announced",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Content investment visibility and streaming subscriber narrative.",
+      "structure": "equity",
+      "ticker": "AAPL"
+    },
+    {
+      "catalyst_text": "The Boys final season; Vought Rising; Bezos Met Gala/Project Prometheus",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Prime Video franchise value and Bezos personal brand/capital deployment narrative.",
+      "structure": "equity",
+      "ticker": "AMZN"
+    },
+    {
+      "catalyst_text": "Star Fox announced for Switch 2; June 25 launch",
+      "direction": "long",
+      "horizon": "catalyst:2026-06-25",
+      "ibkr_executable": true,
+      "notes": "Switch 2 launch ecosystem; franchise revival as platform driver.",
+      "structure": "equity",
+      "ticker": "NTDOY"
+    },
+    {
+      "catalyst_text": "Wuthering Heights streaming on HBO Max; Mortal Kombat II theatrical",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Content monetization across theatrical and streaming windows.",
+      "structure": "equity",
+      "ticker": "WBD"
+    },
+    {
+      "catalyst_text": "Nolan's Odyssey July 17 release; IMAX-first positioning",
+      "direction": "long",
+      "horizon": "catalyst:2026-07-17",
+      "ibkr_executable": true,
+      "notes": "Tentpole event-film revenue and IMAX premium pricing for Universal/NBCUniversal.",
+      "structure": "equity",
+      "ticker": "CMCSA"
+    },
+    {
+      "catalyst_text": "The Odyssey shot entirely on IMAX; summer 2026 tentpole",
+      "direction": "long",
+      "horizon": "catalyst:2026-07-17",
+      "ibkr_executable": true,
+      "notes": "Premium format demand; Nolan partnership as brand driver.",
+      "structure": "equity",
+      "ticker": "IMAX"
+    },
+    {
+      "catalyst_text": "Boeing 777X scoring +1.34 in Term Report",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Certification/delivery attention and aerospace sentiment.",
+      "structure": "equity",
+      "ticker": "BA"
+    },
+    {
+      "catalyst_text": "Dynatrace +6.50 in Term Report (software/cloud)",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Elevated search interest; potential earnings or product catalyst.",
+      "structure": "equity",
+      "ticker": "DT"
+    },
+    {
+      "catalyst_text": "Berkshire Hathaway -1.17 in Term Report",
+      "direction": "short",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Post-annual-meeting attention fade and Buffett succession narrative cooling.",
+      "structure": "equity",
+      "ticker": "BRK-B"
+    }
+  ]
+}
