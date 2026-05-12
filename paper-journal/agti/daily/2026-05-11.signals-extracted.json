@@ -1,0 +1,177 @@
+{
+  "covers_window": "2026-05-10",
+  "report_date": "2026-05-10",
+  "signals": [
+    {
+      "catalyst_text": "ShinyHunters breach; 275M+ records claimed; school disruptions during finals",
+      "direction": "short",
+      "horizon": "T+5_default",
+      "ibkr_executable": false,
+      "notes": "Largest education-sector breach in recent memory with active extortion campaign and defaced school portals; reputational/operational risk and cybersecurity spend scrutiny.",
+      "structure": "equity",
+      "ticker": "INST"
+    },
+    {
+      "catalyst_text": "Devil Wears Prada 2 $433M global in 12 days via 20th Century Studios",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Box-office revenue tailwind for studio segment; legacy-sequel economics validated.",
+      "structure": "equity",
+      "ticker": "DIS"
+    },
+    {
+      "catalyst_text": "Michael Jackson biopic $577M+ global gross; sequel discussions",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Best-ever opening for a music biopic with 95% MJ catalog streaming surge; revenue upside and catalog/IP valuation lift.",
+      "structure": "equity",
+      "ticker": "LION"
+    },
+    {
+      "catalyst_text": "Mortal Kombat II theatrical release May 8; Wuthering Heights streaming",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Strong early box-office tracking validates video-game-to-film franchise pipeline.",
+      "structure": "equity",
+      "ticker": "WBD"
+    },
+    {
+      "catalyst_text": "Man on Fire, Lord of the Flies, Legends premieres; Remarkably Bright Creatures; Apex",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Dense thriller/mystery premiere stack creating discovery loop and engagement density.",
+      "structure": "equity",
+      "ticker": "NFLX"
+    },
+    {
+      "catalyst_text": "Widow's Bay on Apple TV+; Odyssey IMAX partnership",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Streaming content investment with prestige tentpole adjacency.",
+      "structure": "equity",
+      "ticker": "AAPL"
+    },
+    {
+      "catalyst_text": "Nolan's Odyssey (July 17); first feature shot entirely on IMAX cameras",
+      "direction": "long",
+      "horizon": "catalyst:2026-07-17",
+      "ibkr_executable": true,
+      "notes": "Major tentpole release with IMAX-first marketing; theme park tie-in potential.",
+      "structure": "equity",
+      "ticker": "CMCSA"
+    },
+    {
+      "catalyst_text": "Backlash, UFC 328, Freedom 250 at White House June 14; premium live event stack",
+      "direction": "long",
+      "horizon": "catalyst:2026-06-14",
+      "ibkr_executable": true,
+      "notes": "Sustained PPV/gate momentum with unusual White House venue story driving media rights narrative.",
+      "structure": "equity",
+      "ticker": "TKO"
+    },
+    {
+      "catalyst_text": "MV Hondius hantavirus outbreak; WHO alerts; multi-country evacuations",
+      "direction": "short",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Cruise-sector sentiment overhang from novel Andes virus outbreak with documented person-to-person transmission.",
+      "structure": "equity",
+      "ticker": "RCL"
+    },
+    {
+      "catalyst_text": "Hantavirus cruise-sector overhang",
+      "direction": "short",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Sector sentiment risk from MV Hondius outbreak and dramatic military airdrop visuals.",
+      "structure": "equity",
+      "ticker": "NCLH"
+    },
+    {
+      "catalyst_text": "Hantavirus cruise-sector overhang",
+      "direction": "short",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Sector sentiment risk from cruise-ship hantavirus narrative and public-health framing.",
+      "structure": "equity",
+      "ticker": "CCL"
+    },
+    {
+      "catalyst_text": "Canvas breach elevating cybersecurity spend narrative",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Largest education-sector breach reinforces sector tailwind for enterprise cybersecurity spend.",
+      "structure": "equity",
+      "ticker": "PANW"
+    },
+    {
+      "catalyst_text": "Canvas/ShinyHunters breach driving cybersecurity spend narrative",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Sector tailwind from headline-grade breach during active extortion campaign.",
+      "structure": "equity",
+      "ticker": "CRWD"
+    },
+    {
+      "catalyst_text": "Sudden shutdown May 2, 2026; stranded travelers",
+      "direction": "short",
+      "horizon": "T+5_default",
+      "ibkr_executable": false,
+      "notes": "Equity near-zero following abrupt shutdown; likely delisted or untradeable.",
+      "structure": "equity",
+      "ticker": "SAVE"
+    },
+    {
+      "catalyst_text": "Chrome +120% YoY, Search +63%, structured-data/cookie policy shifts",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Platform attention surging on policy shifts; sustained query volume signal.",
+      "structure": "equity",
+      "ticker": "GOOGL"
+    },
+    {
+      "catalyst_text": "WhatsApp file/icon trending +752% YoY; platform comparison cooling",
+      "direction": "neutral",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Engagement normalization post-outage cycle; mixed signals on user attention.",
+      "structure": "equity",
+      "ticker": "META"
+    },
+    {
+      "catalyst_text": "Jensen Huang +69% YoY in term report",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Sustained leadership attention reinforcing AI narrative.",
+      "structure": "equity",
+      "ticker": "NVDA"
+    },
+    {
+      "catalyst_text": "Larry Ellison +122% YoY in term report",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Tech-leadership curiosity surge suggests sustained mindshare.",
+      "structure": "equity",
+      "ticker": "ORCL"
+    },
+    {
+      "catalyst_text": "Jeff Bezos +157% YoY; Prime Video ACM Awards streaming",
+      "direction": "long",
+      "horizon": "T+5_default",
+      "ibkr_executable": true,
+      "notes": "Leadership attention and content investment momentum.",
+      "structure": "equity",
+      "ticker": "AMZN"
+    }
+  ]
+}

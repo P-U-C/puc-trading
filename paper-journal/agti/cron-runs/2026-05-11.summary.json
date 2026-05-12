@@ -1,36 +1,112 @@
 {
-  "errors": [
-    "could not fetch fill price for DT on 2026-05-11",
-    "could not fetch fill price for DIS on 2026-05-11",
-    "could not fetch fill price for AAPL on 2026-05-11",
-    "could not fetch fill price for NFLX on 2026-05-11",
-    "could not fetch fill price for GOOGL on 2026-05-11",
-    "could not fetch fill price for CRWD on 2026-05-11",
-    "could not fetch fill price for PANW on 2026-05-11",
-    "could not fetch fill price for NTDOY on 2026-05-11",
-    "could not fetch fill price for DJT on 2026-05-11",
-    "could not fetch fill price for INDA on 2026-05-11",
-    "could not fetch fill price for EWU on 2026-05-11",
-    "could not fetch fill price for LION on 2026-05-11",
-    "could not fetch fill price for SONY on 2026-05-11",
-    "could not fetch fill price for CCL on 2026-05-11",
-    "could not fetch fill price for RCL on 2026-05-11",
-    "could not fetch fill price for CMCSA on 2026-05-11",
-    "could not fetch fill price for IMAX on 2026-05-11",
-    "could not fetch fill price for BRK-B on 2026-05-11"
-  ],
+  "errors": [],
   "exits_triggered": [],
   "fills_triggered": [
     {
       "fill_date": "2026-05-11",
+      "fill_price": 40.349998474121094,
+      "ticker": "DT"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 108.0,
+      "ticker": "DIS"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 291.97900390625,
+      "ticker": "AAPL"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 86.5199966430664,
+      "ticker": "NFLX"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 393.9200134277344,
+      "ticker": "GOOGL"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 523.780029296875,
+      "ticker": "CRWD"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 207.82000732421875,
+      "ticker": "PANW"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 11.140000343322754,
+      "ticker": "NTDOY"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 8.770000457763672,
+      "ticker": "DJT"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 48.7400016784668,
+      "ticker": "INDA"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 46.79999923706055,
+      "ticker": "EWU"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 12.300000190734863,
+      "ticker": "LION"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 21.510000228881836,
+      "ticker": "SONY"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 25.860000610351562,
+      "ticker": "CCL"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 271.2699890136719,
+      "ticker": "RCL"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 25.5,
+      "ticker": "CMCSA"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 35.45000076293945,
+      "ticker": "IMAX"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 476.3999938964844,
+      "ticker": "BRK-B"
+    },
+    {
+      "fill_date": "2026-05-11",
       "fill_price": 1.3631778955459595,
       "ticker": "GBPUSD=X"
+    },
+    {
+      "fill_date": "2026-05-11",
+      "fill_price": 239.44000244140625,
+      "ticker": "BA"
     }
   ],
-  "marks_computed": 6,
+  "marks_computed": 25,
   "report_fetched": true,
-  "report_publication_date": "2026-05-10",
-  "report_url": "https://agtico.github.io/intelligence-reports/2026/05/10/attention-intelligence-report-2026-05-09-anthropic-claude-opus-4-6-run-31/",
-  "run_at": "2026-05-11T03:02:11.643472+00:00",
+  "report_publication_date": "2026-05-11",
+  "report_url": "https://agtico.github.io/intelligence-reports/2026/05/11/attention-intelligence-report-2026-05-10-anthropic-claude-opus-4-6-run-32/",
+  "run_at": "2026-05-11T14:00:01.139132+00:00",
   "today": "2026-05-11"
 }

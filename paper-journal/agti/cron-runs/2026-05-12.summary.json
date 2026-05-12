@@ -1,0 +1,40 @@
+{
+  "errors": [],
+  "exits_triggered": [
+    {
+      "exit_pct": 0.025716846671697578,
+      "exit_price": 537.25,
+      "reason": "catalyst_expiry_2026-05-12",
+      "ticker": "CRWD"
+    },
+    {
+      "exit_pct": 0.025478770004490555,
+      "exit_price": 213.11500549316406,
+      "reason": "catalyst_expiry_2026-05-12",
+      "ticker": "PANW"
+    }
+  ],
+  "fills_triggered": [
+    {
+      "fill_date": "2026-05-12",
+      "fill_price": 185.5500030517578,
+      "ticker": "TKO"
+    },
+    {
+      "fill_date": "2026-05-12",
+      "fill_price": 16.549999237060547,
+      "ticker": "NCLH"
+    },
+    {
+      "fill_date": "2026-05-12",
+      "fill_price": 192.9199981689453,
+      "ticker": "ORCL"
+    }
+  ],
+  "marks_computed": 28,
+  "report_fetched": true,
+  "report_publication_date": "2026-05-11",
+  "report_url": "https://agtico.github.io/intelligence-reports/2026/05/11/attention-intelligence-report-2026-05-10-anthropic-claude-opus-4-6-run-32/",
+  "run_at": "2026-05-12T14:00:01.589211+00:00",
+  "today": "2026-05-12"
+}

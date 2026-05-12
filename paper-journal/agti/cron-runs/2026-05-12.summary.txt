@@ -1,0 +1,13 @@
+AGTI daily-pull cron run -- 2026-05-12T14:00:01.589211+00:00
+  report_fetched: True
+  report_url: https://agtico.github.io/intelligence-reports/2026/05/11/attention-intelligence-report-2026-05-10-anthropic-claude-opus-4-6-run-32/
+  report_pub_date: 2026-05-11
+  marks_computed: 28
+  fills_triggered: 3
+  exits_triggered: 2
+  errors: 0
+  FILL: TKO @ 185.5500030517578 on 2026-05-12
+  FILL: NCLH @ 16.549999237060547 on 2026-05-12
+  FILL: ORCL @ 192.9199981689453 on 2026-05-12
+  EXIT: CRWD (catalyst_expiry_2026-05-12) @ 537.25 (+2.57%)
+  EXIT: PANW (catalyst_expiry_2026-05-12) @ 213.11500549316406 (+2.55%)
