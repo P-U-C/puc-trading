@@ -9,6 +9,71 @@ See [`docs/DESIGN.md`](docs/DESIGN.md) for the architectural decisions: why
 the runtime is split this way, how the file-boundary seam with `trend-corpus`
 works, and how M1-M5 wire together.
 
+## Canonical B2 architecture
+
+The same diagram is embedded in `trend-corpus/README.md` and
+`trend-intel-private/README.md`. This repo plays P3 -- the private
+scanner runtime.
+
+```mermaid
+flowchart LR
+    subgraph P1[Private peptide runtime host]
+        A[raw sources]
+        B[private claims]
+        C[private packets / supersedence]
+        D[export_public_aggregates.py]
+        E[export_semi_private_mirror.py]
+        A --> B
+        B --> C
+        B --> D
+        B --> E
+    end
+
+    subgraph P2[Semi-private mirror repo]
+        F[sources/]
+        G[provider-observations/]
+        H[claims/]
+        I[entities/]
+        J[decision-packets/]
+        K[opportunity-generator CLI]
+        L[scanner-seeds/peptides-opportunities.json]
+        E --> F
+        E --> G
+        E --> H
+        E --> I
+        H --> K
+        I --> K
+        G --> K
+        K --> L
+    end
+
+    subgraph P3[Private scanner runtime]
+        M[LLM fixture or live survey rows]
+        N[merge_convergence.py]
+        O[corpus/convergence-latest.json]
+        Q[scanner/run_live_scan.py]
+        R[scan-results.json]
+        M --> N
+        L --> N
+        N --> O
+        O --> Q
+        Q --> R
+    end
+
+    subgraph P4[Public surfaces]
+        S[trend-corpus]
+        T[pft-validator scanner site]
+        U[public dashboard]
+        D --> S
+        R --> T
+        T --> U
+    end
+```
+
+Inside this repo: M and N feed O. The scanner Q reads O and writes R.
+The deploy script in `scripts/deploy-scanner-results.sh` lifts R to
+`P-U-C/pft-validator/scanner/scan-results.json` (P4 -> public dashboard).
+
 ## Repo map
 
 ```
