@@ -1,0 +1,1675 @@
+[
+  {
+    "capture_id": "fixture-ai_infrastructure-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "ai_infrastructure",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for AI Infrastructure",
+    "tickers": [
+      {
+        "ticker": "NVDA",
+        "company_name": "NVDA Corp",
+        "rank_in_response": 1,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "AVGO",
+        "company_name": "AVGO Corp",
+        "rank_in_response": 7,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "MU",
+        "company_name": "MU Corp",
+        "rank_in_response": 5,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "TSM",
+        "company_name": "TSM Corp",
+        "rank_in_response": 2,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for AI Infrastructure (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-ai_infrastructure-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "ai_infrastructure",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for AI Infrastructure",
+    "tickers": [
+      {
+        "ticker": "NVDA",
+        "company_name": "NVDA Corp",
+        "rank_in_response": 1,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "AVGO",
+        "company_name": "AVGO Corp",
+        "rank_in_response": 7,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": true
+      },
+      {
+        "ticker": "DELL",
+        "company_name": "DELL Corp",
+        "rank_in_response": 3,
+        "mention_type": "comparison",
+        "qualifying_language": "fixture comparison",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for AI Infrastructure (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-ai_infrastructure-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "ai_infrastructure",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for AI Infrastructure",
+    "tickers": [
+      {
+        "ticker": "NVDA",
+        "company_name": "NVDA Corp",
+        "rank_in_response": 1,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "AVGO",
+        "company_name": "AVGO Corp",
+        "rank_in_response": 7,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "VRT",
+        "company_name": "VRT Corp",
+        "rank_in_response": 5,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for AI Infrastructure (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-ai_infrastructure-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "ai_infrastructure",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for AI Infrastructure",
+    "tickers": [
+      {
+        "ticker": "AVGO",
+        "company_name": "AVGO Corp",
+        "rank_in_response": 7,
+        "mention_type": "warning",
+        "qualifying_language": "fixture warning",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "VRT",
+        "company_name": "VRT Corp",
+        "rank_in_response": 5,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "ANET",
+        "company_name": "ANET Corp",
+        "rank_in_response": 4,
+        "mention_type": "warning",
+        "qualifying_language": "fixture warning",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for AI Infrastructure (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-ai_infrastructure-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "ai_infrastructure",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for AI Infrastructure",
+    "tickers": [
+      {
+        "ticker": "AVGO",
+        "company_name": "AVGO Corp",
+        "rank_in_response": 7,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "VRT",
+        "company_name": "VRT Corp",
+        "rank_in_response": 5,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "ANET",
+        "company_name": "ANET Corp",
+        "rank_in_response": 4,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "MU",
+        "company_name": "MU Corp",
+        "rank_in_response": 5,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for AI Infrastructure (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-glp_1_peptides-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "glp_1_peptides",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for GLP-1 / Peptides",
+    "tickers": [
+      {
+        "ticker": "NVO",
+        "company_name": "NVO Corp",
+        "rank_in_response": 3,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "VKTX",
+        "company_name": "VKTX Corp",
+        "rank_in_response": 4,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "GPCR",
+        "company_name": "GPCR Corp",
+        "rank_in_response": 2,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for GLP-1 / Peptides (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-glp_1_peptides-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "glp_1_peptides",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for GLP-1 / Peptides",
+    "tickers": [
+      {
+        "ticker": "LLY",
+        "company_name": "LLY Corp",
+        "rank_in_response": 1,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "NVO",
+        "company_name": "NVO Corp",
+        "rank_in_response": 3,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for GLP-1 / Peptides (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-glp_1_peptides-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "glp_1_peptides",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for GLP-1 / Peptides",
+    "tickers": [
+      {
+        "ticker": "LLY",
+        "company_name": "LLY Corp",
+        "rank_in_response": 1,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "NVO",
+        "company_name": "NVO Corp",
+        "rank_in_response": 3,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": true
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for GLP-1 / Peptides (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-glp_1_peptides-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "glp_1_peptides",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for GLP-1 / Peptides",
+    "tickers": [
+      {
+        "ticker": "LLY",
+        "company_name": "LLY Corp",
+        "rank_in_response": 1,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "NVO",
+        "company_name": "NVO Corp",
+        "rank_in_response": 3,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "VKTX",
+        "company_name": "VKTX Corp",
+        "rank_in_response": 4,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for GLP-1 / Peptides (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-glp_1_peptides-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "glp_1_peptides",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for GLP-1 / Peptides",
+    "tickers": [
+      {
+        "ticker": "NVO",
+        "company_name": "NVO Corp",
+        "rank_in_response": 3,
+        "mention_type": "warning",
+        "qualifying_language": "fixture warning",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "VKTX",
+        "company_name": "VKTX Corp",
+        "rank_in_response": 4,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "AMGN",
+        "company_name": "AMGN Corp",
+        "rank_in_response": 6,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for GLP-1 / Peptides (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-quantum_computing-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "quantum_computing",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for Quantum Computing",
+    "tickers": [
+      {
+        "ticker": "RGTI",
+        "company_name": "RGTI Corp",
+        "rank_in_response": 8,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Quantum Computing (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-quantum_computing-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "quantum_computing",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for Quantum Computing",
+    "tickers": [
+      {
+        "ticker": "RGTI",
+        "company_name": "RGTI Corp",
+        "rank_in_response": 8,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Quantum Computing (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-quantum_computing-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "quantum_computing",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for Quantum Computing",
+    "tickers": [
+      {
+        "ticker": "IONQ",
+        "company_name": "IONQ Corp",
+        "rank_in_response": 1,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "RGTI",
+        "company_name": "RGTI Corp",
+        "rank_in_response": 8,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Quantum Computing (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-quantum_computing-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "quantum_computing",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for Quantum Computing",
+    "tickers": [
+      {
+        "ticker": "IONQ",
+        "company_name": "IONQ Corp",
+        "rank_in_response": 1,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "QBTS",
+        "company_name": "QBTS Corp",
+        "rank_in_response": 1,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Quantum Computing (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-quantum_computing-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "quantum_computing",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for Quantum Computing",
+    "tickers": [
+      {
+        "ticker": "IONQ",
+        "company_name": "IONQ Corp",
+        "rank_in_response": 1,
+        "mention_type": "comparison",
+        "qualifying_language": "fixture comparison",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "RGTI",
+        "company_name": "RGTI Corp",
+        "rank_in_response": 8,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": true
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Quantum Computing (peak_hype)."
+  },
+  {
+    "capture_id": "fixture-nuclear_smr-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "nuclear_smr",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for Nuclear / SMR",
+    "tickers": [
+      {
+        "ticker": "OKLO",
+        "company_name": "OKLO Corp",
+        "rank_in_response": 7,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "SMR",
+        "company_name": "SMR Corp",
+        "rank_in_response": 2,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Nuclear / SMR (growing)."
+  },
+  {
+    "capture_id": "fixture-nuclear_smr-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "nuclear_smr",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for Nuclear / SMR",
+    "tickers": [
+      {
+        "ticker": "OKLO",
+        "company_name": "OKLO Corp",
+        "rank_in_response": 7,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "SMR",
+        "company_name": "SMR Corp",
+        "rank_in_response": 2,
+        "mention_type": "warning",
+        "qualifying_language": "fixture warning",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "GEV",
+        "company_name": "GEV Corp",
+        "rank_in_response": 3,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Nuclear / SMR (growing)."
+  },
+  {
+    "capture_id": "fixture-nuclear_smr-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "nuclear_smr",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for Nuclear / SMR",
+    "tickers": [
+      {
+        "ticker": "SMR",
+        "company_name": "SMR Corp",
+        "rank_in_response": 2,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "GEV",
+        "company_name": "GEV Corp",
+        "rank_in_response": 3,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "CEG",
+        "company_name": "CEG Corp",
+        "rank_in_response": 1,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Nuclear / SMR (growing)."
+  },
+  {
+    "capture_id": "fixture-nuclear_smr-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "nuclear_smr",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for Nuclear / SMR",
+    "tickers": [
+      {
+        "ticker": "BWXT",
+        "company_name": "BWXT Corp",
+        "rank_in_response": 1,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "GEV",
+        "company_name": "GEV Corp",
+        "rank_in_response": 3,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "CCJ",
+        "company_name": "CCJ Corp",
+        "rank_in_response": 4,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Nuclear / SMR (growing)."
+  },
+  {
+    "capture_id": "fixture-nuclear_smr-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "nuclear_smr",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for Nuclear / SMR",
+    "tickers": [
+      {
+        "ticker": "OKLO",
+        "company_name": "OKLO Corp",
+        "rank_in_response": 7,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "CCJ",
+        "company_name": "CCJ Corp",
+        "rank_in_response": 4,
+        "mention_type": "comparison",
+        "qualifying_language": "fixture comparison",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "LEU",
+        "company_name": "LEU Corp",
+        "rank_in_response": 2,
+        "mention_type": "comparison",
+        "qualifying_language": "fixture comparison",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Nuclear / SMR (growing)."
+  },
+  {
+    "capture_id": "fixture-robotics_humanoid-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "robotics_humanoid",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for Robotics / Humanoid",
+    "tickers": [
+      {
+        "ticker": "TSLA",
+        "company_name": "TSLA Corp",
+        "rank_in_response": 1,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "ISRG",
+        "company_name": "ISRG Corp",
+        "rank_in_response": 1,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Robotics / Humanoid (growing)."
+  },
+  {
+    "capture_id": "fixture-robotics_humanoid-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "robotics_humanoid",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for Robotics / Humanoid",
+    "tickers": [
+      {
+        "ticker": "SYM",
+        "company_name": "SYM Corp",
+        "rank_in_response": 6,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Robotics / Humanoid (growing)."
+  },
+  {
+    "capture_id": "fixture-robotics_humanoid-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "robotics_humanoid",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for Robotics / Humanoid",
+    "tickers": [
+      {
+        "ticker": "SERV",
+        "company_name": "SERV Corp",
+        "rank_in_response": 2,
+        "mention_type": "warning",
+        "qualifying_language": "fixture warning",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Robotics / Humanoid (growing)."
+  },
+  {
+    "capture_id": "fixture-robotics_humanoid-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "robotics_humanoid",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for Robotics / Humanoid",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Robotics / Humanoid (growing)."
+  },
+  {
+    "capture_id": "fixture-robotics_humanoid-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "robotics_humanoid",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for Robotics / Humanoid",
+    "tickers": [
+      {
+        "ticker": "TSLA",
+        "company_name": "TSLA Corp",
+        "rank_in_response": 1,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Robotics / Humanoid (growing)."
+  },
+  {
+    "capture_id": "fixture-photonic_computing-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "photonic_computing",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for Photonic Computing",
+    "tickers": [
+      {
+        "ticker": "LITE",
+        "company_name": "LITE Corp",
+        "rank_in_response": 1,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Photonic Computing (emerging)."
+  },
+  {
+    "capture_id": "fixture-photonic_computing-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "photonic_computing",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for Photonic Computing",
+    "tickers": [
+      {
+        "ticker": "COHR",
+        "company_name": "COHR Corp",
+        "rank_in_response": 6,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Photonic Computing (emerging)."
+  },
+  {
+    "capture_id": "fixture-photonic_computing-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "photonic_computing",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for Photonic Computing",
+    "tickers": [
+      {
+        "ticker": "IIVI",
+        "company_name": "IIVI Corp",
+        "rank_in_response": 4,
+        "mention_type": "comparison",
+        "qualifying_language": "fixture comparison",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Photonic Computing (emerging)."
+  },
+  {
+    "capture_id": "fixture-photonic_computing-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "photonic_computing",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for Photonic Computing",
+    "tickers": [
+      {
+        "ticker": "IIVI",
+        "company_name": "IIVI Corp",
+        "rank_in_response": 4,
+        "mention_type": "warning",
+        "qualifying_language": "fixture warning",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Photonic Computing (emerging)."
+  },
+  {
+    "capture_id": "fixture-photonic_computing-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "photonic_computing",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for Photonic Computing",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Photonic Computing (emerging)."
+  },
+  {
+    "capture_id": "fixture-space_satellite-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "space_satellite",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for Space / Satellite",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Space / Satellite (growing)."
+  },
+  {
+    "capture_id": "fixture-space_satellite-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "space_satellite",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for Space / Satellite",
+    "tickers": [
+      {
+        "ticker": "RKLB",
+        "company_name": "RKLB Corp",
+        "rank_in_response": 1,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Space / Satellite (growing)."
+  },
+  {
+    "capture_id": "fixture-space_satellite-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "space_satellite",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for Space / Satellite",
+    "tickers": [
+      {
+        "ticker": "RKLB",
+        "company_name": "RKLB Corp",
+        "rank_in_response": 1,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "ASTS",
+        "company_name": "ASTS Corp",
+        "rank_in_response": 1,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Space / Satellite (growing)."
+  },
+  {
+    "capture_id": "fixture-space_satellite-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "space_satellite",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for Space / Satellite",
+    "tickers": [
+      {
+        "ticker": "PL",
+        "company_name": "PL Corp",
+        "rank_in_response": 4,
+        "mention_type": "comparison",
+        "qualifying_language": "fixture comparison",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Space / Satellite (growing)."
+  },
+  {
+    "capture_id": "fixture-space_satellite-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "space_satellite",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for Space / Satellite",
+    "tickers": [
+      {
+        "ticker": "PL",
+        "company_name": "PL Corp",
+        "rank_in_response": 4,
+        "mention_type": "warning",
+        "qualifying_language": "fixture warning",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "LUNR",
+        "company_name": "LUNR Corp",
+        "rank_in_response": 2,
+        "mention_type": "warning",
+        "qualifying_language": "fixture warning",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Space / Satellite (growing)."
+  },
+  {
+    "capture_id": "fixture-defense_ai-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "defense_ai",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for Defense AI",
+    "tickers": [
+      {
+        "ticker": "BWXT",
+        "company_name": "BWXT Corp",
+        "rank_in_response": 4,
+        "mention_type": "warning",
+        "qualifying_language": "fixture warning",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Defense AI (growing)."
+  },
+  {
+    "capture_id": "fixture-defense_ai-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "defense_ai",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for Defense AI",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Defense AI (growing)."
+  },
+  {
+    "capture_id": "fixture-defense_ai-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "defense_ai",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for Defense AI",
+    "tickers": [
+      {
+        "ticker": "PLTR",
+        "company_name": "PLTR Corp",
+        "rank_in_response": 1,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Defense AI (growing)."
+  },
+  {
+    "capture_id": "fixture-defense_ai-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "defense_ai",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for Defense AI",
+    "tickers": [
+      {
+        "ticker": "LDOS",
+        "company_name": "LDOS Corp",
+        "rank_in_response": 6,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Defense AI (growing)."
+  },
+  {
+    "capture_id": "fixture-defense_ai-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "defense_ai",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for Defense AI",
+    "tickers": [
+      {
+        "ticker": "BWXT",
+        "company_name": "BWXT Corp",
+        "rank_in_response": 4,
+        "mention_type": "comparison",
+        "qualifying_language": "fixture comparison",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Defense AI (growing)."
+  },
+  {
+    "capture_id": "fixture-longevity-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "longevity",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for Longevity",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Longevity (emerging)."
+  },
+  {
+    "capture_id": "fixture-longevity-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "longevity",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for Longevity",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Longevity (emerging)."
+  },
+  {
+    "capture_id": "fixture-longevity-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "longevity",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for Longevity",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Longevity (emerging)."
+  },
+  {
+    "capture_id": "fixture-longevity-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "longevity",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for Longevity",
+    "tickers": [
+      {
+        "ticker": "ABBV",
+        "company_name": "ABBV Corp",
+        "rank_in_response": 6,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Longevity (emerging)."
+  },
+  {
+    "capture_id": "fixture-longevity-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "longevity",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for Longevity",
+    "tickers": [
+      {
+        "ticker": "CELH",
+        "company_name": "CELH Corp",
+        "rank_in_response": 2,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Longevity (emerging)."
+  },
+  {
+    "capture_id": "fixture-bitcoin_mining-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "bitcoin_mining",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for Bitcoin Mining",
+    "tickers": [
+      {
+        "ticker": "MARA",
+        "company_name": "MARA Corp",
+        "rank_in_response": 1,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "RIOT",
+        "company_name": "RIOT Corp",
+        "rank_in_response": 2,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Bitcoin Mining (post_peak)."
+  },
+  {
+    "capture_id": "fixture-bitcoin_mining-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "bitcoin_mining",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for Bitcoin Mining",
+    "tickers": [
+      {
+        "ticker": "CLSK",
+        "company_name": "CLSK Corp",
+        "rank_in_response": 6,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Bitcoin Mining (post_peak)."
+  },
+  {
+    "capture_id": "fixture-bitcoin_mining-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "bitcoin_mining",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for Bitcoin Mining",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Bitcoin Mining (post_peak)."
+  },
+  {
+    "capture_id": "fixture-bitcoin_mining-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "bitcoin_mining",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for Bitcoin Mining",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Bitcoin Mining (post_peak)."
+  },
+  {
+    "capture_id": "fixture-bitcoin_mining-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "bitcoin_mining",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for Bitcoin Mining",
+    "tickers": [
+      {
+        "ticker": "MARA",
+        "company_name": "MARA Corp",
+        "rank_in_response": 1,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Bitcoin Mining (post_peak)."
+  },
+  {
+    "capture_id": "fixture-bci_neurotech-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "bci_neurotech",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for BCI / Neurotech",
+    "tickers": [
+      {
+        "ticker": "BFLY",
+        "company_name": "BFLY Corp",
+        "rank_in_response": 1,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for BCI / Neurotech (emerging)."
+  },
+  {
+    "capture_id": "fixture-bci_neurotech-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "bci_neurotech",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for BCI / Neurotech",
+    "tickers": [
+      {
+        "ticker": "BFLY",
+        "company_name": "BFLY Corp",
+        "rank_in_response": 1,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "QSI",
+        "company_name": "QSI Corp",
+        "rank_in_response": 1,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for BCI / Neurotech (emerging)."
+  },
+  {
+    "capture_id": "fixture-bci_neurotech-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "bci_neurotech",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for BCI / Neurotech",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for BCI / Neurotech (emerging)."
+  },
+  {
+    "capture_id": "fixture-bci_neurotech-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "bci_neurotech",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for BCI / Neurotech",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for BCI / Neurotech (emerging)."
+  },
+  {
+    "capture_id": "fixture-bci_neurotech-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "bci_neurotech",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for BCI / Neurotech",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for BCI / Neurotech (emerging)."
+  },
+  {
+    "capture_id": "fixture-solid_state_battery-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "solid_state_battery",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for Solid-State Battery",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Solid-State Battery (emerging)."
+  },
+  {
+    "capture_id": "fixture-solid_state_battery-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "solid_state_battery",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for Solid-State Battery",
+    "tickers": [
+      {
+        "ticker": "QS",
+        "company_name": "QS Corp",
+        "rank_in_response": 2,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Solid-State Battery (emerging)."
+  },
+  {
+    "capture_id": "fixture-solid_state_battery-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "solid_state_battery",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for Solid-State Battery",
+    "tickers": [
+      {
+        "ticker": "QS",
+        "company_name": "QS Corp",
+        "rank_in_response": 2,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      },
+      {
+        "ticker": "SLDP",
+        "company_name": "SLDP Corp",
+        "rank_in_response": 6,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Solid-State Battery (emerging)."
+  },
+  {
+    "capture_id": "fixture-solid_state_battery-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "solid_state_battery",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for Solid-State Battery",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Solid-State Battery (emerging)."
+  },
+  {
+    "capture_id": "fixture-solid_state_battery-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "solid_state_battery",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for Solid-State Battery",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Solid-State Battery (emerging)."
+  },
+  {
+    "capture_id": "fixture-synthetic_biology-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "synthetic_biology",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for Synthetic Biology",
+    "tickers": [
+      {
+        "ticker": "PACB",
+        "company_name": "PACB Corp",
+        "rank_in_response": 4,
+        "mention_type": "warning",
+        "qualifying_language": "fixture warning",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Synthetic Biology (emerging)."
+  },
+  {
+    "capture_id": "fixture-synthetic_biology-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "synthetic_biology",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for Synthetic Biology",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Synthetic Biology (emerging)."
+  },
+  {
+    "capture_id": "fixture-synthetic_biology-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "synthetic_biology",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for Synthetic Biology",
+    "tickers": [
+      {
+        "ticker": "CRBU",
+        "company_name": "CRBU Corp",
+        "rank_in_response": 1,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Synthetic Biology (emerging)."
+  },
+  {
+    "capture_id": "fixture-synthetic_biology-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "synthetic_biology",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for Synthetic Biology",
+    "tickers": [
+      {
+        "ticker": "TWST",
+        "company_name": "TWST Corp",
+        "rank_in_response": 6,
+        "mention_type": "direct_recommendation",
+        "qualifying_language": "fixture direct recommendation",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Synthetic Biology (emerging)."
+  },
+  {
+    "capture_id": "fixture-synthetic_biology-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "synthetic_biology",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for Synthetic Biology",
+    "tickers": [
+      {
+        "ticker": "PACB",
+        "company_name": "PACB Corp",
+        "rank_in_response": 4,
+        "mention_type": "comparison",
+        "qualifying_language": "fixture comparison",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Synthetic Biology (emerging)."
+  },
+  {
+    "capture_id": "fixture-edge_ai-gpt5",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gpt5",
+    "model_version": "gpt5-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "edge_ai",
+    "prompt_id": "best_stocks",
+    "prompt_text": "Fixture prompt for Edge AI",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Edge AI (emerging)."
+  },
+  {
+    "capture_id": "fixture-edge_ai-claude",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "claude",
+    "model_version": "claude-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "edge_ai",
+    "prompt_id": "how_to_invest",
+    "prompt_text": "Fixture prompt for Edge AI",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Edge AI (emerging)."
+  },
+  {
+    "capture_id": "fixture-edge_ai-gemini",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "gemini",
+    "model_version": "gemini-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "edge_ai",
+    "prompt_id": "pure_plays",
+    "prompt_text": "Fixture prompt for Edge AI",
+    "tickers": [],
+    "response_excerpt": "Synthetic fixture capture for Edge AI (emerging)."
+  },
+  {
+    "capture_id": "fixture-edge_ai-perplexity",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "perplexity",
+    "model_version": "perplexity-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "edge_ai",
+    "prompt_id": "top_5",
+    "prompt_text": "Fixture prompt for Edge AI",
+    "tickers": [
+      {
+        "ticker": "AMBA",
+        "company_name": "AMBA Corp",
+        "rank_in_response": 1,
+        "mention_type": "hedged_mention",
+        "qualifying_language": "fixture hedged mention",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Edge AI (emerging)."
+  },
+  {
+    "capture_id": "fixture-edge_ai-grok",
+    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "model_slot": "grok",
+    "model_version": "grok-fixture-0.1.0",
+    "status": "captured",
+    "error_detail": null,
+    "theme_id": "edge_ai",
+    "prompt_id": "etf_or_stock",
+    "prompt_text": "Fixture prompt for Edge AI",
+    "tickers": [
+      {
+        "ticker": "AMBA",
+        "company_name": "AMBA Corp",
+        "rank_in_response": 1,
+        "mention_type": "pure_play",
+        "qualifying_language": "fixture pure play",
+        "repeated_in_response": false
+      }
+    ],
+    "response_excerpt": "Synthetic fixture capture for Edge AI (emerging)."
+  }
+]

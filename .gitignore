@@ -1,0 +1,20 @@
+# Python build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local env (use .env.example as the template)
+.env
+.env.local
+
+# Virtual envs
+.venv/
+venv/
+
+# Review bundle output (regenerable via scripts/make-review-bundle.sh)
+review-bundle-*/
+
+# IBKR runtime junk
+jts.ini
+launcher.log

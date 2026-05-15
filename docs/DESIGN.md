@@ -17,6 +17,31 @@ The pieces are arranged around three boundaries:
 All three boundaries are file-shaped. No in-process integration, no shared
 imports, no shared database. That is the deliberate design.
 
+## Composition
+
+```
+[private corpus populator]   ->   convergence-latest.json   ->   [private scanner runtime]
+                                  (file seam, M1 contract)         this repo, IBKR readonly
+                                                                          |
+                                                                          v
+                                                                  scan-results.json
+                                                                  (M5 deploy contract)
+                                                                          |
+                                                                          v
+                                                              [public scanner artifact]
+                                                              pft-validator/scanner/scan-results.json
+                                                                          |
+                                                                          v
+                                                                 [public dashboard]
+                                                            pft.permanentupperclass.com/scanner/
+```
+
+The scanner runtime is private. Only the scanner's output artifact is
+public. The dashboard is a static page that reads the artifact. No
+public interface accepts a query, and no order method exists anywhere
+in this chain -- the IBKR connection is `readonly=True` and the deploy
+script default has `DEPLOY_PUSH=0`.
+
 ## Why file boundaries
 
 The original convergence input to the scanner was a hardcoded Python list of
