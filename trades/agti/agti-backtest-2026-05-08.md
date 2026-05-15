@@ -3,7 +3,7 @@
 **Date:** 2026-05-08
 **Scope:** 9 reports indexed 2026-04-28 through 2026-05-07. 7 backtested here (1 paywalled, 1 ops note, 1 already-analyzed AGTI Research file). 110 named-instrument signals extracted, 95 closed-bar marks (entry < 5/7), 15 still-open from the 5/7 release.
 **Methodology:** Each named ticker pulled from yfinance, entry = close on the first trading day on/after report publication, exit = 5/7 close. Returns sign-flipped for shorts. Neutral signals scored magnitude-only (no hit/miss). MFE/MAE computed against close-only series in the holding window. Profound Round Robin (5/2 AGTI Research) numbers referenced from `profound-round-robin.md`; Attention Report 5/2 numbers referenced from `attention-report.md` and not re-marked. Spirit Airlines (SAVE) ceased ops 2026-05-02 per the 5/3 report — equity assumed worthless, short = +100%.
-**IBKR account filter:** U25626704 has stocks/bonds/options/forex. NOT futures/leveraged ETPs/foreign-direct. Of 95 closed signals, 1 (SBIN.NS direct India listing) is non-executable; rest are US-listed and clean.
+**IBKR account filter:** the operator's IBKR account (id redacted; configure via the `IBKR_ACCOUNT` env var) has stocks/bonds/options/forex. NOT futures/leveraged ETPs/foreign-direct. Of 95 closed signals, 1 (SBIN.NS direct India listing) is non-executable; rest are US-listed and clean.
 
 ---
 

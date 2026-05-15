@@ -39,7 +39,7 @@ Three tables in order of relevance:
 - **Entry price** = close on first trading day on or after report publication. Reports published mid-week fill same-day at close; reports published Sat/Sun fill Monday open.
 - **Mark** = most recent yfinance daily close.
 - **Direction-adjusted P&L:** positive = the signal worked, whether the trade was long or short.
-- **IBKR-executable** filter: stocks/options/bonds/forex on Chad's account U25626704. NO futures, NO leveraged ETPs, NO foreign direct (SBIN.NS class).
+- **IBKR-executable** filter: stocks/options/bonds/forex on the operator's IBKR account (account id redacted; configure via the `IBKR_ACCOUNT` env var). NO futures, NO leveraged ETPs, NO foreign direct (SBIN.NS class).
 - **Macro-proxy filter:** BNO/XLE/TLT-class signals are SKIPPED per the backtest's 0-of-4 evidence. They are still logged in the daily file with a "SKIPPED" tag so the universe-of-signals count stays honest.
 - **Sizing:** $1,000 notional / equity position, $500 / option ticket, $1,000 / FX position. Paper-only sizing — will be re-derived for live.
 

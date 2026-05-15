@@ -4,11 +4,12 @@ Push the day's cron-run summary to Chad's Telegram via the existing bot.
 
 Reads:
   cron-runs/<UTC-date>.summary.txt
-  /home/ubuntu/.claude/channels/telegram/.env   (TELEGRAM_BOT_TOKEN)
+  $TG_ENV_FILE (default /home/ubuntu/.claude/channels/telegram/.env)
+    keys: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
-Sends to chat_id=505841972 (Chad). The bot used is the same Claude-Code
-plugin bot (@claude_pft_chad_bot). Outbound API sends do not trigger inbound
-delivery to a Claude Code session, so this is safe to run from cron.
+The bot used is the same Claude-Code plugin bot (@claude_pft_chad_bot).
+Outbound API sends do not trigger inbound delivery to a Claude Code session,
+so this is safe to run from cron.
 
 Exit codes:
   0  message sent OR no summary file (no-op silent)
@@ -26,8 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 RUNS_DIR = ROOT / "cron-runs"
 POSITIONS_PATH = ROOT / "scripts" / "positions.json"
-TG_ENV = Path("/home/ubuntu/.claude/channels/telegram/.env")
-CHAD_CHAT_ID = 505841972
+TG_ENV = Path(os.environ.get("TG_ENV_FILE", "/home/ubuntu/.claude/channels/telegram/.env"))
 
 # --- Phase tracking config ---
 # Phase 1 = paper book; gate clears at 30 closed signals AND 4-week elapsed
@@ -39,13 +39,21 @@ PHASE_1_GATE_HIT_RATE = 0.55
 BANKROLL_USD = 5000.0  # Chad: 50% of post-5/12 $10K account
 
 
-def read_token() -> str | None:
+def _read_env(key: str) -> str | None:
     if not TG_ENV.exists():
         return None
     for line in TG_ENV.read_text().splitlines():
-        if line.startswith("TELEGRAM_BOT_TOKEN="):
+        if line.startswith(f"{key}="):
             return line.split("=", 1)[1].strip()
     return None
+
+
+def read_token() -> str | None:
+    return os.environ.get("TELEGRAM_BOT_TOKEN") or _read_env("TELEGRAM_BOT_TOKEN")
+
+
+def read_chat_id() -> str | None:
+    return os.environ.get("TELEGRAM_CHAT_ID") or _read_env("TELEGRAM_CHAT_ID")
 
 
 def _phase_header(today: date) -> list[str]:
@@ -182,17 +190,22 @@ def main() -> int:
 
     token = read_token()
     if not token:
-        sys.stderr.write(f"no TELEGRAM_BOT_TOKEN at {TG_ENV}\n")
+        sys.stderr.write(f"no TELEGRAM_BOT_TOKEN (env or {TG_ENV})\n")
+        return 1
+
+    chat_id = read_chat_id()
+    if not chat_id:
+        sys.stderr.write(f"no TELEGRAM_CHAT_ID (env or {TG_ENV})\n")
         return 1
 
     msg = build_message(summary_json, summary_txt, today_str)
     if not msg:
         return 0
 
-    ok = send(token, CHAD_CHAT_ID, msg)
+    ok = send(token, chat_id, msg)
     if not ok:
         return 1
-    print(f"sent telegram notification ({len(msg)} chars) to chat_id={CHAD_CHAT_ID}")
+    print(f"sent telegram notification ({len(msg)} chars)")
     return 0
 
 

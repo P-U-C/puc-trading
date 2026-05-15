@@ -5,83 +5,104 @@ Connects to IB Gateway, scans options chains for HIGH-convergence tickers,
 scores by asymmetry, exports dashboard JSON + sends Telegram alert.
 """
 
-import json, os, math, time
+import json, os, math, sys, time
 from datetime import datetime, timezone, timedelta
-from ib_insync import IB, Stock, Option
 
 # -- Config --
 IBKR_PORT = int(os.environ.get("IBKR_PORT", "4002"))
 OUTPUT_JSON = os.path.expanduser("~/pft-validator/scanner/scan-results.json")
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
-TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "505841972")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 DRY_RUN = os.environ.get("DRY_RUN", "true").lower() != "false"
 
-# -- Convergence Data (from seed corpus) --
-CONVERGENCE = [
-    # AI Infrastructure
-    {"ticker": "NVDA", "theme": "AI Infrastructure", "score": 0.800, "tier": "HIGH", "status": "peak_hype"},
-    {"ticker": "AVGO", "theme": "AI Infrastructure", "score": 0.620, "tier": "HIGH", "status": "peak_hype"},
-    {"ticker": "VRT",  "theme": "AI Infrastructure", "score": 0.496, "tier": "MEDIUM", "status": "peak_hype"},
-    {"ticker": "ANET", "theme": "AI Infrastructure", "score": 0.269, "tier": "LOW", "status": "peak_hype"},
-    {"ticker": "MU",   "theme": "AI Infrastructure", "score": 0.260, "tier": "LOW", "status": "peak_hype"},
-    {"ticker": "TSM",  "theme": "AI Infrastructure", "score": 0.250, "tier": "LOW", "status": "peak_hype"},
-    {"ticker": "DELL", "theme": "AI Infrastructure", "score": 0.200, "tier": "LOW", "status": "peak_hype"},
-    # GLP-1 / Peptides
-    {"ticker": "LLY",  "theme": "GLP-1 / Peptides", "score": 0.800, "tier": "HIGH", "status": "peak_hype"},
-    {"ticker": "NVO",  "theme": "GLP-1 / Peptides", "score": 0.680, "tier": "HIGH", "status": "peak_hype"},
-    {"ticker": "VKTX", "theme": "GLP-1 / Peptides", "score": 0.509, "tier": "MEDIUM", "status": "peak_hype"},
-    {"ticker": "AMGN", "theme": "GLP-1 / Peptides", "score": 0.350, "tier": "MEDIUM", "status": "peak_hype"},
-    {"ticker": "GPCR", "theme": "GLP-1 / Peptides", "score": 0.250, "tier": "LOW", "status": "growing"},
-    # Quantum Computing
-    {"ticker": "IONQ", "theme": "Quantum Computing", "score": 0.733, "tier": "HIGH", "status": "peak_hype"},
-    {"ticker": "QBTS", "theme": "Quantum Computing", "score": 0.600, "tier": "HIGH", "status": "peak_hype"},
-    {"ticker": "RGTI", "theme": "Quantum Computing", "score": 0.589, "tier": "MEDIUM", "status": "peak_hype"},
-    # Nuclear / SMR
-    {"ticker": "BWXT", "theme": "Nuclear / SMR", "score": 0.600, "tier": "HIGH", "status": "growing"},
-    {"ticker": "OKLO", "theme": "Nuclear / SMR", "score": 0.541, "tier": "MEDIUM", "status": "growing"},
-    {"ticker": "SMR",  "theme": "Nuclear / SMR", "score": 0.514, "tier": "MEDIUM", "status": "growing"},
-    {"ticker": "GEV",  "theme": "Nuclear / SMR", "score": 0.465, "tier": "MEDIUM", "status": "growing"},
-    {"ticker": "CEG",  "theme": "Nuclear / SMR", "score": 0.400, "tier": "MEDIUM", "status": "growing"},
-    {"ticker": "CCJ",  "theme": "Nuclear / SMR", "score": 0.300, "tier": "LOW", "status": "growing"},
-    {"ticker": "LEU",  "theme": "Nuclear / SMR", "score": 0.250, "tier": "LOW", "status": "growing"},
-    # Robotics / Humanoid
-    {"ticker": "TSLA", "theme": "Robotics / Humanoid", "score": 0.500, "tier": "MEDIUM", "status": "growing"},
-    {"ticker": "ISRG", "theme": "Robotics / Humanoid", "score": 0.400, "tier": "MEDIUM", "status": "growing"},
-    {"ticker": "SYM",  "theme": "Robotics / Humanoid", "score": 0.350, "tier": "MEDIUM", "status": "growing"},
-    {"ticker": "SERV", "theme": "Robotics / Humanoid", "score": 0.250, "tier": "LOW", "status": "growing"},
-    # Photonic Computing (emerging - pre-corpus, estimated convergence)
-    {"ticker": "LITE", "theme": "Photonic Computing", "score": 0.400, "tier": "MEDIUM", "status": "emerging"},
-    {"ticker": "COHR", "theme": "Photonic Computing", "score": 0.350, "tier": "MEDIUM", "status": "emerging"},
-    {"ticker": "IIVI", "theme": "Photonic Computing", "score": 0.300, "tier": "LOW", "status": "emerging"},
-    # Space / Satellite
-    {"ticker": "RKLB", "theme": "Space / Satellite", "score": 0.500, "tier": "MEDIUM", "status": "growing"},
-    {"ticker": "ASTS", "theme": "Space / Satellite", "score": 0.400, "tier": "MEDIUM", "status": "growing"},
-    {"ticker": "PL",   "theme": "Space / Satellite", "score": 0.300, "tier": "LOW", "status": "growing"},
-    {"ticker": "LUNR", "theme": "Space / Satellite", "score": 0.250, "tier": "LOW", "status": "emerging"},
-    # Defense AI / Autonomy
-    {"ticker": "PLTR", "theme": "Defense AI", "score": 0.600, "tier": "HIGH", "status": "growing"},
-    {"ticker": "LDOS", "theme": "Defense AI", "score": 0.350, "tier": "MEDIUM", "status": "growing"},
-    {"ticker": "BWXT", "theme": "Defense AI", "score": 0.300, "tier": "LOW", "status": "growing"},
-    # Longevity / Anti-Aging (emerging)
-    {"ticker": "ABBV", "theme": "Longevity", "score": 0.350, "tier": "MEDIUM", "status": "emerging"},
-    {"ticker": "CELH", "theme": "Longevity", "score": 0.250, "tier": "LOW", "status": "emerging"},
-    # Bitcoin Mining
-    {"ticker": "MARA", "theme": "Bitcoin Mining", "score": 0.500, "tier": "MEDIUM", "status": "post_peak"},
-    {"ticker": "RIOT", "theme": "Bitcoin Mining", "score": 0.450, "tier": "MEDIUM", "status": "post_peak"},
-    {"ticker": "CLSK", "theme": "Bitcoin Mining", "score": 0.350, "tier": "MEDIUM", "status": "post_peak"},
-    # Brain-Computer Interface / Neurotech (emerging — pre-catalyst)
-    {"ticker": "BFLY", "theme": "BCI / Neurotech", "score": 0.500, "tier": "MEDIUM", "status": "emerging"},
-    {"ticker": "QSI",  "theme": "BCI / Neurotech", "score": 0.400, "tier": "MEDIUM", "status": "emerging"},
-    # Solid-State Batteries (emerging — pre-catalyst)
-    {"ticker": "QS",   "theme": "Solid-State Battery", "score": 0.550, "tier": "MEDIUM", "status": "emerging"},
-    {"ticker": "SLDP", "theme": "Solid-State Battery", "score": 0.350, "tier": "MEDIUM", "status": "emerging"},
-    # Synthetic Biology (emerging)
-    {"ticker": "CRBU", "theme": "Synthetic Biology", "score": 0.400, "tier": "MEDIUM", "status": "emerging"},
-    {"ticker": "TWST", "theme": "Synthetic Biology", "score": 0.350, "tier": "MEDIUM", "status": "emerging"},
-    {"ticker": "PACB", "theme": "Synthetic Biology", "score": 0.300, "tier": "LOW", "status": "emerging"},
-    # Edge AI / Neuromorphic (emerging)
-    {"ticker": "AMBA", "theme": "Edge AI", "score": 0.500, "tier": "MEDIUM", "status": "emerging"},
-]
+# -- Convergence Artifact --
+CORPUS_ARTIFACT = os.path.expanduser(
+    os.environ.get("CONVERGENCE_ARTIFACT", "~/puc-trading/corpus/convergence-latest.json")
+)
+REQUIRED_SCORE_FIELDS = {"ticker", "theme", "score", "tier", "status"}
+
+
+class ConvergenceLoadError(RuntimeError):
+    pass
+
+
+def _parse_generated_at(value):
+    if not value:
+        raise ConvergenceLoadError("convergence artifact missing generated_at")
+    if not isinstance(value, str):
+        raise ConvergenceLoadError("convergence artifact generated_at must be a string")
+    normalized = value.replace("Z", "+00:00")
+    try:
+        generated_at = datetime.fromisoformat(normalized)
+    except ValueError as exc:
+        raise ConvergenceLoadError(f"convergence artifact generated_at is not parseable: {value}") from exc
+    if generated_at.tzinfo is None:
+        generated_at = generated_at.replace(tzinfo=timezone.utc)
+    return generated_at.astimezone(timezone.utc)
+
+
+def validate_convergence_artifact(path=CORPUS_ARTIFACT, max_age_days=None, now_utc=None):
+    path = os.path.expanduser(path)
+    if max_age_days is None:
+        try:
+            max_age_days = int(os.environ.get("CORPUS_MAX_AGE_DAYS", "14"))
+        except ValueError as exc:
+            raise ConvergenceLoadError("CORPUS_MAX_AGE_DAYS must be an integer") from exc
+
+    if not os.path.exists(path):
+        raise ConvergenceLoadError(f"convergence artifact missing: {path}")
+
+    try:
+        with open(path) as f:
+            artifact = json.load(f)
+    except json.JSONDecodeError as exc:
+        raise ConvergenceLoadError(f"convergence artifact malformed JSON: {path}: {exc}") from exc
+
+    if not isinstance(artifact, dict):
+        raise ConvergenceLoadError("convergence artifact must be a JSON object")
+    if not artifact.get("schema_version"):
+        raise ConvergenceLoadError("convergence artifact missing schema_version")
+
+    generated_at = _parse_generated_at(artifact.get("generated_at"))
+    now_utc = now_utc or datetime.now(timezone.utc)
+    age = now_utc - generated_at
+    max_age = timedelta(days=max_age_days)
+    if age > max_age:
+        raise ConvergenceLoadError(
+            "convergence artifact stale: "
+            f"age={age.total_seconds() / 86400:.2f} days threshold={max_age_days} days"
+        )
+
+    scores = artifact.get("scores")
+    if not isinstance(scores, list) or not scores:
+        raise ConvergenceLoadError("convergence artifact scores must be a non-empty list")
+
+    for idx, row in enumerate(scores):
+        if not isinstance(row, dict):
+            raise ConvergenceLoadError(f"convergence score row {idx} must be an object")
+        missing = sorted(field for field in REQUIRED_SCORE_FIELDS if field not in row or row[field] in (None, ""))
+        if missing:
+            raise ConvergenceLoadError(f"convergence score row {idx} missing required fields: {', '.join(missing)}")
+
+    return artifact
+
+
+def map_convergence_scores(artifact):
+    rows = []
+    for row in artifact["scores"]:
+        rows.append({
+            "ticker": str(row["ticker"]).upper(),
+            "theme": str(row["theme"]),
+            "score": float(row["score"]),
+            "tier": str(row["tier"]).upper(),
+            "status": str(row["status"]),
+        })
+    return rows
+
+
+def load_convergence(path=CORPUS_ARTIFACT, max_age_days=None, now_utc=None):
+    return map_convergence_scores(validate_convergence_artifact(path, max_age_days, now_utc))
+
 
 # -- Filter Config --
 MIN_OTM = 0.20
@@ -95,6 +116,9 @@ MAX_IV = 1.50  # generous for now, real IV can be high on small caps
 
 def run():
     import random
+    convergence = load_convergence()
+    from ib_insync import IB, Stock, Option
+
     client_id = random.randint(100, 999)
     print(f"[{now()}] Connecting to IBKR Gateway on port {IBKR_PORT} (clientId={client_id})...")
     ib = IB()
@@ -114,7 +138,7 @@ def run():
     # Deduplicate tickers (some appear in multiple themes)
     seen_tickers = set()
     unique_entries = []
-    for entry in CONVERGENCE:
+    for entry in convergence:
         if entry["ticker"] not in seen_tickers:
             seen_tickers.add(entry["ticker"])
             unique_entries.append(entry)
@@ -277,7 +301,7 @@ def run():
     output = {
         "scan_meta": scan_meta,
         "results": all_scored[:50],  # top 50 for dashboard
-        "convergence": CONVERGENCE,
+        "convergence": convergence,
     }
 
     os.makedirs(os.path.dirname(OUTPUT_JSON), exist_ok=True)
@@ -319,8 +343,8 @@ def format_alert(top, meta):
 
 
 def send_telegram(msg):
-    if not TELEGRAM_BOT_TOKEN:
-        print("No Telegram token, printing instead")
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        print("No TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID env, printing instead")
         print(msg)
         return
     import requests
@@ -340,4 +364,15 @@ def now():
 
 
 if __name__ == "__main__":
-    run()
+    try:
+        if len(sys.argv) > 1 and sys.argv[1] == "--validate-convergence":
+            artifact = validate_convergence_artifact()
+            print(
+                f"[{now()}] Convergence artifact valid: "
+                f"{len(artifact['scores'])} scores from {artifact['generated_at']}"
+            )
+        else:
+            run()
+    except ConvergenceLoadError as exc:
+        print(f"[{now()}] ERROR: {exc}", file=sys.stderr)
+        sys.exit(1)
