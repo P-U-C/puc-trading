@@ -1,956 +1,1180 @@
 {
-  "schema_version": "0.1.0",
-  "generated_at": "2026-05-15T19:23:27Z",
+  "generated_at": "2026-05-15T20:37:08Z",
   "generator": {
-    "name": "llm-convergence-populator",
-    "version": "0.1.0",
-    "mode": "fixture"
+    "mode": "merge",
+    "name": "merge_convergence",
+    "version": "0.1.0"
   },
-  "themes": [
-    {
-      "theme_id": "ai_infrastructure",
-      "theme_name": "AI Infrastructure",
-      "status": "peak_hype"
-    },
-    {
-      "theme_id": "glp_1_peptides",
-      "theme_name": "GLP-1 / Peptides",
-      "status": "growing"
-    },
-    {
-      "theme_id": "quantum_computing",
-      "theme_name": "Quantum Computing",
-      "status": "peak_hype"
-    },
-    {
-      "theme_id": "nuclear_smr",
-      "theme_name": "Nuclear / SMR",
-      "status": "growing"
-    },
-    {
-      "theme_id": "robotics_humanoid",
-      "theme_name": "Robotics / Humanoid",
-      "status": "growing"
-    },
-    {
-      "theme_id": "photonic_computing",
-      "theme_name": "Photonic Computing",
-      "status": "emerging"
-    },
-    {
-      "theme_id": "space_satellite",
-      "theme_name": "Space / Satellite",
-      "status": "emerging"
-    },
-    {
-      "theme_id": "defense_ai",
-      "theme_name": "Defense AI",
-      "status": "growing"
-    },
-    {
-      "theme_id": "longevity",
-      "theme_name": "Longevity",
-      "status": "emerging"
-    },
-    {
-      "theme_id": "bitcoin_mining",
-      "theme_name": "Bitcoin Mining",
-      "status": "post_peak"
-    },
-    {
-      "theme_id": "bci_neurotech",
-      "theme_name": "BCI / Neurotech",
-      "status": "emerging"
-    },
-    {
-      "theme_id": "solid_state_battery",
-      "theme_name": "Solid-State Battery",
-      "status": "emerging"
-    },
-    {
-      "theme_id": "synthetic_biology",
-      "theme_name": "Synthetic Biology",
-      "status": "emerging"
-    },
-    {
-      "theme_id": "edge_ai",
-      "theme_name": "Edge AI",
-      "status": "emerging"
-    }
-  ],
+  "schema_version": "0.1.0",
   "scores": [
     {
-      "ticker": "NVDA",
-      "theme_id": "ai_infrastructure",
-      "theme": "AI Infrastructure",
-      "convergence_score": 0.8,
-      "score": 0.8,
-      "convergence_tier": "HIGH",
-      "tier": "HIGH",
+      "row_sources": [
+        "theme_opportunity_generator"
+      ],
+      "score": 0.8384,
+      "score_components": {
+        "catalyst_weight": 0.5,
+        "data_quality_weight": 1.0,
+        "evidence_strength": 0.82,
+        "exposure_strength": 0.91,
+        "freshness_weight": 0.9722,
+        "tradability_weight": 1.0
+      },
+      "source_capture_ids": [],
+      "source_claim_ids": [
+        "clm_peptides_capacity_cdmo_2026_05_15"
+      ],
       "status": "peak_hype",
-      "models_mentioning": 3,
+      "theme": "Peptides",
+      "theme_id": "peptides",
+      "ticker": "BANB",
+      "tier": "HIGH"
+    },
+    {
       "avg_rank": 1.0,
-      "direct_mentions": 3,
-      "total_mentions": 3,
-      "source_capture_ids": [
-        "fixture-ai_infrastructure-claude",
-        "fixture-ai_infrastructure-gemini",
-        "fixture-ai_infrastructure-gpt5"
-      ]
-    },
-    {
-      "ticker": "AVGO",
-      "theme_id": "ai_infrastructure",
-      "theme": "AI Infrastructure",
-      "convergence_score": 0.623,
-      "score": 0.623,
+      "convergence_score": 0.8,
       "convergence_tier": "HIGH",
-      "tier": "HIGH",
-      "status": "peak_hype",
-      "models_mentioning": 5,
-      "avg_rank": 7.0,
-      "direct_mentions": 2,
-      "total_mentions": 5,
-      "source_capture_ids": [
-        "fixture-ai_infrastructure-claude",
-        "fixture-ai_infrastructure-gemini",
-        "fixture-ai_infrastructure-gpt5",
-        "fixture-ai_infrastructure-grok",
-        "fixture-ai_infrastructure-perplexity"
-      ]
-    },
-    {
-      "ticker": "VRT",
-      "theme_id": "ai_infrastructure",
-      "theme": "AI Infrastructure",
-      "convergence_score": 0.493,
-      "score": 0.493,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "peak_hype",
+      "direct_mentions": 3,
       "models_mentioning": 3,
-      "avg_rank": 5.0,
-      "direct_mentions": 2,
-      "total_mentions": 3,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.8,
       "source_capture_ids": [
-        "fixture-ai_infrastructure-gemini",
-        "fixture-ai_infrastructure-grok",
-        "fixture-ai_infrastructure-perplexity"
-      ]
-    },
-    {
-      "ticker": "ANET",
-      "theme_id": "ai_infrastructure",
-      "theme": "AI Infrastructure",
-      "convergence_score": 0.275,
-      "score": 0.275,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
+        "fixture-glp_1_peptides-claude",
+        "fixture-glp_1_peptides-gemini",
+        "fixture-glp_1_peptides-perplexity"
+      ],
+      "source_claim_ids": [],
       "status": "peak_hype",
-      "models_mentioning": 2,
-      "avg_rank": 4.0,
-      "direct_mentions": 0,
-      "total_mentions": 2,
-      "source_capture_ids": [
-        "fixture-ai_infrastructure-grok",
-        "fixture-ai_infrastructure-perplexity"
-      ]
-    },
-    {
-      "ticker": "MU",
-      "theme_id": "ai_infrastructure",
-      "theme": "AI Infrastructure",
-      "convergence_score": 0.26,
-      "score": 0.26,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
-      "status": "peak_hype",
-      "models_mentioning": 2,
-      "avg_rank": 5.0,
-      "direct_mentions": 0,
-      "total_mentions": 2,
-      "source_capture_ids": [
-        "fixture-ai_infrastructure-gpt5",
-        "fixture-ai_infrastructure-grok"
-      ]
-    },
-    {
-      "ticker": "TSM",
-      "theme_id": "ai_infrastructure",
-      "theme": "AI Infrastructure",
-      "convergence_score": 0.25,
-      "score": 0.25,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
-      "status": "peak_hype",
-      "models_mentioning": 1,
-      "avg_rank": 2.0,
-      "direct_mentions": 0,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-ai_infrastructure-gpt5"
-      ]
-    },
-    {
-      "ticker": "DELL",
-      "theme_id": "ai_infrastructure",
-      "theme": "AI Infrastructure",
-      "convergence_score": 0.2,
-      "score": 0.2,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
-      "status": "peak_hype",
-      "models_mentioning": 1,
-      "avg_rank": 3.0,
-      "direct_mentions": 0,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-ai_infrastructure-claude"
-      ]
-    },
-    {
+      "theme": "GLP-1 / Peptides",
+      "theme_id": "glp_1_peptides",
       "ticker": "LLY",
-      "theme_id": "glp_1_peptides",
-      "theme": "GLP-1 / Peptides",
+      "tier": "HIGH",
+      "total_mentions": 3
+    },
+    {
+      "avg_rank": 1.0,
       "convergence_score": 0.8,
-      "score": 0.8,
       "convergence_tier": "HIGH",
-      "tier": "HIGH",
-      "status": "peak_hype",
-      "models_mentioning": 3,
-      "avg_rank": 1.0,
       "direct_mentions": 3,
-      "total_mentions": 3,
-      "source_capture_ids": [
-        "fixture-glp_1_peptides-claude",
-        "fixture-glp_1_peptides-gemini",
-        "fixture-glp_1_peptides-perplexity"
-      ]
-    },
-    {
-      "ticker": "NVO",
-      "theme_id": "glp_1_peptides",
-      "theme": "GLP-1 / Peptides",
-      "convergence_score": 0.68,
-      "score": 0.68,
-      "convergence_tier": "HIGH",
-      "tier": "HIGH",
-      "status": "peak_hype",
-      "models_mentioning": 5,
-      "avg_rank": 3.0,
-      "direct_mentions": 2,
-      "total_mentions": 5,
-      "source_capture_ids": [
-        "fixture-glp_1_peptides-claude",
-        "fixture-glp_1_peptides-gemini",
-        "fixture-glp_1_peptides-gpt5",
-        "fixture-glp_1_peptides-grok",
-        "fixture-glp_1_peptides-perplexity"
-      ]
-    },
-    {
-      "ticker": "VKTX",
-      "theme_id": "glp_1_peptides",
-      "theme": "GLP-1 / Peptides",
-      "convergence_score": 0.508,
-      "score": 0.508,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "peak_hype",
       "models_mentioning": 3,
-      "avg_rank": 4.0,
-      "direct_mentions": 2,
-      "total_mentions": 3,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.8,
       "source_capture_ids": [
-        "fixture-glp_1_peptides-gpt5",
-        "fixture-glp_1_peptides-grok",
-        "fixture-glp_1_peptides-perplexity"
-      ]
-    },
-    {
-      "ticker": "AMGN",
-      "theme_id": "glp_1_peptides",
-      "theme": "GLP-1 / Peptides",
-      "convergence_score": 0.35,
-      "score": 0.35,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
+        "fixture-ai_infrastructure-claude",
+        "fixture-ai_infrastructure-gemini",
+        "fixture-ai_infrastructure-gpt5"
+      ],
+      "source_claim_ids": [],
       "status": "peak_hype",
-      "models_mentioning": 1,
-      "avg_rank": 6.0,
-      "direct_mentions": 1,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-glp_1_peptides-grok"
-      ]
-    },
-    {
-      "ticker": "GPCR",
-      "theme_id": "glp_1_peptides",
-      "theme": "GLP-1 / Peptides",
-      "convergence_score": 0.25,
-      "score": 0.25,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
-      "status": "growing",
-      "models_mentioning": 1,
-      "avg_rank": 2.0,
-      "direct_mentions": 0,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-glp_1_peptides-gpt5"
-      ]
-    },
-    {
-      "ticker": "IONQ",
-      "theme_id": "quantum_computing",
-      "theme": "Quantum Computing",
-      "convergence_score": 0.733,
-      "score": 0.733,
-      "convergence_tier": "HIGH",
+      "theme": "AI Infrastructure",
+      "theme_id": "ai_infrastructure",
+      "ticker": "NVDA",
       "tier": "HIGH",
-      "status": "peak_hype",
-      "models_mentioning": 3,
+      "total_mentions": 3
+    },
+    {
       "avg_rank": 1.0,
+      "convergence_score": 0.733,
+      "convergence_tier": "HIGH",
       "direct_mentions": 2,
-      "total_mentions": 3,
+      "models_mentioning": 3,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.733,
       "source_capture_ids": [
         "fixture-quantum_computing-gemini",
         "fixture-quantum_computing-grok",
         "fixture-quantum_computing-perplexity"
-      ]
+      ],
+      "source_claim_ids": [],
+      "status": "peak_hype",
+      "theme": "Quantum Computing",
+      "theme_id": "quantum_computing",
+      "ticker": "IONQ",
+      "tier": "HIGH",
+      "total_mentions": 3
     },
     {
-      "ticker": "QBTS",
-      "theme_id": "quantum_computing",
-      "theme": "Quantum Computing",
-      "convergence_score": 0.6,
-      "score": 0.6,
+      "avg_rank": 3.0,
+      "convergence_score": 0.68,
       "convergence_tier": "HIGH",
-      "tier": "HIGH",
+      "direct_mentions": 2,
+      "models_mentioning": 5,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.68,
+      "source_capture_ids": [
+        "fixture-glp_1_peptides-claude",
+        "fixture-glp_1_peptides-gemini",
+        "fixture-glp_1_peptides-gpt5",
+        "fixture-glp_1_peptides-grok",
+        "fixture-glp_1_peptides-perplexity"
+      ],
+      "source_claim_ids": [],
       "status": "peak_hype",
-      "models_mentioning": 1,
+      "theme": "GLP-1 / Peptides",
+      "theme_id": "glp_1_peptides",
+      "ticker": "NVO",
+      "tier": "HIGH",
+      "total_mentions": 5
+    },
+    {
+      "avg_rank": 7.0,
+      "convergence_score": 0.623,
+      "convergence_tier": "HIGH",
+      "direct_mentions": 2,
+      "models_mentioning": 5,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.623,
+      "source_capture_ids": [
+        "fixture-ai_infrastructure-claude",
+        "fixture-ai_infrastructure-gemini",
+        "fixture-ai_infrastructure-gpt5",
+        "fixture-ai_infrastructure-grok",
+        "fixture-ai_infrastructure-perplexity"
+      ],
+      "source_claim_ids": [],
+      "status": "peak_hype",
+      "theme": "AI Infrastructure",
+      "theme_id": "ai_infrastructure",
+      "ticker": "AVGO",
+      "tier": "HIGH",
+      "total_mentions": 5
+    },
+    {
       "avg_rank": 1.0,
+      "convergence_score": 0.6,
+      "convergence_tier": "HIGH",
       "direct_mentions": 1,
-      "total_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.6,
+      "source_capture_ids": [
+        "fixture-nuclear_smr-perplexity"
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Nuclear / SMR",
+      "theme_id": "nuclear_smr",
+      "ticker": "BWXT",
+      "tier": "HIGH",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 1.0,
+      "convergence_score": 0.6,
+      "convergence_tier": "HIGH",
+      "direct_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.6,
+      "source_capture_ids": [
+        "fixture-defense_ai-gemini"
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Defense AI",
+      "theme_id": "defense_ai",
+      "ticker": "PLTR",
+      "tier": "HIGH",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 1.0,
+      "convergence_score": 0.6,
+      "convergence_tier": "HIGH",
+      "direct_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.6,
       "source_capture_ids": [
         "fixture-quantum_computing-perplexity"
-      ]
+      ],
+      "source_claim_ids": [],
+      "status": "peak_hype",
+      "theme": "Quantum Computing",
+      "theme_id": "quantum_computing",
+      "ticker": "QBTS",
+      "tier": "HIGH",
+      "total_mentions": 1
     },
     {
-      "ticker": "RGTI",
-      "theme_id": "quantum_computing",
-      "theme": "Quantum Computing",
-      "convergence_score": 0.588,
-      "score": 0.588,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "peak_hype",
-      "models_mentioning": 4,
       "avg_rank": 8.0,
+      "convergence_score": 0.588,
+      "convergence_tier": "MEDIUM",
       "direct_mentions": 3,
-      "total_mentions": 4,
+      "models_mentioning": 4,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.588,
       "source_capture_ids": [
         "fixture-quantum_computing-claude",
         "fixture-quantum_computing-gemini",
         "fixture-quantum_computing-gpt5",
         "fixture-quantum_computing-grok"
-      ]
-    },
-    {
-      "ticker": "BWXT",
-      "theme_id": "nuclear_smr",
-      "theme": "Nuclear / SMR",
-      "convergence_score": 0.6,
-      "score": 0.6,
-      "convergence_tier": "HIGH",
-      "tier": "HIGH",
-      "status": "growing",
-      "models_mentioning": 1,
-      "avg_rank": 1.0,
-      "direct_mentions": 1,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-nuclear_smr-perplexity"
-      ]
-    },
-    {
-      "ticker": "OKLO",
-      "theme_id": "nuclear_smr",
-      "theme": "Nuclear / SMR",
-      "convergence_score": 0.543,
-      "score": 0.543,
-      "convergence_tier": "MEDIUM",
+      ],
+      "source_claim_ids": [],
+      "status": "peak_hype",
+      "theme": "Quantum Computing",
+      "theme_id": "quantum_computing",
+      "ticker": "RGTI",
       "tier": "MEDIUM",
-      "status": "growing",
-      "models_mentioning": 3,
+      "total_mentions": 4
+    },
+    {
+      "avg_rank": 2.0,
+      "convergence_score": 0.55,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 2,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.55,
+      "source_capture_ids": [
+        "fixture-solid_state_battery-claude",
+        "fixture-solid_state_battery-gemini"
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "Solid-State Battery",
+      "theme_id": "solid_state_battery",
+      "ticker": "QS",
+      "tier": "MEDIUM",
+      "total_mentions": 2
+    },
+    {
       "avg_rank": 7.0,
+      "convergence_score": 0.543,
+      "convergence_tier": "MEDIUM",
       "direct_mentions": 3,
-      "total_mentions": 3,
+      "models_mentioning": 3,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.543,
       "source_capture_ids": [
         "fixture-nuclear_smr-claude",
         "fixture-nuclear_smr-gpt5",
         "fixture-nuclear_smr-grok"
-      ]
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Nuclear / SMR",
+      "theme_id": "nuclear_smr",
+      "ticker": "OKLO",
+      "tier": "MEDIUM",
+      "total_mentions": 3
     },
     {
-      "ticker": "SMR",
-      "theme_id": "nuclear_smr",
-      "theme": "Nuclear / SMR",
-      "convergence_score": 0.517,
-      "score": 0.517,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "growing",
-      "models_mentioning": 3,
       "avg_rank": 2.0,
+      "convergence_score": 0.517,
+      "convergence_tier": "MEDIUM",
       "direct_mentions": 1,
-      "total_mentions": 3,
+      "models_mentioning": 3,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.517,
       "source_capture_ids": [
         "fixture-nuclear_smr-claude",
         "fixture-nuclear_smr-gemini",
         "fixture-nuclear_smr-gpt5"
-      ]
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Nuclear / SMR",
+      "theme_id": "nuclear_smr",
+      "ticker": "SMR",
+      "tier": "MEDIUM",
+      "total_mentions": 3
     },
     {
-      "ticker": "GEV",
-      "theme_id": "nuclear_smr",
-      "theme": "Nuclear / SMR",
-      "convergence_score": 0.467,
-      "score": 0.467,
+      "avg_rank": 4.0,
+      "convergence_score": 0.508,
       "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "growing",
+      "direct_mentions": 2,
       "models_mentioning": 3,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.508,
+      "source_capture_ids": [
+        "fixture-glp_1_peptides-gpt5",
+        "fixture-glp_1_peptides-grok",
+        "fixture-glp_1_peptides-perplexity"
+      ],
+      "source_claim_ids": [],
+      "status": "peak_hype",
+      "theme": "GLP-1 / Peptides",
+      "theme_id": "glp_1_peptides",
+      "ticker": "VKTX",
+      "tier": "MEDIUM",
+      "total_mentions": 3
+    },
+    {
+      "avg_rank": 1.0,
+      "convergence_score": 0.5,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 0,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.5,
+      "source_capture_ids": [
+        "fixture-edge_ai-grok",
+        "fixture-edge_ai-perplexity"
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "Edge AI",
+      "theme_id": "edge_ai",
+      "ticker": "AMBA",
+      "tier": "MEDIUM",
+      "total_mentions": 2
+    },
+    {
+      "avg_rank": 1.0,
+      "convergence_score": 0.5,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 0,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.5,
+      "source_capture_ids": [
+        "fixture-bci_neurotech-claude",
+        "fixture-bci_neurotech-gpt5"
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "BCI / Neurotech",
+      "theme_id": "bci_neurotech",
+      "ticker": "BFLY",
+      "tier": "MEDIUM",
+      "total_mentions": 2
+    },
+    {
+      "avg_rank": 1.0,
+      "convergence_score": 0.5,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 0,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.5,
+      "source_capture_ids": [
+        "fixture-bitcoin_mining-gpt5",
+        "fixture-bitcoin_mining-grok"
+      ],
+      "source_claim_ids": [],
+      "status": "post_peak",
+      "theme": "Bitcoin Mining",
+      "theme_id": "bitcoin_mining",
+      "ticker": "MARA",
+      "tier": "MEDIUM",
+      "total_mentions": 2
+    },
+    {
+      "avg_rank": 1.0,
+      "convergence_score": 0.5,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 0,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.5,
+      "source_capture_ids": [
+        "fixture-space_satellite-claude",
+        "fixture-space_satellite-gemini"
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Space / Satellite",
+      "theme_id": "space_satellite",
+      "ticker": "RKLB",
+      "tier": "MEDIUM",
+      "total_mentions": 2
+    },
+    {
+      "avg_rank": 1.0,
+      "convergence_score": 0.5,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 0,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.5,
+      "source_capture_ids": [
+        "fixture-robotics_humanoid-gpt5",
+        "fixture-robotics_humanoid-grok"
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Robotics / Humanoid",
+      "theme_id": "robotics_humanoid",
+      "ticker": "TSLA",
+      "tier": "MEDIUM",
+      "total_mentions": 2
+    },
+    {
+      "avg_rank": 5.0,
+      "convergence_score": 0.493,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 2,
+      "models_mentioning": 3,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.493,
+      "source_capture_ids": [
+        "fixture-ai_infrastructure-gemini",
+        "fixture-ai_infrastructure-grok",
+        "fixture-ai_infrastructure-perplexity"
+      ],
+      "source_claim_ids": [],
+      "status": "peak_hype",
+      "theme": "AI Infrastructure",
+      "theme_id": "ai_infrastructure",
+      "ticker": "VRT",
+      "tier": "MEDIUM",
+      "total_mentions": 3
+    },
+    {
       "avg_rank": 3.0,
+      "convergence_score": 0.467,
+      "convergence_tier": "MEDIUM",
       "direct_mentions": 1,
-      "total_mentions": 3,
+      "models_mentioning": 3,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.467,
       "source_capture_ids": [
         "fixture-nuclear_smr-claude",
         "fixture-nuclear_smr-gemini",
         "fixture-nuclear_smr-perplexity"
-      ]
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Nuclear / SMR",
+      "theme_id": "nuclear_smr",
+      "ticker": "GEV",
+      "tier": "MEDIUM",
+      "total_mentions": 3
     },
     {
-      "ticker": "CEG",
-      "theme_id": "nuclear_smr",
-      "theme": "Nuclear / SMR",
-      "convergence_score": 0.4,
-      "score": 0.4,
+      "avg_rank": 2.0,
+      "convergence_score": 0.45,
       "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "growing",
+      "direct_mentions": 1,
       "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.45,
+      "source_capture_ids": [
+        "fixture-bitcoin_mining-gpt5"
+      ],
+      "source_claim_ids": [],
+      "status": "post_peak",
+      "theme": "Bitcoin Mining",
+      "theme_id": "bitcoin_mining",
+      "ticker": "RIOT",
+      "tier": "MEDIUM",
+      "total_mentions": 1
+    },
+    {
       "avg_rank": 1.0,
+      "convergence_score": 0.4,
+      "convergence_tier": "MEDIUM",
       "direct_mentions": 0,
-      "total_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.4,
+      "source_capture_ids": [
+        "fixture-space_satellite-gemini"
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Space / Satellite",
+      "theme_id": "space_satellite",
+      "ticker": "ASTS",
+      "tier": "MEDIUM",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 1.0,
+      "convergence_score": 0.4,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 0,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.4,
       "source_capture_ids": [
         "fixture-nuclear_smr-gemini"
-      ]
-    },
-    {
-      "ticker": "CCJ",
-      "theme_id": "nuclear_smr",
-      "theme": "Nuclear / SMR",
-      "convergence_score": 0.275,
-      "score": 0.275,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
+      ],
+      "source_claim_ids": [],
       "status": "growing",
-      "models_mentioning": 2,
-      "avg_rank": 4.0,
-      "direct_mentions": 0,
-      "total_mentions": 2,
-      "source_capture_ids": [
-        "fixture-nuclear_smr-grok",
-        "fixture-nuclear_smr-perplexity"
-      ]
-    },
-    {
-      "ticker": "LEU",
-      "theme_id": "nuclear_smr",
       "theme": "Nuclear / SMR",
-      "convergence_score": 0.25,
-      "score": 0.25,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
-      "status": "growing",
-      "models_mentioning": 1,
-      "avg_rank": 2.0,
-      "direct_mentions": 0,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-nuclear_smr-grok"
-      ]
-    },
-    {
-      "ticker": "TSLA",
-      "theme_id": "robotics_humanoid",
-      "theme": "Robotics / Humanoid",
-      "convergence_score": 0.5,
-      "score": 0.5,
-      "convergence_tier": "MEDIUM",
+      "theme_id": "nuclear_smr",
+      "ticker": "CEG",
       "tier": "MEDIUM",
-      "status": "growing",
-      "models_mentioning": 2,
-      "avg_rank": 1.0,
-      "direct_mentions": 0,
-      "total_mentions": 2,
-      "source_capture_ids": [
-        "fixture-robotics_humanoid-gpt5",
-        "fixture-robotics_humanoid-grok"
-      ]
+      "total_mentions": 1
     },
     {
-      "ticker": "ISRG",
-      "theme_id": "robotics_humanoid",
-      "theme": "Robotics / Humanoid",
+      "avg_rank": 1.0,
       "convergence_score": 0.4,
-      "score": 0.4,
       "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "growing",
-      "models_mentioning": 1,
-      "avg_rank": 1.0,
       "direct_mentions": 0,
-      "total_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.4,
+      "source_capture_ids": [
+        "fixture-synthetic_biology-gemini"
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "Synthetic Biology",
+      "theme_id": "synthetic_biology",
+      "ticker": "CRBU",
+      "tier": "MEDIUM",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 1.0,
+      "convergence_score": 0.4,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 0,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.4,
       "source_capture_ids": [
         "fixture-robotics_humanoid-gpt5"
-      ]
-    },
-    {
-      "ticker": "SYM",
-      "theme_id": "robotics_humanoid",
-      "theme": "Robotics / Humanoid",
-      "convergence_score": 0.35,
-      "score": 0.35,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
+      ],
+      "source_claim_ids": [],
       "status": "growing",
-      "models_mentioning": 1,
-      "avg_rank": 6.0,
-      "direct_mentions": 1,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-robotics_humanoid-claude"
-      ]
-    },
-    {
-      "ticker": "SERV",
-      "theme_id": "robotics_humanoid",
       "theme": "Robotics / Humanoid",
-      "convergence_score": 0.25,
-      "score": 0.25,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
-      "status": "growing",
-      "models_mentioning": 1,
-      "avg_rank": 2.0,
-      "direct_mentions": 0,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-robotics_humanoid-gemini"
-      ]
+      "theme_id": "robotics_humanoid",
+      "ticker": "ISRG",
+      "tier": "MEDIUM",
+      "total_mentions": 1
     },
     {
-      "ticker": "LITE",
-      "theme_id": "photonic_computing",
-      "theme": "Photonic Computing",
-      "convergence_score": 0.4,
-      "score": 0.4,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "emerging",
-      "models_mentioning": 1,
       "avg_rank": 1.0,
+      "convergence_score": 0.4,
+      "convergence_tier": "MEDIUM",
       "direct_mentions": 0,
-      "total_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.4,
       "source_capture_ids": [
         "fixture-photonic_computing-gpt5"
-      ]
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "Photonic Computing",
+      "theme_id": "photonic_computing",
+      "ticker": "LITE",
+      "tier": "MEDIUM",
+      "total_mentions": 1
     },
     {
-      "ticker": "COHR",
-      "theme_id": "photonic_computing",
-      "theme": "Photonic Computing",
-      "convergence_score": 0.35,
-      "score": 0.35,
+      "avg_rank": 1.0,
+      "convergence_score": 0.4,
       "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "emerging",
+      "direct_mentions": 0,
       "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.4,
+      "source_capture_ids": [
+        "fixture-bci_neurotech-claude"
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "BCI / Neurotech",
+      "theme_id": "bci_neurotech",
+      "ticker": "QSI",
+      "tier": "MEDIUM",
+      "total_mentions": 1
+    },
+    {
       "avg_rank": 6.0,
+      "convergence_score": 0.35,
+      "convergence_tier": "MEDIUM",
       "direct_mentions": 1,
-      "total_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.35,
+      "source_capture_ids": [
+        "fixture-longevity-perplexity"
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "Longevity",
+      "theme_id": "longevity",
+      "ticker": "ABBV",
+      "tier": "MEDIUM",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 6.0,
+      "convergence_score": 0.35,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.35,
+      "source_capture_ids": [
+        "fixture-glp_1_peptides-grok"
+      ],
+      "source_claim_ids": [],
+      "status": "peak_hype",
+      "theme": "GLP-1 / Peptides",
+      "theme_id": "glp_1_peptides",
+      "ticker": "AMGN",
+      "tier": "MEDIUM",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 6.0,
+      "convergence_score": 0.35,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.35,
+      "source_capture_ids": [
+        "fixture-bitcoin_mining-claude"
+      ],
+      "source_claim_ids": [],
+      "status": "post_peak",
+      "theme": "Bitcoin Mining",
+      "theme_id": "bitcoin_mining",
+      "ticker": "CLSK",
+      "tier": "MEDIUM",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 6.0,
+      "convergence_score": 0.35,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.35,
       "source_capture_ids": [
         "fixture-photonic_computing-claude"
-      ]
-    },
-    {
-      "ticker": "IIVI",
-      "theme_id": "photonic_computing",
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
       "theme": "Photonic Computing",
-      "convergence_score": 0.275,
-      "score": 0.275,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
-      "status": "emerging",
-      "models_mentioning": 2,
-      "avg_rank": 4.0,
-      "direct_mentions": 0,
-      "total_mentions": 2,
-      "source_capture_ids": [
-        "fixture-photonic_computing-gemini",
-        "fixture-photonic_computing-perplexity"
-      ]
-    },
-    {
-      "ticker": "RKLB",
-      "theme_id": "space_satellite",
-      "theme": "Space / Satellite",
-      "convergence_score": 0.5,
-      "score": 0.5,
-      "convergence_tier": "MEDIUM",
+      "theme_id": "photonic_computing",
+      "ticker": "COHR",
       "tier": "MEDIUM",
-      "status": "growing",
-      "models_mentioning": 2,
-      "avg_rank": 1.0,
-      "direct_mentions": 0,
-      "total_mentions": 2,
-      "source_capture_ids": [
-        "fixture-space_satellite-claude",
-        "fixture-space_satellite-gemini"
-      ]
+      "total_mentions": 1
     },
     {
-      "ticker": "ASTS",
-      "theme_id": "space_satellite",
-      "theme": "Space / Satellite",
-      "convergence_score": 0.4,
-      "score": 0.4,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "growing",
-      "models_mentioning": 1,
-      "avg_rank": 1.0,
-      "direct_mentions": 0,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-space_satellite-gemini"
-      ]
-    },
-    {
-      "ticker": "PL",
-      "theme_id": "space_satellite",
-      "theme": "Space / Satellite",
-      "convergence_score": 0.275,
-      "score": 0.275,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
-      "status": "growing",
-      "models_mentioning": 2,
-      "avg_rank": 4.0,
-      "direct_mentions": 0,
-      "total_mentions": 2,
-      "source_capture_ids": [
-        "fixture-space_satellite-grok",
-        "fixture-space_satellite-perplexity"
-      ]
-    },
-    {
-      "ticker": "LUNR",
-      "theme_id": "space_satellite",
-      "theme": "Space / Satellite",
-      "convergence_score": 0.25,
-      "score": 0.25,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
-      "status": "emerging",
-      "models_mentioning": 1,
-      "avg_rank": 2.0,
-      "direct_mentions": 0,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-space_satellite-grok"
-      ]
-    },
-    {
-      "ticker": "PLTR",
-      "theme_id": "defense_ai",
-      "theme": "Defense AI",
-      "convergence_score": 0.6,
-      "score": 0.6,
-      "convergence_tier": "HIGH",
-      "tier": "HIGH",
-      "status": "growing",
-      "models_mentioning": 1,
-      "avg_rank": 1.0,
-      "direct_mentions": 1,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-defense_ai-gemini"
-      ]
-    },
-    {
-      "ticker": "LDOS",
-      "theme_id": "defense_ai",
-      "theme": "Defense AI",
-      "convergence_score": 0.35,
-      "score": 0.35,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "growing",
-      "models_mentioning": 1,
       "avg_rank": 6.0,
+      "convergence_score": 0.35,
+      "convergence_tier": "MEDIUM",
       "direct_mentions": 1,
-      "total_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.35,
       "source_capture_ids": [
         "fixture-defense_ai-perplexity"
-      ]
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Defense AI",
+      "theme_id": "defense_ai",
+      "ticker": "LDOS",
+      "tier": "MEDIUM",
+      "total_mentions": 1
     },
     {
-      "ticker": "BWXT",
-      "theme_id": "defense_ai",
-      "theme": "Defense AI",
-      "convergence_score": 0.275,
-      "score": 0.275,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
+      "avg_rank": 6.0,
+      "convergence_score": 0.35,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.35,
+      "source_capture_ids": [
+        "fixture-solid_state_battery-gemini"
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "Solid-State Battery",
+      "theme_id": "solid_state_battery",
+      "ticker": "SLDP",
+      "tier": "MEDIUM",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 6.0,
+      "convergence_score": 0.35,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.35,
+      "source_capture_ids": [
+        "fixture-robotics_humanoid-claude"
+      ],
+      "source_claim_ids": [],
       "status": "growing",
-      "models_mentioning": 2,
+      "theme": "Robotics / Humanoid",
+      "theme_id": "robotics_humanoid",
+      "ticker": "SYM",
+      "tier": "MEDIUM",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 6.0,
+      "convergence_score": 0.35,
+      "convergence_tier": "MEDIUM",
+      "direct_mentions": 1,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.35,
+      "source_capture_ids": [
+        "fixture-synthetic_biology-perplexity"
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "Synthetic Biology",
+      "theme_id": "synthetic_biology",
+      "ticker": "TWST",
+      "tier": "MEDIUM",
+      "total_mentions": 1
+    },
+    {
       "avg_rank": 4.0,
+      "convergence_score": 0.275,
+      "convergence_tier": "LOW",
       "direct_mentions": 0,
-      "total_mentions": 2,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.275,
+      "source_capture_ids": [
+        "fixture-ai_infrastructure-grok",
+        "fixture-ai_infrastructure-perplexity"
+      ],
+      "source_claim_ids": [],
+      "status": "peak_hype",
+      "theme": "AI Infrastructure",
+      "theme_id": "ai_infrastructure",
+      "ticker": "ANET",
+      "tier": "LOW",
+      "total_mentions": 2
+    },
+    {
+      "avg_rank": 4.0,
+      "convergence_score": 0.275,
+      "convergence_tier": "LOW",
+      "direct_mentions": 0,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.275,
       "source_capture_ids": [
         "fixture-defense_ai-gpt5",
         "fixture-defense_ai-grok"
-      ]
-    },
-    {
-      "ticker": "ABBV",
-      "theme_id": "longevity",
-      "theme": "Longevity",
-      "convergence_score": 0.35,
-      "score": 0.35,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "emerging",
-      "models_mentioning": 1,
-      "avg_rank": 6.0,
-      "direct_mentions": 1,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-longevity-perplexity"
-      ]
-    },
-    {
-      "ticker": "CELH",
-      "theme_id": "longevity",
-      "theme": "Longevity",
-      "convergence_score": 0.25,
-      "score": 0.25,
-      "convergence_tier": "LOW",
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Defense AI",
+      "theme_id": "defense_ai",
+      "ticker": "BWXT",
       "tier": "LOW",
-      "status": "emerging",
-      "models_mentioning": 1,
-      "avg_rank": 2.0,
-      "direct_mentions": 0,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-longevity-grok"
-      ]
+      "total_mentions": 2
     },
     {
-      "ticker": "MARA",
-      "theme_id": "bitcoin_mining",
-      "theme": "Bitcoin Mining",
-      "convergence_score": 0.5,
-      "score": 0.5,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "post_peak",
-      "models_mentioning": 2,
-      "avg_rank": 1.0,
-      "direct_mentions": 0,
-      "total_mentions": 2,
-      "source_capture_ids": [
-        "fixture-bitcoin_mining-gpt5",
-        "fixture-bitcoin_mining-grok"
-      ]
-    },
-    {
-      "ticker": "RIOT",
-      "theme_id": "bitcoin_mining",
-      "theme": "Bitcoin Mining",
-      "convergence_score": 0.45,
-      "score": 0.45,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "post_peak",
-      "models_mentioning": 1,
-      "avg_rank": 2.0,
-      "direct_mentions": 1,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-bitcoin_mining-gpt5"
-      ]
-    },
-    {
-      "ticker": "CLSK",
-      "theme_id": "bitcoin_mining",
-      "theme": "Bitcoin Mining",
-      "convergence_score": 0.35,
-      "score": 0.35,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "post_peak",
-      "models_mentioning": 1,
-      "avg_rank": 6.0,
-      "direct_mentions": 1,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-bitcoin_mining-claude"
-      ]
-    },
-    {
-      "ticker": "BFLY",
-      "theme_id": "bci_neurotech",
-      "theme": "BCI / Neurotech",
-      "convergence_score": 0.5,
-      "score": 0.5,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "emerging",
-      "models_mentioning": 2,
-      "avg_rank": 1.0,
-      "direct_mentions": 0,
-      "total_mentions": 2,
-      "source_capture_ids": [
-        "fixture-bci_neurotech-claude",
-        "fixture-bci_neurotech-gpt5"
-      ]
-    },
-    {
-      "ticker": "QSI",
-      "theme_id": "bci_neurotech",
-      "theme": "BCI / Neurotech",
-      "convergence_score": 0.4,
-      "score": 0.4,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "emerging",
-      "models_mentioning": 1,
-      "avg_rank": 1.0,
-      "direct_mentions": 0,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-bci_neurotech-claude"
-      ]
-    },
-    {
-      "ticker": "QS",
-      "theme_id": "solid_state_battery",
-      "theme": "Solid-State Battery",
-      "convergence_score": 0.55,
-      "score": 0.55,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "emerging",
-      "models_mentioning": 2,
-      "avg_rank": 2.0,
-      "direct_mentions": 2,
-      "total_mentions": 2,
-      "source_capture_ids": [
-        "fixture-solid_state_battery-claude",
-        "fixture-solid_state_battery-gemini"
-      ]
-    },
-    {
-      "ticker": "SLDP",
-      "theme_id": "solid_state_battery",
-      "theme": "Solid-State Battery",
-      "convergence_score": 0.35,
-      "score": 0.35,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "emerging",
-      "models_mentioning": 1,
-      "avg_rank": 6.0,
-      "direct_mentions": 1,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-solid_state_battery-gemini"
-      ]
-    },
-    {
-      "ticker": "CRBU",
-      "theme_id": "synthetic_biology",
-      "theme": "Synthetic Biology",
-      "convergence_score": 0.4,
-      "score": 0.4,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "emerging",
-      "models_mentioning": 1,
-      "avg_rank": 1.0,
-      "direct_mentions": 0,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-synthetic_biology-gemini"
-      ]
-    },
-    {
-      "ticker": "TWST",
-      "theme_id": "synthetic_biology",
-      "theme": "Synthetic Biology",
-      "convergence_score": 0.35,
-      "score": 0.35,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "emerging",
-      "models_mentioning": 1,
-      "avg_rank": 6.0,
-      "direct_mentions": 1,
-      "total_mentions": 1,
-      "source_capture_ids": [
-        "fixture-synthetic_biology-perplexity"
-      ]
-    },
-    {
-      "ticker": "PACB",
-      "theme_id": "synthetic_biology",
-      "theme": "Synthetic Biology",
-      "convergence_score": 0.275,
-      "score": 0.275,
-      "convergence_tier": "LOW",
-      "tier": "LOW",
-      "status": "emerging",
-      "models_mentioning": 2,
       "avg_rank": 4.0,
+      "convergence_score": 0.275,
+      "convergence_tier": "LOW",
       "direct_mentions": 0,
-      "total_mentions": 2,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.275,
+      "source_capture_ids": [
+        "fixture-nuclear_smr-grok",
+        "fixture-nuclear_smr-perplexity"
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Nuclear / SMR",
+      "theme_id": "nuclear_smr",
+      "ticker": "CCJ",
+      "tier": "LOW",
+      "total_mentions": 2
+    },
+    {
+      "avg_rank": 4.0,
+      "convergence_score": 0.275,
+      "convergence_tier": "LOW",
+      "direct_mentions": 0,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.275,
+      "source_capture_ids": [
+        "fixture-photonic_computing-gemini",
+        "fixture-photonic_computing-perplexity"
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "Photonic Computing",
+      "theme_id": "photonic_computing",
+      "ticker": "IIVI",
+      "tier": "LOW",
+      "total_mentions": 2
+    },
+    {
+      "avg_rank": 4.0,
+      "convergence_score": 0.275,
+      "convergence_tier": "LOW",
+      "direct_mentions": 0,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.275,
       "source_capture_ids": [
         "fixture-synthetic_biology-gpt5",
         "fixture-synthetic_biology-grok"
-      ]
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "Synthetic Biology",
+      "theme_id": "synthetic_biology",
+      "ticker": "PACB",
+      "tier": "LOW",
+      "total_mentions": 2
     },
     {
-      "ticker": "AMBA",
-      "theme_id": "edge_ai",
-      "theme": "Edge AI",
-      "convergence_score": 0.5,
-      "score": 0.5,
-      "convergence_tier": "MEDIUM",
-      "tier": "MEDIUM",
-      "status": "emerging",
-      "models_mentioning": 2,
-      "avg_rank": 1.0,
+      "avg_rank": 4.0,
+      "convergence_score": 0.275,
+      "convergence_tier": "LOW",
       "direct_mentions": 0,
-      "total_mentions": 2,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.275,
       "source_capture_ids": [
-        "fixture-edge_ai-grok",
-        "fixture-edge_ai-perplexity"
-      ]
+        "fixture-space_satellite-grok",
+        "fixture-space_satellite-perplexity"
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Space / Satellite",
+      "theme_id": "space_satellite",
+      "ticker": "PL",
+      "tier": "LOW",
+      "total_mentions": 2
+    },
+    {
+      "avg_rank": 5.0,
+      "convergence_score": 0.26,
+      "convergence_tier": "LOW",
+      "direct_mentions": 0,
+      "models_mentioning": 2,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.26,
+      "source_capture_ids": [
+        "fixture-ai_infrastructure-gpt5",
+        "fixture-ai_infrastructure-grok"
+      ],
+      "source_claim_ids": [],
+      "status": "peak_hype",
+      "theme": "AI Infrastructure",
+      "theme_id": "ai_infrastructure",
+      "ticker": "MU",
+      "tier": "LOW",
+      "total_mentions": 2
+    },
+    {
+      "avg_rank": 2.0,
+      "convergence_score": 0.25,
+      "convergence_tier": "LOW",
+      "direct_mentions": 0,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.25,
+      "source_capture_ids": [
+        "fixture-longevity-grok"
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "Longevity",
+      "theme_id": "longevity",
+      "ticker": "CELH",
+      "tier": "LOW",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 2.0,
+      "convergence_score": 0.25,
+      "convergence_tier": "LOW",
+      "direct_mentions": 0,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.25,
+      "source_capture_ids": [
+        "fixture-glp_1_peptides-gpt5"
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "GLP-1 / Peptides",
+      "theme_id": "glp_1_peptides",
+      "ticker": "GPCR",
+      "tier": "LOW",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 2.0,
+      "convergence_score": 0.25,
+      "convergence_tier": "LOW",
+      "direct_mentions": 0,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.25,
+      "source_capture_ids": [
+        "fixture-nuclear_smr-grok"
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Nuclear / SMR",
+      "theme_id": "nuclear_smr",
+      "ticker": "LEU",
+      "tier": "LOW",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 2.0,
+      "convergence_score": 0.25,
+      "convergence_tier": "LOW",
+      "direct_mentions": 0,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.25,
+      "source_capture_ids": [
+        "fixture-space_satellite-grok"
+      ],
+      "source_claim_ids": [],
+      "status": "emerging",
+      "theme": "Space / Satellite",
+      "theme_id": "space_satellite",
+      "ticker": "LUNR",
+      "tier": "LOW",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 2.0,
+      "convergence_score": 0.25,
+      "convergence_tier": "LOW",
+      "direct_mentions": 0,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.25,
+      "source_capture_ids": [
+        "fixture-robotics_humanoid-gemini"
+      ],
+      "source_claim_ids": [],
+      "status": "growing",
+      "theme": "Robotics / Humanoid",
+      "theme_id": "robotics_humanoid",
+      "ticker": "SERV",
+      "tier": "LOW",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 2.0,
+      "convergence_score": 0.25,
+      "convergence_tier": "LOW",
+      "direct_mentions": 0,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.25,
+      "source_capture_ids": [
+        "fixture-ai_infrastructure-gpt5"
+      ],
+      "source_claim_ids": [],
+      "status": "peak_hype",
+      "theme": "AI Infrastructure",
+      "theme_id": "ai_infrastructure",
+      "ticker": "TSM",
+      "tier": "LOW",
+      "total_mentions": 1
+    },
+    {
+      "avg_rank": 3.0,
+      "convergence_score": 0.2,
+      "convergence_tier": "LOW",
+      "direct_mentions": 0,
+      "models_mentioning": 1,
+      "row_sources": [
+        "llm_survey"
+      ],
+      "score": 0.2,
+      "source_capture_ids": [
+        "fixture-ai_infrastructure-claude"
+      ],
+      "source_claim_ids": [],
+      "status": "peak_hype",
+      "theme": "AI Infrastructure",
+      "theme_id": "ai_infrastructure",
+      "ticker": "DELL",
+      "tier": "LOW",
+      "total_mentions": 1
+    }
+  ],
+  "themes": [
+    {
+      "status": "peak_hype",
+      "theme_id": "ai_infrastructure",
+      "theme_name": "AI Infrastructure"
+    },
+    {
+      "status": "emerging",
+      "theme_id": "bci_neurotech",
+      "theme_name": "BCI / Neurotech"
+    },
+    {
+      "status": "post_peak",
+      "theme_id": "bitcoin_mining",
+      "theme_name": "Bitcoin Mining"
+    },
+    {
+      "status": "growing",
+      "theme_id": "defense_ai",
+      "theme_name": "Defense AI"
+    },
+    {
+      "status": "emerging",
+      "theme_id": "edge_ai",
+      "theme_name": "Edge AI"
+    },
+    {
+      "status": "growing",
+      "theme_id": "glp_1_peptides",
+      "theme_name": "GLP-1 / Peptides"
+    },
+    {
+      "status": "emerging",
+      "theme_id": "longevity",
+      "theme_name": "Longevity"
+    },
+    {
+      "status": "growing",
+      "theme_id": "nuclear_smr",
+      "theme_name": "Nuclear / SMR"
+    },
+    {
+      "status": "peak_hype",
+      "theme_id": "peptides",
+      "theme_name": "Peptides"
+    },
+    {
+      "status": "emerging",
+      "theme_id": "photonic_computing",
+      "theme_name": "Photonic Computing"
+    },
+    {
+      "status": "peak_hype",
+      "theme_id": "quantum_computing",
+      "theme_name": "Quantum Computing"
+    },
+    {
+      "status": "growing",
+      "theme_id": "robotics_humanoid",
+      "theme_name": "Robotics / Humanoid"
+    },
+    {
+      "status": "emerging",
+      "theme_id": "solid_state_battery",
+      "theme_name": "Solid-State Battery"
+    },
+    {
+      "status": "emerging",
+      "theme_id": "space_satellite",
+      "theme_name": "Space / Satellite"
+    },
+    {
+      "status": "emerging",
+      "theme_id": "synthetic_biology",
+      "theme_name": "Synthetic Biology"
     }
   ]
 }
