@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-05-17T23:57:52Z",
+  "rows": [
+    {
+      "ticker": "CRSP",
+      "theme_id": "synthetic-biology",
+      "catalyst_id": "cat_crsp_q2_2026_earnings",
+      "event_date": "2026-08-06",
+      "horizon_bucket": null,
+      "event_type": "earnings",
+      "days_to_event": 81,
+      "convergence_score": 0.8595,
+      "convergence_tier": "HIGH",
+      "exposure_strength": 0.85,
+      "spot": 48.40999984741211,
+      "expiry_used": "2026-05-22",
+      "atm_strike": 48.5,
+      "atm_straddle_mid": 2.425,
+      "market_implied_move": 0.0501,
+      "thesis_implied_move": 0.1096,
+      "mispricing_ratio": 2.1876,
+      "classification": "mispriced_up",
+      "bucket": "income",
+      "notes": ""
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "income": 1,
+    "lottery": 0,
+    "mispriced_up": 1,
+    "mispriced_down": 0,
+    "fair": 0,
+    "no_chain": 0
+  }
+}
