@@ -1,0 +1,276 @@
+# Catalyst calendar -- dated events the mispricing-screen consumes.
+# One entry per known catalyst. The screen joins this against
+# convergence-latest.json scores (theme_id + ticker) to size positions
+# around dated events.
+#
+# Cadence:
+# - Static events (FDA PDUFA dates, M&A close targets, NDAA passage,
+#   conference dates) are hand-curated here.
+# - Earnings dates are refreshed daily by scripts/refresh-earnings.py
+#   (Phase 1) from yfinance into a sister file calendar/earnings.yaml.
+#   This file remains for non-earnings catalysts.
+#
+# event_type enum matches claim.schema.json event_horizon.event_type:
+#   earnings | fda_decision | fda_advisory_committee | fomc |
+#   rate_decision | regulatory_docket | ma_close | ipo |
+#   trial_readout | data_release | conference_launch |
+#   product_launch | budget_appropriation | policy_decision |
+#   industry_milestone | structural
+#
+# Reference docs:
+# - FOMC calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
+# - NDAA passage: typically mid-December
+# - OFC (optical fiber communication): typically late March / early April
+
+schema_version: 1
+generated_at: "2026-05-17"
+
+events:
+
+  # ===== FOMC dates (2026 H2) =====
+  - id: cat_fomc_2026_07
+    theme_ids: [ai-infrastructure, peptides, bitcoin-mining]
+    tickers: []  # rate decision affects everything; no ticker pin
+    event_date: "2026-07-29"
+    event_type: fomc
+    thesis_link: macro
+    notes: FOMC meeting + summary of economic projections. Rate-sensitive names move.
+
+  - id: cat_fomc_2026_09
+    theme_ids: [ai-infrastructure, peptides, bitcoin-mining]
+    tickers: []
+    event_date: "2026-09-17"
+    event_type: fomc
+    thesis_link: macro
+    notes: FOMC meeting + SEP. September is typically the most-volatile FOMC of H2.
+
+  - id: cat_fomc_2026_11
+    theme_ids: []
+    tickers: []
+    event_date: "2026-11-05"
+    event_type: fomc
+    thesis_link: macro
+    notes: FOMC post-election timing window.
+
+  - id: cat_fomc_2026_12
+    theme_ids: []
+    tickers: []
+    event_date: "2026-12-10"
+    event_type: fomc
+    thesis_link: macro
+    notes: Final FOMC of 2026 + SEP.
+
+  # ===== Budget / policy =====
+  - id: cat_ndaa_fy2027
+    theme_ids: [defense-ai, ai-infrastructure]
+    tickers: [PLTR, LDOS, AVAV, KTOS, BAH, CACI, RTX, LMT, NOC, GD]
+    event_date: "2026-12-15"
+    event_type: budget_appropriation
+    thesis_link: clm_defense_ai_ndaa_visibility
+    notes: FY2027 NDAA passage; defense names reprice on Replicator / RDT&E deltas.
+
+  # ===== M&A close targets =====
+  - id: cat_lattice_ami_close
+    theme_ids: [edge-ai]
+    tickers: [LSCC]
+    event_date: "2026-09-30"
+    event_type: ma_close
+    thesis_link: clm_edgeai_platform_consolidation
+    notes: Lattice $1.65B AMI acquisition; Q3 2026 expected close. Spread compression / break risk window 60-30 days pre-close.
+
+  # ===== QuantumScape Eagle Line =====
+  - id: cat_qs_q3_2026_earnings
+    theme_ids: [solid-state-battery]
+    tickers: [QS]
+    event_date: "2026-10-29"
+    event_type: earnings
+    thesis_link: clm_ssb_eagle_line_revenue_kickoff
+    notes: Q3 2026 QS earnings; primary reprice on next customer-billings number.
+
+  # ===== Synbio cluster =====
+  - id: cat_crsp_q2_2026_earnings
+    theme_ids: [synthetic-biology]
+    tickers: [CRSP]
+    event_date: "2026-08-06"
+    event_type: earnings
+    thesis_link: clm_synbio_casgevy_commercial_compounding
+    notes: Q2 2026 CRSP earnings; Casgevy patient initiation + Vertex profit-share update.
+
+  - id: cat_beam_302_pivotal_update
+    theme_ids: [synthetic-biology]
+    tickers: [BEAM]
+    event_date: "2026-10-15"
+    event_type: trial_readout
+    thesis_link: clm_synbio_in_vivo_cohort_2026_readouts
+    notes: BEAM-302 alpha-1 antitrypsin pivotal-cohort initiation update window (per Beam IR cadence).
+
+  - id: cat_ntla_magnitude_resumption
+    theme_ids: [synthetic-biology]
+    tickers: [NTLA]
+    event_date: "2026-09-01"
+    event_type: trial_readout
+    thesis_link: clm_synbio_in_vivo_cohort_2026_readouts
+    notes: nex-z MAGNITUDE / MAGNITUDE-2 Phase 3 screening resumption update window.
+
+  - id: cat_zasocitinib_nda
+    theme_ids: [synthetic-biology]
+    tickers: [SDGR]
+    event_date: "2026-12-01"
+    event_type: trial_readout
+    thesis_link: clm_synbio_in_vivo_cohort_2026_readouts
+    notes: Takeda / Schrödinger zasocitinib Phase 3 readout + NDA filing window.
+
+  - id: cat_prime_pm359_update
+    theme_ids: [synthetic-biology]
+    tickers: [PRME]
+    event_date: "2026-11-15"
+    event_type: trial_readout
+    thesis_link: clm_synbio_in_vivo_cohort_2026_readouts
+    notes: PM359 chronic granulomatous disease regulatory-alignment update.
+
+  # ===== Longevity =====
+  - id: cat_bioage_bge102_phase2
+    theme_ids: [longevity]
+    tickers: [BIOA]
+    event_date: "2026-10-15"
+    event_type: trial_readout
+    thesis_link: clm_longevity_first_reprogramming_inds
+    notes: BGE-102 NLRP3 inhibitor Phase 2 cohort initiation / interim data window.
+
+  - id: cat_bioage_apj_ind
+    theme_ids: [longevity]
+    tickers: [BIOA]
+    event_date: "2026-12-15"
+    event_type: fda_decision
+    thesis_link: clm_longevity_first_reprogramming_inds
+    notes: BioAge APJ agonist IND submission window (oral + parenteral programs).
+
+  # ===== Photonic computing =====
+  - id: cat_lite_q3_2026_earnings
+    theme_ids: [photonic-computing]
+    tickers: [LITE]
+    event_date: "2026-11-05"
+    event_type: earnings
+    thesis_link: clm_pc_revenue_inflection
+    notes: Lumentum fiscal Q3 2026 earnings; NVIDIA purchase-commitment burn cadence.
+
+  - id: cat_cohr_q3_2026_earnings
+    theme_ids: [photonic-computing]
+    tickers: [COHR]
+    event_date: "2026-11-12"
+    event_type: earnings
+    thesis_link: clm_pc_revenue_inflection
+    notes: Coherent fiscal Q1 2027 earnings (their FY ends June); NVIDIA $2B integration milestones.
+
+  # ===== Conference + industry =====
+  - id: cat_ofc_2027
+    theme_ids: [photonic-computing, ai-infrastructure]
+    tickers: [LITE, COHR, AAOI, POET, MRVL, NVDA]
+    event_date: "2027-03-29"
+    event_type: conference_launch
+    thesis_link: clm_pc_nvidia_anchor_investment
+    notes: OFC 2027 conference; CPO / optical-engine launch and design-in window.
+
+  - id: cat_ces_2027
+    theme_ids: [edge-ai, robotics-humanoid, ai-infrastructure]
+    tickers: [AMBA, SYNA, LSCC, QCOM, TSLA, NVDA]
+    event_date: "2027-01-06"
+    event_type: conference_launch
+    thesis_link: clm_edgeai_automotive_design_in_window
+    notes: CES 2027 keynote / launch window; automotive + robotics + edge-AI demo cycle.
+
+  - id: cat_jpm_healthcare_2027
+    theme_ids: [synthetic-biology, peptides, longevity, bci-neurotech]
+    tickers: [CRSP, BEAM, NTLA, LLY, NVO, BIOA, PRME]
+    event_date: "2027-01-11"
+    event_type: conference_launch
+    thesis_link: clm_synbio_in_vivo_cohort_2026_readouts
+    notes: J.P. Morgan Healthcare Conference week; biotech reprice + private-mark disclosures.
+
+  # ===== Space / Satellite =====
+  - id: cat_asts_bluebird_block2_fcc
+    theme_ids: [space-satellite]
+    tickers: [ASTS]
+    event_date: "2026-09-15"
+    event_type: regulatory_docket
+    thesis_link: clm_space_satellite_scs_authorization
+    notes: FCC Supplemental Coverage from Space (SCS) action on ASTS BlueBird Block 2 deployment.
+
+  - id: cat_asts_q3_2026_earnings
+    theme_ids: [space-satellite]
+    tickers: [ASTS]
+    event_date: "2026-11-12"
+    event_type: earnings
+    thesis_link: clm_space_satellite_d2d_market
+    notes: AST SpaceMobile Q3 2026 earnings; BlueBird commercial-service progression.
+
+  # ===== Defense AI =====
+  - id: cat_pltr_q3_2026_earnings
+    theme_ids: [defense-ai]
+    tickers: [PLTR]
+    event_date: "2026-11-04"
+    event_type: earnings
+    thesis_link: clm_defense_ai_anduril_velocity
+    notes: PLTR Q3 2026; DoD revenue mix + AIP / Maven program disclosures.
+
+  # ===== Nuclear / SMR =====
+  - id: cat_smr_oklo_q3_2026
+    theme_ids: [nuclear-smr]
+    tickers: [SMR, OKLO]
+    event_date: "2026-11-05"
+    event_type: earnings
+    thesis_link: clm_nuclear_smr_hyperscaler_ppa
+    notes: NuScale / Oklo Q3 2026 earnings; NRC milestone + hyperscaler PPA updates.
+
+  # ===== Bitcoin Mining =====
+  - id: cat_mara_riot_q3_2026
+    theme_ids: [bitcoin-mining]
+    tickers: [MARA, RIOT, CLSK]
+    event_date: "2026-11-05"
+    event_type: earnings
+    thesis_link: clm_bitcoin_mining_ai_hpc_split
+    notes: Big-miner Q3 2026; hashprice + AI/HPC conversion + capex disclosures.
+
+  # ===== Quantum =====
+  - id: cat_ionq_qbts_q3_2026
+    theme_ids: [quantum-computing]
+    tickers: [IONQ, QBTS, RGTI]
+    event_date: "2026-11-12"
+    event_type: earnings
+    thesis_link: clm_quantum_benchmark_platform_signal
+    notes: Quantum-cohort Q3 2026; qubit milestone updates + government contract flow.
+
+  # ===== Robotics =====
+  - id: cat_figure_ai_ipo_window
+    theme_ids: [robotics-humanoid]
+    tickers: []  # private until IPO
+    event_date: "2027-03-31"  # estimated window
+    event_type: ipo
+    thesis_link: clm_robotics_humanoid_figure_catalyst
+    notes: Figure AI rumored 2026-2027 IPO filing window; reprices public adjacents (TSLA, ISRG, SERV).
+
+  # ===== Peptides =====
+  - id: cat_lly_q3_2026_earnings
+    theme_ids: [peptides]
+    tickers: [LLY]
+    event_date: "2026-10-29"
+    event_type: earnings
+    thesis_link: clm_glp1_manufacturing_capacity_bottleneck
+    notes: Eli Lilly Q3 2026; tirzepatide volume + Mounjaro / Zepbound capacity disclosure.
+
+  - id: cat_nvo_q3_2026_earnings
+    theme_ids: [peptides]
+    tickers: [NVO]
+    event_date: "2026-11-05"
+    event_type: earnings
+    thesis_link: clm_glp1_manufacturing_capacity_bottleneck
+    notes: Novo Nordisk Q3 2026; semaglutide franchise + amycretin / CagriSema pipeline.
+
+  # ===== BCI / Neurotech =====
+  - id: cat_neuralink_prime_update
+    theme_ids: [bci-neurotech]
+    tickers: []  # private
+    event_date: "2026-12-15"
+    event_type: trial_readout
+    thesis_link: clm_bci_neurotech_throughput_benchmark
+    notes: Neuralink PRIME study patient cohort update; expected end-2026.
