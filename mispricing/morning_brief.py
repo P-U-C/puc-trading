@@ -14,12 +14,35 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
-from typing import Any
+from typing import Any  # noqa: F401  # exposed in preflight() return type
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SCREEN_DIR = REPO_ROOT / "mispricing" / "screens"
 DAILY_DIR = REPO_ROOT / "paper-journal" / "mispricing" / "daily"
 MAX_LEN = 4000
+
+
+def preflight() -> dict[str, Any]:
+    """Loud check of Telegram creds + send a canary message. Returns a
+    dict the cron logs grep for; raises RuntimeError if creds missing
+    OR send fails. Per Codex review structural rec #7: silent daily
+    Telegram failures should fail loud on a schedule, not stay silent."""
+    token = os.environ.get("TG_BOT_TOKEN")
+    chat = os.environ.get("TG_CHAT_ID")
+    missing = [k for k, v in (("TG_BOT_TOKEN", token), ("TG_CHAT_ID", chat))
+               if not v]
+    if missing:
+        raise RuntimeError(
+            f"morning_brief preflight: missing env vars: {missing}. "
+            "Set them in the user shell profile or pass them to the cron job."
+        )
+    sent = _send_telegram(
+        f"preflight canary {dt.datetime.utcnow().isoformat(timespec='seconds')}Z",
+        prefix="[puc-trading preflight]",
+    )
+    if not sent:
+        raise RuntimeError("morning_brief preflight: telegram send returned False")
+    return {"token_present": True, "chat_present": True, "canary_sent": True}
 
 
 def _send_telegram(text: str, *, prefix: str = "[puc-trading mispricing]") -> bool:

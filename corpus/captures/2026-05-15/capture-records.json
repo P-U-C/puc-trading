@@ -1,7 +1,7 @@
 [
   {
     "capture_id": "fixture-ai_infrastructure-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -47,7 +47,7 @@
   },
   {
     "capture_id": "fixture-ai_infrastructure-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -85,7 +85,7 @@
   },
   {
     "capture_id": "fixture-ai_infrastructure-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -123,7 +123,7 @@
   },
   {
     "capture_id": "fixture-ai_infrastructure-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -161,7 +161,7 @@
   },
   {
     "capture_id": "fixture-ai_infrastructure-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -207,7 +207,7 @@
   },
   {
     "capture_id": "fixture-glp_1_peptides-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -245,7 +245,7 @@
   },
   {
     "capture_id": "fixture-glp_1_peptides-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -275,7 +275,7 @@
   },
   {
     "capture_id": "fixture-glp_1_peptides-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -305,7 +305,7 @@
   },
   {
     "capture_id": "fixture-glp_1_peptides-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -343,7 +343,7 @@
   },
   {
     "capture_id": "fixture-glp_1_peptides-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -381,7 +381,7 @@
   },
   {
     "capture_id": "fixture-quantum_computing-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -403,7 +403,7 @@
   },
   {
     "capture_id": "fixture-quantum_computing-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -425,7 +425,7 @@
   },
   {
     "capture_id": "fixture-quantum_computing-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -455,7 +455,7 @@
   },
   {
     "capture_id": "fixture-quantum_computing-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -485,7 +485,7 @@
   },
   {
     "capture_id": "fixture-quantum_computing-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -515,7 +515,7 @@
   },
   {
     "capture_id": "fixture-nuclear_smr-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -545,7 +545,7 @@
   },
   {
     "capture_id": "fixture-nuclear_smr-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -583,7 +583,7 @@
   },
   {
     "capture_id": "fixture-nuclear_smr-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -621,7 +621,7 @@
   },
   {
     "capture_id": "fixture-nuclear_smr-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -659,7 +659,7 @@
   },
   {
     "capture_id": "fixture-nuclear_smr-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -697,7 +697,7 @@
   },
   {
     "capture_id": "fixture-robotics_humanoid-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -727,7 +727,7 @@
   },
   {
     "capture_id": "fixture-robotics_humanoid-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -749,7 +749,7 @@
   },
   {
     "capture_id": "fixture-robotics_humanoid-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -771,7 +771,7 @@
   },
   {
     "capture_id": "fixture-robotics_humanoid-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -784,7 +784,7 @@
   },
   {
     "capture_id": "fixture-robotics_humanoid-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -806,7 +806,7 @@
   },
   {
     "capture_id": "fixture-photonic_computing-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -828,7 +828,7 @@
   },
   {
     "capture_id": "fixture-photonic_computing-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -850,7 +850,7 @@
   },
   {
     "capture_id": "fixture-photonic_computing-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -872,7 +872,7 @@
   },
   {
     "capture_id": "fixture-photonic_computing-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -894,7 +894,7 @@
   },
   {
     "capture_id": "fixture-photonic_computing-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -907,7 +907,7 @@
   },
   {
     "capture_id": "fixture-space_satellite-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -920,7 +920,7 @@
   },
   {
     "capture_id": "fixture-space_satellite-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -942,7 +942,7 @@
   },
   {
     "capture_id": "fixture-space_satellite-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -972,7 +972,7 @@
   },
   {
     "capture_id": "fixture-space_satellite-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -994,7 +994,7 @@
   },
   {
     "capture_id": "fixture-space_satellite-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -1024,7 +1024,7 @@
   },
   {
     "capture_id": "fixture-defense_ai-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -1046,7 +1046,7 @@
   },
   {
     "capture_id": "fixture-defense_ai-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -1059,7 +1059,7 @@
   },
   {
     "capture_id": "fixture-defense_ai-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -1081,7 +1081,7 @@
   },
   {
     "capture_id": "fixture-defense_ai-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -1103,7 +1103,7 @@
   },
   {
     "capture_id": "fixture-defense_ai-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -1125,7 +1125,7 @@
   },
   {
     "capture_id": "fixture-longevity-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -1138,7 +1138,7 @@
   },
   {
     "capture_id": "fixture-longevity-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -1151,7 +1151,7 @@
   },
   {
     "capture_id": "fixture-longevity-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -1164,7 +1164,7 @@
   },
   {
     "capture_id": "fixture-longevity-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -1186,7 +1186,7 @@
   },
   {
     "capture_id": "fixture-longevity-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -1208,7 +1208,7 @@
   },
   {
     "capture_id": "fixture-bitcoin_mining-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -1238,7 +1238,7 @@
   },
   {
     "capture_id": "fixture-bitcoin_mining-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -1260,7 +1260,7 @@
   },
   {
     "capture_id": "fixture-bitcoin_mining-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -1273,7 +1273,7 @@
   },
   {
     "capture_id": "fixture-bitcoin_mining-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -1286,7 +1286,7 @@
   },
   {
     "capture_id": "fixture-bitcoin_mining-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -1308,7 +1308,7 @@
   },
   {
     "capture_id": "fixture-bci_neurotech-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -1330,7 +1330,7 @@
   },
   {
     "capture_id": "fixture-bci_neurotech-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -1360,7 +1360,7 @@
   },
   {
     "capture_id": "fixture-bci_neurotech-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -1373,7 +1373,7 @@
   },
   {
     "capture_id": "fixture-bci_neurotech-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -1386,7 +1386,7 @@
   },
   {
     "capture_id": "fixture-bci_neurotech-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -1399,7 +1399,7 @@
   },
   {
     "capture_id": "fixture-solid_state_battery-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -1412,7 +1412,7 @@
   },
   {
     "capture_id": "fixture-solid_state_battery-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -1434,7 +1434,7 @@
   },
   {
     "capture_id": "fixture-solid_state_battery-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -1464,7 +1464,7 @@
   },
   {
     "capture_id": "fixture-solid_state_battery-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -1477,7 +1477,7 @@
   },
   {
     "capture_id": "fixture-solid_state_battery-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -1490,7 +1490,7 @@
   },
   {
     "capture_id": "fixture-synthetic_biology-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -1512,7 +1512,7 @@
   },
   {
     "capture_id": "fixture-synthetic_biology-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -1525,7 +1525,7 @@
   },
   {
     "capture_id": "fixture-synthetic_biology-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -1547,7 +1547,7 @@
   },
   {
     "capture_id": "fixture-synthetic_biology-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -1569,7 +1569,7 @@
   },
   {
     "capture_id": "fixture-synthetic_biology-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",
@@ -1591,7 +1591,7 @@
   },
   {
     "capture_id": "fixture-edge_ai-gpt5",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gpt5",
     "model_version": "gpt5-fixture-0.1.0",
     "status": "captured",
@@ -1604,7 +1604,7 @@
   },
   {
     "capture_id": "fixture-edge_ai-claude",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "claude",
     "model_version": "claude-fixture-0.1.0",
     "status": "captured",
@@ -1617,7 +1617,7 @@
   },
   {
     "capture_id": "fixture-edge_ai-gemini",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "gemini",
     "model_version": "gemini-fixture-0.1.0",
     "status": "captured",
@@ -1630,7 +1630,7 @@
   },
   {
     "capture_id": "fixture-edge_ai-perplexity",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "perplexity",
     "model_version": "perplexity-fixture-0.1.0",
     "status": "captured",
@@ -1652,7 +1652,7 @@
   },
   {
     "capture_id": "fixture-edge_ai-grok",
-    "timestamp_utc": "2026-05-15T19:23:27Z",
+    "timestamp_utc": "2026-05-15T20:40:02Z",
     "model_slot": "grok",
     "model_version": "grok-fixture-0.1.0",
     "status": "captured",

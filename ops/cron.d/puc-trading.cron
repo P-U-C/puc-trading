@@ -1,0 +1,21 @@
+# puc-trading: cron-as-code.
+#
+# This file is the canonical source for the operator's user crontab
+# entries that drive puc-trading. Install with:
+#
+#   bash ~/puc-trading/ops/cron.d/install.sh
+#
+# Each entry runs in the operator's user crontab (clawd, ubuntu user).
+# Per Codex review structural rec #5: removes the bus-factor risk of
+# unversioned crontab state.
+#
+# All timestamps are UTC.
+
+# 13:55 UTC: refresh the convergence baseline from trend-corpus aggregates
+#            (must run AFTER the 13:30-13:42 sector aggregates pushes).
+55 13 * * * DEPLOY_PUSH=1 bash $HOME/trend-corpus/scripts/refresh-convergence.sh >> $HOME/trend-corpus/logs/refresh-convergence.log 2>&1
+
+# 21:15 UTC: refresh the mispricing-screen (post US market close + after
+#            convergence baseline lands). Orchestrator handles transactional
+#            phase commits + atomic rename + run-state manifest.
+15 21 * * * DEPLOY_PUSH=1 PREFER_SOURCE=yfinance bash $HOME/puc-trading/scripts/refresh-mispricing.sh >> $HOME/puc-trading/logs/refresh-mispricing.log 2>&1

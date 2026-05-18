@@ -192,10 +192,90 @@ def _parse(s: str | None) -> dt.date | None:
         return None
 
 
+def _compute_stats(open_positions: list[PaperPosition],
+                   closed: list[PaperPosition]) -> dict[str, Any]:
+    """Per Codex review structural rec #8: stats block parallel to AGTI."""
+    GATE_TRADES = 30
+    GATE_DAYS = 30
+    SLIPPAGE_PCT = 2.0
+
+    def _by_bucket(positions, bucket):
+        return [p for p in positions if p.bucket == bucket]
+
+    def _pnl(p: PaperPosition) -> float:
+        if p.close_price is None or p.cost_per_contract_usd is None:
+            return 0.0
+        return (p.close_price - p.cost_per_contract_usd) * p.quantity_contracts
+
+    def _holding_days(p: PaperPosition) -> int | None:
+        if not p.entry_date or not p.closed_at:
+            return None
+        try:
+            return (dt.date.fromisoformat(p.closed_at)
+                    - dt.date.fromisoformat(p.entry_date)).days
+        except ValueError:
+            return None
+
+    first_open_date: str | None = None
+    pool = closed + open_positions
+    entry_dates = sorted(p.entry_date for p in pool if p.entry_date)
+    if entry_dates:
+        first_open_date = entry_dates[0]
+
+    def _bucket_stats(bucket: str) -> dict[str, Any]:
+        bucket_closed = _by_bucket(closed, bucket)
+        if not bucket_closed:
+            return {"closed": 0, "wins": 0, "hit_rate_pct": None,
+                    "mean_pnl_usd": None, "median_hold_days": None,
+                    "total_pnl_usd": 0.0}
+        pnls = [_pnl(p) for p in bucket_closed]
+        wins = sum(1 for x in pnls if x > 0)
+        holds = [d for d in (_holding_days(p) for p in bucket_closed)
+                 if d is not None]
+        return {
+            "closed": len(bucket_closed),
+            "wins": wins,
+            "hit_rate_pct": round(wins / len(bucket_closed) * 100, 1),
+            "mean_pnl_usd": round(sum(pnls) / len(pnls), 2),
+            "median_hold_days": (sorted(holds)[len(holds) // 2] if holds else None),
+            "total_pnl_usd": round(sum(pnls), 2),
+        }
+
+    gate_days_elapsed = None
+    if first_open_date:
+        try:
+            gate_days_elapsed = (dt.date.today()
+                                 - dt.date.fromisoformat(first_open_date)).days
+        except ValueError:
+            pass
+
+    return {
+        "closed_total": len(closed),
+        "open_total": len(open_positions),
+        "income": _bucket_stats("income"),
+        "lottery": _bucket_stats("lottery"),
+        "gate": {
+            "trades_required": GATE_TRADES,
+            "trades_closed": len(closed),
+            "trades_remaining": max(0, GATE_TRADES - len(closed)),
+            "days_required": GATE_DAYS,
+            "days_elapsed": gate_days_elapsed,
+            "days_remaining": (max(0, GATE_DAYS - gate_days_elapsed)
+                                if gate_days_elapsed is not None else None),
+            "first_open_date": first_open_date,
+            "ready": (len(closed) >= GATE_TRADES
+                      and (gate_days_elapsed or 0) >= GATE_DAYS),
+        },
+        "slippage_assumption_pct": SLIPPAGE_PCT,
+    }
+
+
 def _rewrite_tracker(open_positions: list[PaperPosition],
                      closed: list[PaperPosition]) -> None:
     JOURNAL_DIR.mkdir(parents=True, exist_ok=True)
     today = dt.date.today().isoformat()
+    stats = _compute_stats(open_positions, closed)
+    gate = stats["gate"]
     lines: list[str] = [
         "# mispricing-screen paper-trade tracker",
         "",
@@ -203,19 +283,40 @@ def _rewrite_tracker(open_positions: list[PaperPosition],
         "**Book status:** PAPER (live gated at `LIVE_PUSH=1` after 30-day validation)",
         "**Rules:** see `exit-rules.md`",
         "",
-        "## Go-live gate",
+        "## Stats",
         "",
-        "Becomes live when BOTH:",
-        "1. 30 closed paper trades minimum",
-        "2. 30 calendar days from first open",
+        f"- First open date: {gate['first_open_date'] or '_(none)_'}",
+        f"- Closed trades: **{stats['closed_total']}** | Open: {stats['open_total']}",
+        f"- Slippage assumption: {stats['slippage_assumption_pct']}%",
         "",
-        f"Current closed count: **{len(closed)}**",
-        "",
-        "---",
-        "",
-        "## Open positions",
-        "",
+        "| bucket | closed | wins | hit rate | mean p&l | median hold | total p&l |",
+        "|--------|------:|----:|--------:|---------:|------------:|----------:|",
     ]
+    for b in ("income", "lottery"):
+        s = stats[b]
+        hit = f"{s['hit_rate_pct']:.1f}%" if s["hit_rate_pct"] is not None else "—"
+        mean = f"${s['mean_pnl_usd']:+.2f}" if s["mean_pnl_usd"] is not None else "—"
+        hold = f"{s['median_hold_days']}d" if s["median_hold_days"] is not None else "—"
+        total = f"${s['total_pnl_usd']:+.2f}"
+        lines.append(f"| {b} | {s['closed']} | {s['wins']} | {hit} | {mean} | {hold} | {total} |")
+    lines.append("")
+    lines.append("## Go-live gate")
+    lines.append("")
+    lines.append(f"1. **{gate['trades_required']}** closed paper trades "
+                  f"(current: {gate['trades_closed']}, "
+                  f"need {gate['trades_remaining']} more)")
+    days_str = (f"{gate['days_elapsed']}d elapsed, "
+                f"{gate['days_remaining']}d remaining"
+                if gate['days_elapsed'] is not None else "no positions yet")
+    lines.append(f"2. **{gate['days_required']}** calendar days from first open "
+                  f"({days_str})")
+    lines.append("")
+    lines.append(f"**Gate ready:** {'YES' if gate['ready'] else 'NO'}")
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    lines.append("## Open positions")
+    lines.append("")
     if not open_positions:
         lines.append("_(no open positions)_")
     else:

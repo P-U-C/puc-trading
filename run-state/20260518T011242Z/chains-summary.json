@@ -1,0 +1,810 @@
+{
+  "006400.KS": {
+    "source": "yfinance",
+    "contracts": 0,
+    "expiries": 0,
+    "spot": 586000.0,
+    "path": "/home/ubuntu/puc-trading/options-cache/006400.KS-2026-05-18.json",
+    "error": "no expiries returned by yfinance"
+  },
+  "096770.KS": {
+    "source": "yfinance",
+    "contracts": 0,
+    "expiries": 0,
+    "spot": 118900.0,
+    "path": "/home/ubuntu/puc-trading/options-cache/096770.KS-2026-05-18.json",
+    "error": "no expiries returned by yfinance"
+  },
+  "3696.HK": {
+    "source": "yfinance",
+    "contracts": 0,
+    "expiries": 0,
+    "spot": 52.95000076293945,
+    "path": "/home/ubuntu/puc-trading/options-cache/3696.HK-2026-05-18.json",
+    "error": "no expiries returned by yfinance"
+  },
+  "5019.T": {
+    "source": "yfinance",
+    "contracts": 0,
+    "expiries": 0,
+    "spot": 1413.5,
+    "path": "/home/ubuntu/puc-trading/options-cache/5019.T-2026-05-18.json",
+    "error": "no expiries returned by yfinance"
+  },
+  "5706.T": {
+    "source": "yfinance",
+    "contracts": 0,
+    "expiries": 0,
+    "spot": 48540.0,
+    "path": "/home/ubuntu/puc-trading/options-cache/5706.T-2026-05-18.json",
+    "error": "no expiries returned by yfinance"
+  },
+  "AAOI": {
+    "source": "yfinance",
+    "contracts": 983,
+    "expiries": 6,
+    "spot": 190.36000061035156,
+    "path": "/home/ubuntu/puc-trading/options-cache/AAOI-2026-05-18.json",
+    "error": null
+  },
+  "ABB": {
+    "source": "yfinance",
+    "contracts": 0,
+    "expiries": 0,
+    "spot": null,
+    "path": "/home/ubuntu/puc-trading/options-cache/ABB-2026-05-18.json",
+    "error": "no expiries returned by yfinance"
+  },
+  "ABBV": {
+    "source": "yfinance",
+    "contracts": 254,
+    "expiries": 6,
+    "spot": 210.38999938964844,
+    "path": "/home/ubuntu/puc-trading/options-cache/ABBV-2026-05-18.json",
+    "error": null
+  },
+  "AMBA": {
+    "source": "yfinance",
+    "contracts": 345,
+    "expiries": 6,
+    "spot": 81.16000366210938,
+    "path": "/home/ubuntu/puc-trading/options-cache/AMBA-2026-05-18.json",
+    "error": null
+  },
+  "AMD": {
+    "source": "yfinance",
+    "contracts": 1566,
+    "expiries": 6,
+    "spot": 424.1000061035156,
+    "path": "/home/ubuntu/puc-trading/options-cache/AMD-2026-05-18.json",
+    "error": null
+  },
+  "AMGN": {
+    "source": "yfinance",
+    "contracts": 333,
+    "expiries": 6,
+    "spot": 326.30999755859375,
+    "path": "/home/ubuntu/puc-trading/options-cache/AMGN-2026-05-18.json",
+    "error": null
+  },
+  "ANET": {
+    "source": "yfinance",
+    "contracts": 590,
+    "expiries": 6,
+    "spot": 141.97000122070312,
+    "path": "/home/ubuntu/puc-trading/options-cache/ANET-2026-05-18.json",
+    "error": null
+  },
+  "ARQQ": {
+    "source": "yfinance",
+    "contracts": 153,
+    "expiries": 6,
+    "spot": 13.34000015258789,
+    "path": "/home/ubuntu/puc-trading/options-cache/ARQQ-2026-05-18.json",
+    "error": null
+  },
+  "ASTS": {
+    "source": "yfinance",
+    "contracts": 685,
+    "expiries": 6,
+    "spot": 83.66999816894531,
+    "path": "/home/ubuntu/puc-trading/options-cache/ASTS-2026-05-18.json",
+    "error": null
+  },
+  "AVAV": {
+    "source": "yfinance",
+    "contracts": 399,
+    "expiries": 6,
+    "spot": 158.0,
+    "path": "/home/ubuntu/puc-trading/options-cache/AVAV-2026-05-18.json",
+    "error": null
+  },
+  "AVGO": {
+    "source": "yfinance",
+    "contracts": 818,
+    "expiries": 6,
+    "spot": 425.19000244140625,
+    "path": "/home/ubuntu/puc-trading/options-cache/AVGO-2026-05-18.json",
+    "error": null
+  },
+  "BANB": {
+    "source": "yfinance",
+    "contracts": 0,
+    "expiries": 0,
+    "spot": null,
+    "path": "/home/ubuntu/puc-trading/options-cache/BANB-2026-05-18.json",
+    "error": "no expiries returned by yfinance"
+  },
+  "BEAM": {
+    "source": "yfinance",
+    "contracts": 166,
+    "expiries": 6,
+    "spot": 27.93000030517578,
+    "path": "/home/ubuntu/puc-trading/options-cache/BEAM-2026-05-18.json",
+    "error": null
+  },
+  "BFLY": {
+    "source": "yfinance",
+    "contracts": 115,
+    "expiries": 5,
+    "spot": 3.8299999237060547,
+    "path": "/home/ubuntu/puc-trading/options-cache/BFLY-2026-05-18.json",
+    "error": null
+  },
+  "BIOA": {
+    "source": "yfinance",
+    "contracts": 59,
+    "expiries": 6,
+    "spot": 17.65999984741211,
+    "path": "/home/ubuntu/puc-trading/options-cache/BIOA-2026-05-18.json",
+    "error": null
+  },
+  "BSX": {
+    "source": "yfinance",
+    "contracts": 315,
+    "expiries": 6,
+    "spot": 52.68000030517578,
+    "path": "/home/ubuntu/puc-trading/options-cache/BSX-2026-05-18.json",
+    "error": null
+  },
+  "BTBT": {
+    "source": "yfinance",
+    "contracts": 76,
+    "expiries": 6,
+    "spot": 1.8049999475479126,
+    "path": "/home/ubuntu/puc-trading/options-cache/BTBT-2026-05-18.json",
+    "error": null
+  },
+  "BWXT": {
+    "source": "yfinance",
+    "contracts": 307,
+    "expiries": 6,
+    "spot": 204.72000122070312,
+    "path": "/home/ubuntu/puc-trading/options-cache/BWXT-2026-05-18.json",
+    "error": null
+  },
+  "CAN": {
+    "source": "yfinance",
+    "contracts": 62,
+    "expiries": 5,
+    "spot": 0.5,
+    "path": "/home/ubuntu/puc-trading/options-cache/CAN-2026-05-18.json",
+    "error": null
+  },
+  "CCJ": {
+    "source": "yfinance",
+    "contracts": 474,
+    "expiries": 6,
+    "spot": 107.51000213623047,
+    "path": "/home/ubuntu/puc-trading/options-cache/CCJ-2026-05-18.json",
+    "error": null
+  },
+  "CEG": {
+    "source": "yfinance",
+    "contracts": 483,
+    "expiries": 6,
+    "spot": 267.20001220703125,
+    "path": "/home/ubuntu/puc-trading/options-cache/CEG-2026-05-18.json",
+    "error": null
+  },
+  "CELH": {
+    "source": "yfinance",
+    "contracts": 360,
+    "expiries": 6,
+    "spot": 30.15999984741211,
+    "path": "/home/ubuntu/puc-trading/options-cache/CELH-2026-05-18.json",
+    "error": null
+  },
+  "CIFR": {
+    "source": "yfinance",
+    "contracts": 418,
+    "expiries": 6,
+    "spot": 20.329999923706055,
+    "path": "/home/ubuntu/puc-trading/options-cache/CIFR-2026-05-18.json",
+    "error": null
+  },
+  "CLSK": {
+    "source": "yfinance",
+    "contracts": 361,
+    "expiries": 6,
+    "spot": 13.109999656677246,
+    "path": "/home/ubuntu/puc-trading/options-cache/CLSK-2026-05-18.json",
+    "error": null
+  },
+  "COHR": {
+    "source": "yfinance",
+    "contracts": 868,
+    "expiries": 6,
+    "spot": 382.45001220703125,
+    "path": "/home/ubuntu/puc-trading/options-cache/COHR-2026-05-18.json",
+    "error": null
+  },
+  "CORZ": {
+    "source": "yfinance",
+    "contracts": 385,
+    "expiries": 6,
+    "spot": 24.209999084472656,
+    "path": "/home/ubuntu/puc-trading/options-cache/CORZ-2026-05-18.json",
+    "error": null
+  },
+  "CRBU": {
+    "source": "yfinance",
+    "contracts": 34,
+    "expiries": 4,
+    "spot": 2.140000104904175,
+    "path": "/home/ubuntu/puc-trading/options-cache/CRBU-2026-05-18.json",
+    "error": null
+  },
+  "CRSP": {
+    "source": "yfinance",
+    "contracts": 264,
+    "expiries": 6,
+    "spot": 48.40999984741211,
+    "path": "/home/ubuntu/puc-trading/options-cache/CRSP-2026-05-18.json",
+    "error": null
+  },
+  "DELL": {
+    "source": "yfinance",
+    "contracts": 611,
+    "expiries": 6,
+    "spot": 241.99000549316406,
+    "path": "/home/ubuntu/puc-trading/options-cache/DELL-2026-05-18.json",
+    "error": null
+  },
+  "DNA": {
+    "source": "yfinance",
+    "contracts": 136,
+    "expiries": 6,
+    "spot": 7.710000038146973,
+    "path": "/home/ubuntu/puc-trading/options-cache/DNA-2026-05-18.json",
+    "error": null
+  },
+  "EDIT": {
+    "source": "yfinance",
+    "contracts": 59,
+    "expiries": 6,
+    "spot": 2.619999885559082,
+    "path": "/home/ubuntu/puc-trading/options-cache/EDIT-2026-05-18.json",
+    "error": null
+  },
+  "GEV": {
+    "source": "yfinance",
+    "contracts": 1238,
+    "expiries": 6,
+    "spot": 1049.22998046875,
+    "path": "/home/ubuntu/puc-trading/options-cache/GEV-2026-05-18.json",
+    "error": null
+  },
+  "GOOGL": {
+    "source": "yfinance",
+    "contracts": 716,
+    "expiries": 6,
+    "spot": 396.7799987792969,
+    "path": "/home/ubuntu/puc-trading/options-cache/GOOGL-2026-05-18.json",
+    "error": null
+  },
+  "GPCR": {
+    "source": "yfinance",
+    "contracts": 293,
+    "expiries": 6,
+    "spot": 38.689998626708984,
+    "path": "/home/ubuntu/puc-trading/options-cache/GPCR-2026-05-18.json",
+    "error": null
+  },
+  "GSAT": {
+    "source": "yfinance",
+    "contracts": 213,
+    "expiries": 6,
+    "spot": 81.9800033569336,
+    "path": "/home/ubuntu/puc-trading/options-cache/GSAT-2026-05-18.json",
+    "error": null
+  },
+  "HIVE": {
+    "source": "yfinance",
+    "contracts": 109,
+    "expiries": 6,
+    "spot": 2.690000057220459,
+    "path": "/home/ubuntu/puc-trading/options-cache/HIVE-2026-05-18.json",
+    "error": null
+  },
+  "HUT": {
+    "source": "yfinance",
+    "contracts": 700,
+    "expiries": 6,
+    "spot": 102.47000122070312,
+    "path": "/home/ubuntu/puc-trading/options-cache/HUT-2026-05-18.json",
+    "error": null
+  },
+  "IBM": {
+    "source": "yfinance",
+    "contracts": 396,
+    "expiries": 6,
+    "spot": 219.3000030517578,
+    "path": "/home/ubuntu/puc-trading/options-cache/IBM-2026-05-18.json",
+    "error": null
+  },
+  "IIVI": {
+    "source": "yfinance",
+    "contracts": 0,
+    "expiries": 0,
+    "spot": null,
+    "path": "/home/ubuntu/puc-trading/options-cache/IIVI-2026-05-18.json",
+    "error": "no expiries returned by yfinance"
+  },
+  "INDI": {
+    "source": "yfinance",
+    "contracts": 110,
+    "expiries": 6,
+    "spot": 4.190000057220459,
+    "path": "/home/ubuntu/puc-trading/options-cache/INDI-2026-05-18.json",
+    "error": null
+  },
+  "IONQ": {
+    "source": "yfinance",
+    "contracts": 568,
+    "expiries": 6,
+    "spot": 51.95000076293945,
+    "path": "/home/ubuntu/puc-trading/options-cache/IONQ-2026-05-18.json",
+    "error": null
+  },
+  "IRDM": {
+    "source": "yfinance",
+    "contracts": 83,
+    "expiries": 4,
+    "spot": 41.619998931884766,
+    "path": "/home/ubuntu/puc-trading/options-cache/IRDM-2026-05-18.json",
+    "error": null
+  },
+  "IREN": {
+    "source": "yfinance",
+    "contracts": 619,
+    "expiries": 6,
+    "spot": 52.939998626708984,
+    "path": "/home/ubuntu/puc-trading/options-cache/IREN-2026-05-18.json",
+    "error": null
+  },
+  "ISRG": {
+    "source": "yfinance",
+    "contracts": 467,
+    "expiries": 6,
+    "spot": 421.1199951171875,
+    "path": "/home/ubuntu/puc-trading/options-cache/ISRG-2026-05-18.json",
+    "error": null
+  },
+  "KTOS": {
+    "source": "yfinance",
+    "contracts": 423,
+    "expiries": 6,
+    "spot": 52.09000015258789,
+    "path": "/home/ubuntu/puc-trading/options-cache/KTOS-2026-05-18.json",
+    "error": null
+  },
+  "LDOS": {
+    "source": "yfinance",
+    "contracts": 191,
+    "expiries": 5,
+    "spot": 123.69000244140625,
+    "path": "/home/ubuntu/puc-trading/options-cache/LDOS-2026-05-18.json",
+    "error": null
+  },
+  "LEU": {
+    "source": "yfinance",
+    "contracts": 572,
+    "expiries": 6,
+    "spot": 182.60000610351562,
+    "path": "/home/ubuntu/puc-trading/options-cache/LEU-2026-05-18.json",
+    "error": null
+  },
+  "LHX": {
+    "source": "yfinance",
+    "contracts": 182,
+    "expiries": 6,
+    "spot": 303.3900146484375,
+    "path": "/home/ubuntu/puc-trading/options-cache/LHX-2026-05-18.json",
+    "error": null
+  },
+  "LITE": {
+    "source": "yfinance",
+    "contracts": 1667,
+    "expiries": 6,
+    "spot": 970.7000122070312,
+    "path": "/home/ubuntu/puc-trading/options-cache/LITE-2026-05-18.json",
+    "error": null
+  },
+  "LLY": {
+    "source": "yfinance",
+    "contracts": 1116,
+    "expiries": 6,
+    "spot": 1004.9199829101562,
+    "path": "/home/ubuntu/puc-trading/options-cache/LLY-2026-05-18.json",
+    "error": null
+  },
+  "LMT": {
+    "source": "yfinance",
+    "contracts": 664,
+    "expiries": 6,
+    "spot": 516.010009765625,
+    "path": "/home/ubuntu/puc-trading/options-cache/LMT-2026-05-18.json",
+    "error": null
+  },
+  "LSCC": {
+    "source": "yfinance",
+    "contracts": 189,
+    "expiries": 6,
+    "spot": 120.11000061035156,
+    "path": "/home/ubuntu/puc-trading/options-cache/LSCC-2026-05-18.json",
+    "error": null
+  },
+  "LUNR": {
+    "source": "yfinance",
+    "contracts": 559,
+    "expiries": 6,
+    "spot": 33.88999938964844,
+    "path": "/home/ubuntu/puc-trading/options-cache/LUNR-2026-05-18.json",
+    "error": null
+  },
+  "MARA": {
+    "source": "yfinance",
+    "contracts": 385,
+    "expiries": 6,
+    "spot": 12.4399995803833,
+    "path": "/home/ubuntu/puc-trading/options-cache/MARA-2026-05-18.json",
+    "error": null
+  },
+  "MBLY": {
+    "source": "yfinance",
+    "contracts": 209,
+    "expiries": 6,
+    "spot": 10.020000457763672,
+    "path": "/home/ubuntu/puc-trading/options-cache/MBLY-2026-05-18.json",
+    "error": null
+  },
+  "MDT": {
+    "source": "yfinance",
+    "contracts": 264,
+    "expiries": 6,
+    "spot": 76.1500015258789,
+    "path": "/home/ubuntu/puc-trading/options-cache/MDT-2026-05-18.json",
+    "error": null
+  },
+  "MRVL": {
+    "source": "yfinance",
+    "contracts": 818,
+    "expiries": 6,
+    "spot": 176.88999938964844,
+    "path": "/home/ubuntu/puc-trading/options-cache/MRVL-2026-05-18.json",
+    "error": null
+  },
+  "MSFT": {
+    "source": "yfinance",
+    "contracts": 609,
+    "expiries": 6,
+    "spot": 421.9200134277344,
+    "path": "/home/ubuntu/puc-trading/options-cache/MSFT-2026-05-18.json",
+    "error": null
+  },
+  "MU": {
+    "source": "yfinance",
+    "contracts": 2793,
+    "expiries": 6,
+    "spot": 724.6599731445312,
+    "path": "/home/ubuntu/puc-trading/options-cache/MU-2026-05-18.json",
+    "error": null
+  },
+  "NTLA": {
+    "source": "yfinance",
+    "contracts": 231,
+    "expiries": 6,
+    "spot": 13.670000076293945,
+    "path": "/home/ubuntu/puc-trading/options-cache/NTLA-2026-05-18.json",
+    "error": null
+  },
+  "NVDA": {
+    "source": "yfinance",
+    "contracts": 753,
+    "expiries": 6,
+    "spot": 225.32000732421875,
+    "path": "/home/ubuntu/puc-trading/options-cache/NVDA-2026-05-18.json",
+    "error": null
+  },
+  "NVO": {
+    "source": "yfinance",
+    "contracts": 318,
+    "expiries": 6,
+    "spot": 44.7400016784668,
+    "path": "/home/ubuntu/puc-trading/options-cache/NVO-2026-05-18.json",
+    "error": null
+  },
+  "NXPI": {
+    "source": "yfinance",
+    "contracts": 402,
+    "expiries": 6,
+    "spot": 291.5,
+    "path": "/home/ubuntu/puc-trading/options-cache/NXPI-2026-05-18.json",
+    "error": null
+  },
+  "OKLO": {
+    "source": "yfinance",
+    "contracts": 591,
+    "expiries": 6,
+    "spot": 62.25,
+    "path": "/home/ubuntu/puc-trading/options-cache/OKLO-2026-05-18.json",
+    "error": null
+  },
+  "ONWD": {
+    "source": "yfinance",
+    "contracts": 0,
+    "expiries": 0,
+    "spot": null,
+    "path": "/home/ubuntu/puc-trading/options-cache/ONWD-2026-05-18.json",
+    "error": "no expiries returned by yfinance"
+  },
+  "ONWRY": {
+    "source": "yfinance",
+    "contracts": 0,
+    "expiries": 0,
+    "spot": 3.3399999141693115,
+    "path": "/home/ubuntu/puc-trading/options-cache/ONWRY-2026-05-18.json",
+    "error": "no expiries returned by yfinance"
+  },
+  "PACB": {
+    "source": "yfinance",
+    "contracts": 65,
+    "expiries": 6,
+    "spot": 1.1200000047683716,
+    "path": "/home/ubuntu/puc-trading/options-cache/PACB-2026-05-18.json",
+    "error": null
+  },
+  "PL": {
+    "source": "yfinance",
+    "contracts": 373,
+    "expiries": 6,
+    "spot": 41.619998931884766,
+    "path": "/home/ubuntu/puc-trading/options-cache/PL-2026-05-18.json",
+    "error": null
+  },
+  "PLTR": {
+    "source": "yfinance",
+    "contracts": 851,
+    "expiries": 6,
+    "spot": 133.99000549316406,
+    "path": "/home/ubuntu/puc-trading/options-cache/PLTR-2026-05-18.json",
+    "error": null
+  },
+  "PRME": {
+    "source": "yfinance",
+    "contracts": 64,
+    "expiries": 5,
+    "spot": 2.930000066757202,
+    "path": "/home/ubuntu/puc-trading/options-cache/PRME-2026-05-18.json",
+    "error": null
+  },
+  "QBTS": {
+    "source": "yfinance",
+    "contracts": 459,
+    "expiries": 6,
+    "spot": 20.350000381469727,
+    "path": "/home/ubuntu/puc-trading/options-cache/QBTS-2026-05-18.json",
+    "error": null
+  },
+  "QCOM": {
+    "source": "yfinance",
+    "contracts": 899,
+    "expiries": 6,
+    "spot": 201.49000549316406,
+    "path": "/home/ubuntu/puc-trading/options-cache/QCOM-2026-05-18.json",
+    "error": null
+  },
+  "QS": {
+    "source": "yfinance",
+    "contracts": 210,
+    "expiries": 6,
+    "spot": 8.010000228881836,
+    "path": "/home/ubuntu/puc-trading/options-cache/QS-2026-05-18.json",
+    "error": null
+  },
+  "QSI": {
+    "source": "yfinance",
+    "contracts": 37,
+    "expiries": 6,
+    "spot": 0.8899999856948853,
+    "path": "/home/ubuntu/puc-trading/options-cache/QSI-2026-05-18.json",
+    "error": null
+  },
+  "RGTI": {
+    "source": "yfinance",
+    "contracts": 471,
+    "expiries": 6,
+    "spot": 17.850000381469727,
+    "path": "/home/ubuntu/puc-trading/options-cache/RGTI-2026-05-18.json",
+    "error": null
+  },
+  "RIOT": {
+    "source": "yfinance",
+    "contracts": 468,
+    "expiries": 6,
+    "spot": 23.489999771118164,
+    "path": "/home/ubuntu/puc-trading/options-cache/RIOT-2026-05-18.json",
+    "error": null
+  },
+  "RKLB": {
+    "source": "yfinance",
+    "contracts": 955,
+    "expiries": 6,
+    "spot": 124.7699966430664,
+    "path": "/home/ubuntu/puc-trading/options-cache/RKLB-2026-05-18.json",
+    "error": null
+  },
+  "RXRX": {
+    "source": "yfinance",
+    "contracts": 130,
+    "expiries": 6,
+    "spot": 2.930000066757202,
+    "path": "/home/ubuntu/puc-trading/options-cache/RXRX-2026-05-18.json",
+    "error": null
+  },
+  "SDGR": {
+    "source": "yfinance",
+    "contracts": 89,
+    "expiries": 5,
+    "spot": 11.949999809265137,
+    "path": "/home/ubuntu/puc-trading/options-cache/SDGR-2026-05-18.json",
+    "error": null
+  },
+  "SERV": {
+    "source": "yfinance",
+    "contracts": 227,
+    "expiries": 6,
+    "spot": 8.239999771118164,
+    "path": "/home/ubuntu/puc-trading/options-cache/SERV-2026-05-18.json",
+    "error": null
+  },
+  "SES": {
+    "source": "yfinance",
+    "contracts": 64,
+    "expiries": 6,
+    "spot": 1.1299999952316284,
+    "path": "/home/ubuntu/puc-trading/options-cache/SES-2026-05-18.json",
+    "error": null
+  },
+  "SLDP": {
+    "source": "yfinance",
+    "contracts": 118,
+    "expiries": 6,
+    "spot": 2.880000114440918,
+    "path": "/home/ubuntu/puc-trading/options-cache/SLDP-2026-05-18.json",
+    "error": null
+  },
+  "SMR": {
+    "source": "yfinance",
+    "contracts": 423,
+    "expiries": 6,
+    "spot": 11.229999542236328,
+    "path": "/home/ubuntu/puc-trading/options-cache/SMR-2026-05-18.json",
+    "error": null
+  },
+  "SYM": {
+    "source": "yfinance",
+    "contracts": 337,
+    "expiries": 6,
+    "spot": 47.31999969482422,
+    "path": "/home/ubuntu/puc-trading/options-cache/SYM-2026-05-18.json",
+    "error": null
+  },
+  "TER": {
+    "source": "yfinance",
+    "contracts": 608,
+    "expiries": 6,
+    "spot": 337.8800048828125,
+    "path": "/home/ubuntu/puc-trading/options-cache/TER-2026-05-18.json",
+    "error": null
+  },
+  "TM": {
+    "source": "yfinance",
+    "contracts": 273,
+    "expiries": 6,
+    "spot": 190.67999267578125,
+    "path": "/home/ubuntu/puc-trading/options-cache/TM-2026-05-18.json",
+    "error": null
+  },
+  "TSEM": {
+    "source": "yfinance",
+    "contracts": 492,
+    "expiries": 6,
+    "spot": 273.9800109863281,
+    "path": "/home/ubuntu/puc-trading/options-cache/TSEM-2026-05-18.json",
+    "error": null
+  },
+  "TSLA": {
+    "source": "yfinance",
+    "contracts": 1174,
+    "expiries": 6,
+    "spot": 422.239990234375,
+    "path": "/home/ubuntu/puc-trading/options-cache/TSLA-2026-05-18.json",
+    "error": null
+  },
+  "TSM": {
+    "source": "yfinance",
+    "contracts": 772,
+    "expiries": 6,
+    "spot": 404.3500061035156,
+    "path": "/home/ubuntu/puc-trading/options-cache/TSM-2026-05-18.json",
+    "error": null
+  },
+  "TWST": {
+    "source": "yfinance",
+    "contracts": 118,
+    "expiries": 4,
+    "spot": 49.16999816894531,
+    "path": "/home/ubuntu/puc-trading/options-cache/TWST-2026-05-18.json",
+    "error": null
+  },
+  "TXN": {
+    "source": "yfinance",
+    "contracts": 529,
+    "expiries": 6,
+    "spot": 302.7300109863281,
+    "path": "/home/ubuntu/puc-trading/options-cache/TXN-2026-05-18.json",
+    "error": null
+  },
+  "UBX": {
+    "source": "yfinance",
+    "contracts": 0,
+    "expiries": 0,
+    "spot": null,
+    "path": "/home/ubuntu/puc-trading/options-cache/UBX-2026-05-18.json",
+    "error": "no expiries returned by yfinance"
+  },
+  "VKTX": {
+    "source": "yfinance",
+    "contracts": 165,
+    "expiries": 6,
+    "spot": 30.270000457763672,
+    "path": "/home/ubuntu/puc-trading/options-cache/VKTX-2026-05-18.json",
+    "error": null
+  },
+  "VRT": {
+    "source": "yfinance",
+    "contracts": 725,
+    "expiries": 6,
+    "spot": 370.94000244140625,
+    "path": "/home/ubuntu/puc-trading/options-cache/VRT-2026-05-18.json",
+    "error": null
+  },
+  "VRTX": {
+    "source": "yfinance",
+    "contracts": 376,
+    "expiries": 6,
+    "spot": 436.95001220703125,
+    "path": "/home/ubuntu/puc-trading/options-cache/VRTX-2026-05-18.json",
+    "error": null
+  },
+  "VSAT": {
+    "source": "yfinance",
+    "contracts": 268,
+    "expiries": 6,
+    "spot": 69.5,
+    "path": "/home/ubuntu/puc-trading/options-cache/VSAT-2026-05-18.json",
+    "error": null
+  }
+}

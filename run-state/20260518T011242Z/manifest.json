@@ -1,0 +1,96 @@
+{
+  "run_id": "20260518T011242Z",
+  "started_at": "2026-05-18T01:12:42Z",
+  "ended_at": "2026-05-18T01:13:47Z",
+  "success": true,
+  "prefer_source": "yfinance",
+  "phases": [
+    {
+      "name": "chains",
+      "ok": true,
+      "started_at": "2026-05-18T01:12:42Z",
+      "ended_at": "2026-05-18T01:13:47Z",
+      "error": null,
+      "artifacts": {
+        "summary": "/home/ubuntu/puc-trading/run-state/20260518T011242Z/chains-summary.json"
+      },
+      "metrics": {
+        "tickers": 101,
+        "with_contracts": 90,
+        "no_chain": 11
+      }
+    },
+    {
+      "name": "detect",
+      "ok": true,
+      "started_at": "2026-05-18T01:13:47Z",
+      "ended_at": "2026-05-18T01:13:47Z",
+      "error": null,
+      "artifacts": {
+        "tmp_screen": "/home/ubuntu/puc-trading/run-state/20260518T011242Z/screen-2026-05-18.json"
+      },
+      "metrics": {
+        "rows": 1,
+        "mispriced_up": 1
+      }
+    },
+    {
+      "name": "shape",
+      "ok": true,
+      "started_at": "2026-05-18T01:13:47Z",
+      "ended_at": "2026-05-18T01:13:47Z",
+      "error": null,
+      "artifacts": {
+        "tmp_candidates": "/home/ubuntu/puc-trading/run-state/20260518T011242Z/candidates.json"
+      },
+      "metrics": {
+        "income": 1,
+        "lottery": 0,
+        "total_usd": 145.5
+      }
+    },
+    {
+      "name": "ticket",
+      "ok": true,
+      "started_at": "2026-05-18T01:13:47Z",
+      "ended_at": "2026-05-18T01:13:47Z",
+      "error": null,
+      "artifacts": {
+        "tmp_ticket": "/home/ubuntu/puc-trading/run-state/20260518T011242Z/2026-05-18.md",
+        "tmp_candidates": "/home/ubuntu/puc-trading/run-state/20260518T011242Z/candidates.json"
+      },
+      "metrics": {
+        "ticket_bytes": 868,
+        "candidates": 1
+      }
+    },
+    {
+      "name": "commit",
+      "ok": true,
+      "started_at": "2026-05-18T01:13:47Z",
+      "ended_at": "2026-05-18T01:13:47Z",
+      "error": null,
+      "artifacts": {},
+      "metrics": {
+        "new_paper_positions": 1,
+        "closed_today": 1,
+        "open_after": 0
+      }
+    },
+    {
+      "name": "brief",
+      "ok": true,
+      "started_at": "2026-05-18T01:13:47Z",
+      "ended_at": "2026-05-18T01:13:47Z",
+      "error": null,
+      "artifacts": {},
+      "metrics": {
+        "sent": false
+      }
+    }
+  ],
+  "canonical_paths_updated": [
+    "/home/ubuntu/puc-trading/mispricing/screens/screen-2026-05-18.json",
+    "/home/ubuntu/puc-trading/paper-journal/mispricing/daily/2026-05-18.md"
+  ]
+}
