@@ -139,6 +139,33 @@ It commits to `paper-journal/agti/daily/` and `paper-journal/agti/cron-runs/`
 on this repo, but those commits are not touched by the convergence deploy
 script.
 
+## Mispricing-screen paper book
+
+`mispricing/` is a second paper-trade consumer of
+`corpus/convergence-latest.json`. Unlike the public scanner, it does not publish
+to `pft-validator`. It joins convergence rows to `calendar/catalysts.yaml`,
+pulls option chains, compares a thesis-implied move with the market-implied ATM
+straddle move, and writes a paper-only two-bucket ticket:
+
+1. `ib_chain.py` writes daily chain snapshots to `options-cache/`.
+2. `detector.py` writes `mispricing/screens/screen-<DATE>.json`.
+3. `shaper.py` sizes income and lottery candidates against paper-book caps.
+4. `tickets.py` writes `paper-journal/mispricing/daily/<DATE>.md`.
+5. `paper_executor.py` updates `positions.json`, `closed.json`, and
+   `tracker.md` under `paper-journal/mispricing/`.
+6. `morning_brief.py` sends a Telegram summary when credentials are present.
+
+The IB path and yfinance fallback share the same `ChainSnapshot` and
+`ChainContract` dataclasses. yfinance does not provide greeks, so downstream
+logic must accept `None` for delta/gamma/theta/vega. The current detector and
+shaper only require spot, expiry, bid/ask/last, and ATM straddle mids.
+
+This layer remains paper-only until the operator explicitly clears the
+30-trade / 30-day gate and enables `LIVE_PUSH=1`. Before that happens, the
+thesis-move heuristic should be calibrated against historical catalyst moves,
+and `scripts/refresh-mispricing.sh` should gain transactional writes so a
+mid-run failure cannot leave a half-refreshed book.
+
 ## Things this repo deliberately does NOT do
 
 - It does not implement live order execution. The IBKR connection is

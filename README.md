@@ -1,9 +1,9 @@
 # puc-trading
 
-Private runtime for the LLM Convergence flow-prediction thesis. Houses the
-options scanner, the convergence corpus + populator, the published-paper
-trade journal, and the deploy glue that pushes scan output to the public
-dashboard.
+Private runtime for the LLM Convergence flow-prediction thesis and related
+paper-trade books. Houses the convergence artifact seam, the readonly options
+scanner, the AGTI paper journal, the mispricing-screen paper options pipeline,
+and deploy glue that pushes scanner output to the public dashboard.
 
 See [`docs/DESIGN.md`](docs/DESIGN.md) for the architectural decisions: why
 the runtime is split this way, how the file-boundary seam with `trend-corpus`
@@ -12,8 +12,8 @@ works, and how M1-M5 wire together.
 ## Canonical B2 architecture
 
 The same diagram is embedded in `trend-corpus/README.md` and
-`trend-intel-private/README.md`. This repo plays P3 -- the private
-scanner runtime.
+`trend-intel-private/README.md`. This repo plays P3 -- the private scanner
+runtime plus the local paper-trade consumers that read the convergence artifact.
 
 ```mermaid
 flowchart LR
@@ -47,16 +47,18 @@ flowchart LR
         K --> L
     end
 
-    subgraph P3[Private scanner runtime]
+    subgraph P3[Private scanner + paper runtime]
         M[LLM fixture or live survey rows]
         N[merge_convergence.py]
         O[corpus/convergence-latest.json]
         Q[scanner/run_live_scan.py]
         R[scan-results.json]
+        V[mispricing-screen paper book]
         M --> N
         L --> N
         N --> O
         O --> Q
+        O --> V
         Q --> R
     end
 
@@ -70,8 +72,9 @@ flowchart LR
     end
 ```
 
-Inside this repo: M and N feed O. The scanner Q reads O and writes R.
-The deploy script in `scripts/deploy-scanner-results.sh` lifts R to
+Inside this repo: M and N feed O. The scanner Q reads O and writes R. The
+mispricing-screen also reads O, joins it to dated catalysts, and writes a paper
+book only. The deploy script in `scripts/deploy-scanner-results.sh` lifts R to
 `P-U-C/pft-validator/scanner/scan-results.json` (P4 -> public dashboard).
 
 ## Repo map
@@ -103,7 +106,21 @@ puc-trading/
 |-- scripts/                     <-- deploy glue (M5)
 |   |-- deploy-scanner-results.sh        # validate -> stage -> commit -> (DEPLOY_PUSH=1 to push)
 |   |-- deploy-scanner-results.test.sh   # 4-test harness, no real git push
+|   |-- refresh-mispricing.sh            # six-phase paper-only mispricing refresh
 |   `-- check-dashboard-shape.py         # asserts scan-results.json fields the dashboard reads
+|
+|-- calendar/
+|   `-- catalysts.yaml           <-- dated catalyst calendar for mispricing-screen
+|
+|-- mispricing/                  <-- two-bucket options paper pipeline
+|   |-- README.md                # phase contracts + runtime state notes
+|   |-- ib_chain.py              # IB Gateway primary, yfinance fallback
+|   |-- detector.py              # thesis-vs-market mispricing rows
+|   |-- shaper.py                # income / lottery sizing
+|   |-- tickets.py               # daily markdown ticket writer
+|   |-- morning_brief.py         # Telegram digest composer
+|   |-- paper_executor.py        # paper positions + exits
+|   `-- tests/
 |
 |-- trades/                      <-- active human-curated trade theses
 |   |-- naval-thesis.md          # SaaSpocalypse short + hardware moats long
@@ -113,11 +130,16 @@ puc-trading/
 |-- journal/                     <-- daily trade diary (markdown per day)
 |   `-- YYYY-MM-DD.md
 |
-`-- paper-journal/agti/          <-- automated AGTI paper-trade journal
-    |-- scripts/                 # daily-pull.sh, notify-telegram.py, extract-signals.py
-    |-- daily/                   # extracted signals + daily writeups
-    |-- daily/raw/               # raw AGTI HTML pulls
-    `-- cron-runs/               # cron run summaries
+|-- paper-journal/agti/          <-- automated AGTI paper-trade journal
+|   |-- scripts/                 # daily-pull.sh, notify-telegram.py, extract-signals.py
+|   |-- daily/                   # extracted signals + daily writeups
+|   |-- daily/raw/               # raw AGTI HTML pulls
+|   `-- cron-runs/               # cron run summaries
+|
+`-- paper-journal/mispricing/    <-- paper-only options book written by mispricing/
+    |-- README.md
+    |-- exit-rules.md
+    `-- daily/
 ```
 
 ## Make targets
@@ -125,7 +147,7 @@ puc-trading/
 | Target | What it does |
 |---|---|
 | `make validate` | Validate `corpus/convergence-latest.json` against the M1 contract. Fails loud on missing / malformed / stale / empty. |
-| `make test` | Run `corpus/test_convergence_seam.py` (9 tests covering every fail-loud branch). |
+| `make test` | Run the corpus unittest suite. Mispricing tests live under `mispricing/tests/` and use pytest. |
 | `make populate-convergence` | Regenerate `corpus/convergence-latest.json` + the day's capture-records (fixture mode, no API keys, no network). |
 | `make scan` | `validate` + run `scanner/run_live_scan.py` against a live IB Gateway. |
 
@@ -140,6 +162,9 @@ puc-trading/
 - The AGTI paper journal in `paper-journal/agti/` is unrelated to the
   convergence scanner. It's the published-research-driven discretionary
   trade journal, cron'd daily at 14:00 UTC.
+- The mispricing-screen in `mispricing/` is related to the convergence artifact
+  but separate from the public scanner. It is paper-only until the 30-trade /
+  30-day go-live gate is cleared and `LIVE_PUSH=1` is explicitly enabled.
 
 ## Bringup
 
@@ -160,7 +185,7 @@ make scan
 - Convergence artifact is enforced fresh (default 14d) before any scan.
 - Deploy glue does NOT push without explicit `DEPLOY_PUSH=1`. Secret-pattern
   scan runs before any commit.
-- Position sizing is lottery-ticket. See [`trades/naval-thesis.md`](trades/naval-thesis.md)
-  for the live capital budget.
+- Position sizing is intentionally small. Scanner output is research ranking;
+  mispricing is paper-only until its go-live gate is explicitly cleared.
 
 Research infrastructure. Not financial advice.

@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.pytest_cache/
 
 # Local env (use .env.example as the template)
 .env
@@ -18,3 +19,20 @@ review-bundle-*/
 # IBKR runtime junk
 jts.ini
 launcher.log
+
+# Runtime logs and caches
+*.log
+logs/
+options-cache/
+
+# Generated corpus captures
+corpus/captures/
+
+# Paper-book runtime state
+paper-journal/agti/scripts/positions.json
+paper-journal/agti/cron-runs/
+paper-journal/agti/daily/raw/
+paper-journal/agti/daily/*.md
+paper-journal/agti/daily/*.signals-extracted.json
+paper-journal/mispricing/positions.json
+paper-journal/mispricing/closed.json

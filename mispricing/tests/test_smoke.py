@@ -90,6 +90,20 @@ def test_shaper_respects_budgets():
         assert total <= 10000 * 0.05 + 0.01, f"{t} over per-ticker cap: {total}"
 
 
+def test_shaper_accumulates_same_ticker_exposure_within_run():
+    rows = [
+        _fake_row(catalyst_id=f"cat_qs_same_ticker_{idx}", atm_straddle_mid=5.0)
+        for idx in range(4)
+    ]
+
+    cands = shaper.shape(rows)
+    qs_total = sum(c.cost_total_usd or 0 for c in cands if c.ticker == "QS")
+
+    assert len([c for c in cands if c.ticker == "QS"]) == 3
+    assert qs_total == 450.0
+    assert qs_total <= 10000 * 0.05
+
+
 def test_ticket_markdown_round_trip(tmp_path, monkeypatch):
     """Just verify the writer produces non-empty markdown with all sections."""
     monkeypatch.setattr(tickets, "DAILY_DIR", tmp_path)
