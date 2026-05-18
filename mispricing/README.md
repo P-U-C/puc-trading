@@ -36,13 +36,17 @@ Generated files are runtime state, not source contracts:
 
 - `options-cache/`
 - `mispricing/screens/screen-<DATE>.json`
-- `paper-journal/mispricing/daily/<DATE>.md`
 - `paper-journal/mispricing/positions.json`
 - `paper-journal/mispricing/closed.json`
 - `paper-journal/mispricing/tracker.md`
 
 The paper-book JSON files are mutable state. Keep source changes separate from
 daily refresh output when reviewing or committing this package.
+
+Daily tickets in `paper-journal/mispricing/daily/<DATE>.md` are the durable
+audit trail and stay tracked in git, mirroring the AGTI paper bucket. The
+underlying screen JSON, tracker render, positions, closed state, and run
+manifests are runtime state.
 
 ## Safety notes
 

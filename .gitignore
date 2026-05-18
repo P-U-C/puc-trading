@@ -24,6 +24,7 @@ launcher.log
 *.log
 logs/
 options-cache/
+run-state/
 
 # Generated corpus captures
 corpus/captures/
@@ -36,3 +37,7 @@ paper-journal/agti/daily/*.md
 paper-journal/agti/daily/*.signals-extracted.json
 paper-journal/mispricing/positions.json
 paper-journal/mispricing/closed.json
+paper-journal/mispricing/tracker.md
+mispricing/screens/
+
+# Mispricing daily markdown tickets stay tracked as the audit trail.

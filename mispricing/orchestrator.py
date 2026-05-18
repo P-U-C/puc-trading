@@ -111,6 +111,49 @@ def _atomic_replace(src: Path, dst: Path) -> None:
     os.replace(str(src), str(dst))
 
 
+def _publish_replacements(
+    replacements: list[tuple[Path, Path]],
+    *,
+    backup_dir: Path,
+) -> list[Path]:
+    """Publish a group of file replacements, restoring prior files on failure."""
+    for src, _ in replacements:
+        if not src.exists():
+            raise FileNotFoundError(f"staged artifact missing: {src}")
+
+    backups: dict[Path, Path | None] = {}
+    for _, dst in replacements:
+        if dst.exists():
+            try:
+                rel = dst.relative_to(REPO_ROOT)
+            except ValueError:
+                rel = Path(dst.name)
+            backup = backup_dir / rel
+            backup.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(dst, backup)
+            backups[dst] = backup
+        else:
+            backups[dst] = None
+
+    published: list[Path] = []
+    try:
+        for src, dst in replacements:
+            _atomic_replace(src, dst)
+            published.append(dst)
+    except Exception:
+        for dst in reversed(published):
+            backup = backups[dst]
+            if backup is None:
+                try:
+                    dst.unlink()
+                except FileNotFoundError:
+                    pass
+            else:
+                _atomic_replace(backup, dst)
+        raise
+    return [dst for _, dst in replacements]
+
+
 def _alert_failure(manifest: RunManifest) -> None:
     """Telegram alert with a per-phase status table."""
     try:
@@ -245,24 +288,59 @@ def run(*, prefer_source: str = "ib", deploy_push: bool = False,
     def _phase_commit():
         from mispricing import paper_executor
         from mispricing.shaper import TradeCandidate as TC
-        # Move the screen and ticket into their canonical locations.
         tmp_screen_path = Path(manifest.phases[1].artifacts["tmp_screen"])
         tmp_ticket_path = Path(manifest.phases[3].artifacts["tmp_ticket"])
         tmp_candidates_path = Path(manifest.phases[3].artifacts["tmp_candidates"])
         canonical_screen = SCREENS_DIR / tmp_screen_path.name
         canonical_ticket = DAILY_DIR / tmp_ticket_path.name
-        _atomic_replace(tmp_screen_path, canonical_screen)
-        _atomic_replace(tmp_ticket_path, canonical_ticket)
-        manifest.canonical_paths_updated.extend([
-            str(canonical_screen), str(canonical_ticket),
-        ])
-        # Now open paper positions (state-mutating) from the saved candidates.
+
+        stage_dir = run_dir / "paper-stage"
+        stage_journal = stage_dir / "journal"
+        stage_positions = stage_journal / "positions.json"
+        stage_closed = stage_journal / "closed.json"
+        stage_tracker = stage_journal / "tracker.md"
+        stage_journal.mkdir(parents=True, exist_ok=True)
+        if paper_executor.POSITIONS_PATH.exists():
+            shutil.copy2(paper_executor.POSITIONS_PATH, stage_positions)
+        if paper_executor.CLOSED_PATH.exists():
+            shutil.copy2(paper_executor.CLOSED_PATH, stage_closed)
+
         cands = [TC(**c) for c in json.loads(tmp_candidates_path.read_text())]
-        new = paper_executor.open_paper(cands)
-        # Settle (evaluate exits + rewrite tracker).
-        positions = paper_executor._load_positions()
-        just_closed = paper_executor.evaluate_exits(positions)
-        summary = paper_executor.settle()
+        old_paths = (
+            paper_executor.JOURNAL_DIR,
+            paper_executor.POSITIONS_PATH,
+            paper_executor.CLOSED_PATH,
+            paper_executor.TRACKER_PATH,
+        )
+        try:
+            paper_executor.JOURNAL_DIR = stage_journal
+            paper_executor.POSITIONS_PATH = stage_positions
+            paper_executor.CLOSED_PATH = stage_closed
+            paper_executor.TRACKER_PATH = stage_tracker
+            new = paper_executor.open_paper(cands)
+            positions = paper_executor._load_positions()
+            paper_executor.evaluate_exits(positions)
+            summary = paper_executor.settle()
+        finally:
+            (
+                paper_executor.JOURNAL_DIR,
+                paper_executor.POSITIONS_PATH,
+                paper_executor.CLOSED_PATH,
+                paper_executor.TRACKER_PATH,
+            ) = old_paths
+
+        replacements = [
+            (tmp_screen_path, canonical_screen),
+            (tmp_ticket_path, canonical_ticket),
+            (stage_positions, JOURNAL_DIR / "positions.json"),
+            (stage_closed, JOURNAL_DIR / "closed.json"),
+            (stage_tracker, JOURNAL_DIR / "tracker.md"),
+        ]
+        published = _publish_replacements(
+            replacements,
+            backup_dir=run_dir / "precommit-backup",
+        )
+        manifest.canonical_paths_updated.extend(str(p) for p in published)
         return {"metrics": {"new_paper_positions": len(new),
                             "closed_today": summary["closed_today"],
                             "open_after": summary["open"]}}
@@ -274,12 +352,16 @@ def run(*, prefer_source: str = "ib", deploy_push: bool = False,
     # ---------- phase 6: brief ----------
     def _phase_brief():
         from mispricing import morning_brief
+        morning_brief.preflight()
         sent = morning_brief.send_brief(dry_run=False)
+        if not sent:
+            raise RuntimeError("morning_brief.send_brief returned False")
         return {"metrics": {"sent": sent}}
     if not _phase(manifest, "brief", _phase_brief):
         # Brief failing isn't fatal -- everything's already committed.
         # Log and continue.
         log.warning("morning_brief failed but earlier phases succeeded")
+        _alert_failure(manifest)
 
     # ---------- optional phase 7: git push ----------
     if deploy_push:

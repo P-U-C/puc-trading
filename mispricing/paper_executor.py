@@ -289,8 +289,8 @@ def _rewrite_tracker(open_positions: list[PaperPosition],
         f"- Closed trades: **{stats['closed_total']}** | Open: {stats['open_total']}",
         f"- Slippage assumption: {stats['slippage_assumption_pct']}%",
         "",
-        "| bucket | closed | wins | hit rate | mean p&l | median hold | total p&l |",
-        "|--------|------:|----:|--------:|---------:|------------:|----------:|",
+        "| bucket | closed | wins | hit rate | mean p&l | median hold (cal) | total p&l |",
+        "|--------|------:|----:|--------:|---------:|------------------:|----------:|",
     ]
     for b in ("income", "lottery"):
         s = stats[b]

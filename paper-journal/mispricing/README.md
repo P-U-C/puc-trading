@@ -49,6 +49,10 @@ paper-journal/mispricing/
 recommendations the system generated (NEW), the exits triggered
 (CLOSE), and the held positions (HOLD).
 
+Daily markdown tickets are tracked in git as the canonical audit trail,
+matching the AGTI bucket. The screen JSON, tracker render, open/closed
+position JSON, options cache, and run-state manifests are runtime state.
+
 ## Conventions
 
 - **Entry**: paper entry at the day's mid-of-bid-ask on the chosen

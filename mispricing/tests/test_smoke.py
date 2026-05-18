@@ -7,7 +7,7 @@ import datetime as dt
 import json
 from pathlib import Path
 
-from mispricing import detector, shaper, tickets, ib_chain, paper_executor
+from mispricing import detector, shaper, tickets, ib_chain, paper_executor, orchestrator
 from mispricing.detector import MispricingRow
 from mispricing.shaper import TradeCandidate
 
@@ -144,6 +144,80 @@ def test_paper_executor_open_close_cycle(tmp_path, monkeypatch):
     summary = paper_executor.settle()
     assert summary["closed_today"] == 1
     assert summary["open"] == 0
+
+
+def test_paper_executor_stats_use_contract_dollars_and_calendar_days():
+    pos = paper_executor.PaperPosition(
+        id="QS-call-10-2026-06-19-2026-05-01",
+        bucket="income",
+        ticker="QS",
+        theme_id="solid-state-battery",
+        catalyst_id="cat_qs",
+        event_date="2026-06-01",
+        structure="long_call",
+        strike=10.0,
+        strike_upper=None,
+        expiry="2026-06-19",
+        quantity_contracts=2,
+        cost_per_contract_usd=150.0,
+        cost_total_usd=300.0,
+        entry_date="2026-05-01",
+        entry_rationale="test",
+        mark=225.0,
+        pct_pnl=50.0,
+        status="closed",
+        closed_at="2026-05-04",
+        close_reason="+50% gain target",
+        close_price=225.0,
+    )
+
+    stats = paper_executor._compute_stats([], [pos])
+
+    assert stats["income"]["total_pnl_usd"] == 150.0
+    assert stats["income"]["mean_pnl_usd"] == 150.0
+    assert stats["income"]["median_hold_days"] == 3
+    assert stats["income"]["hit_rate_pct"] == 100.0
+
+
+def test_paper_executor_gate_not_ready_with_no_positions():
+    stats = paper_executor._compute_stats([], [])
+
+    assert stats["gate"]["first_open_date"] is None
+    assert stats["gate"]["days_elapsed"] is None
+    assert stats["gate"]["ready"] is False
+
+
+def test_orchestrator_publish_replacements_rolls_back_partial_publish(tmp_path, monkeypatch):
+    src_ok = tmp_path / "src-ok.txt"
+    src_fail = tmp_path / "src-fail.txt"
+    dst_ok = tmp_path / "dst-ok.txt"
+    dst_fail = tmp_path / "dst-fail.txt"
+    src_ok.write_text("new ok")
+    src_fail.write_text("new fail")
+    dst_ok.write_text("old ok")
+    dst_fail.write_text("old fail")
+
+    real_replace = orchestrator._atomic_replace
+
+    def fake_replace(src, dst):
+        if Path(dst).name == "dst-fail.txt":
+            raise RuntimeError("publish failed")
+        return real_replace(src, dst)
+
+    monkeypatch.setattr(orchestrator, "_atomic_replace", fake_replace)
+
+    try:
+        orchestrator._publish_replacements(
+            [(src_ok, dst_ok), (src_fail, dst_fail)],
+            backup_dir=tmp_path / "backup",
+        )
+    except RuntimeError:
+        pass
+    else:
+        raise AssertionError("publish failure did not raise")
+
+    assert dst_ok.read_text() == "old ok"
+    assert dst_fail.read_text() == "old fail"
 
 
 def test_chain_snapshot_dataclasses_serialize():
