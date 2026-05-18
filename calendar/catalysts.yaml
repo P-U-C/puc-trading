@@ -274,3 +274,145 @@ events:
     event_type: trial_readout
     thesis_link: clm_bci_neurotech_throughput_benchmark
     notes: Neuralink PRIME study patient cohort update; expected end-2026.
+
+  # ===== Cicadas (ENSO commodity cycle) =====
+  # Thesis: ~/puc-trading/trades/cicadas.md
+  # No trend-corpus theme; ENSO is a time-bound macro thesis traded
+  # against existing instruments. Tickers below define the sleeve
+  # universe so the mispricing detector picks them up on the dated
+  # forecast / WASDE events.
+  - id: cat_noaa_enso_2026_06
+    theme_ids: []
+    tickers: [CORN, WEAT, SOYB, DBA, MOO, CF, NTR, MOS, FXA, SB, UNG, CRESY]
+    event_date: "2026-06-11"
+    event_type: data_release
+    thesis_link: cicadas
+    notes: NOAA CPC ENSO Diagnostic Discussion (June). Stage-2 first-confirmation window for the cicadas sleeve.
+
+  - id: cat_usda_wasde_2026_06
+    theme_ids: []
+    tickers: [CORN, WEAT, SOYB, DBA, MOO]
+    event_date: "2026-06-12"
+    event_type: regulatory_docket
+    thesis_link: cicadas
+    notes: USDA WASDE (June). First crop-balance reprice window aligned with NOAA ENSO update.
+
+  - id: cat_ecmwf_outlook_2026_06
+    theme_ids: []
+    tickers: [CORN, WEAT, FXA]
+    event_date: "2026-06-05"
+    event_type: data_release
+    thesis_link: cicadas
+    notes: ECMWF June monthly seasonal outlook. Plume update; cicadas Stage-2 reference.
+
+  - id: cat_iri_plume_2026_06
+    theme_ids: []
+    tickers: [CORN, WEAT, FXA]
+    event_date: "2026-06-20"
+    event_type: data_release
+    thesis_link: cicadas
+    notes: IRI June ENSO Quick Look plume update.
+
+  - id: cat_noaa_enso_2026_07
+    theme_ids: []
+    tickers: [CORN, WEAT, SOYB, DBA, CF, NTR, FXA, SB]
+    event_date: "2026-07-10"
+    event_type: data_release
+    thesis_link: cicadas
+    notes: NOAA CPC ENSO Diagnostic (July). Stage-3 size-add gate if coupling confirmed.
+
+  - id: cat_usda_wasde_2026_07
+    theme_ids: []
+    tickers: [CORN, WEAT, SOYB, DBA, CF, NTR]
+    event_date: "2026-07-11"
+    event_type: regulatory_docket
+    thesis_link: cicadas
+    notes: USDA WASDE (July). Acreage + condition refresh; first US summer-crop weather window.
+
+  - id: cat_ecmwf_outlook_2026_07
+    theme_ids: []
+    tickers: [CORN, WEAT, FXA]
+    event_date: "2026-07-09"
+    event_type: data_release
+    thesis_link: cicadas
+    notes: ECMWF July monthly seasonal outlook.
+
+  - id: cat_usda_wasde_2026_08
+    theme_ids: []
+    tickers: [CORN, WEAT, SOYB, DBA, CF, NTR, MOS]
+    event_date: "2026-08-12"
+    event_type: regulatory_docket
+    thesis_link: cicadas
+    notes: USDA WASDE (August). First damage-print window for US summer crop; Stage-3 add-on gate.
+
+  - id: cat_noaa_enso_2026_08
+    theme_ids: []
+    tickers: [CORN, WEAT, FXA, SB]
+    event_date: "2026-08-14"
+    event_type: data_release
+    thesis_link: cicadas
+    notes: NOAA CPC ENSO Diagnostic (August). Peak summer coupling verification.
+
+  - id: cat_noaa_enso_2026_09
+    theme_ids: []
+    tickers: [CORN, WEAT, SOYB, CF, FXA, SB]
+    event_date: "2026-09-11"
+    event_type: data_release
+    thesis_link: cicadas
+    notes: NOAA CPC ENSO Diagnostic (September). SAm planting weather verification window.
+
+  - id: cat_usda_wasde_2026_09
+    theme_ids: []
+    tickers: [CORN, WEAT, SOYB, DBA, CRESY]
+    event_date: "2026-09-12"
+    event_type: regulatory_docket
+    thesis_link: cicadas
+    notes: USDA WASDE (September). SAm planting weather + Northern Hemisphere yield resolution.
+
+  - id: cat_usda_wasde_2026_10
+    theme_ids: []
+    tickers: [CORN, WEAT, SOYB, CRESY]
+    event_date: "2026-10-09"
+    event_type: regulatory_docket
+    thesis_link: cicadas
+    notes: USDA WASDE (October). Stage-4 winter-NG decision input.
+
+  - id: cat_usda_wasde_2026_11
+    theme_ids: []
+    tickers: [CORN, WEAT, SOYB, CRESY]
+    event_date: "2026-11-12"
+    event_type: regulatory_docket
+    thesis_link: cicadas
+    notes: USDA WASDE (November).
+
+  - id: cat_usda_wasde_2026_12
+    theme_ids: []
+    tickers: [CORN, WEAT, SOYB, UNG, BOIL]
+    event_date: "2026-12-09"
+    event_type: regulatory_docket
+    thesis_link: cicadas
+    notes: USDA WASDE (December). Winter-NG decision window if El Nino established + CPC winter teleconnections canonical.
+
+  - id: cat_bom_aus_winter_outlook
+    theme_ids: []
+    tickers: [FXA, WEAT]
+    event_date: "2026-08-01"
+    event_type: data_release
+    thesis_link: cicadas
+    notes: BOM Australia winter-spring climate outlook + IOD index update. Cleanest direct crop signal for Australian wheat / AUD.
+
+  - id: cat_imd_india_monsoon_jul
+    theme_ids: []
+    tickers: [SB, WEAT]
+    event_date: "2026-07-31"
+    event_type: data_release
+    thesis_link: cicadas
+    notes: IMD India monsoon July progression report. Sugar / wheat-policy reflex input.
+
+  - id: cat_jamstec_iod_outlook
+    theme_ids: []
+    tickers: [FXA, WEAT, SB]
+    event_date: "2026-07-15"
+    event_type: data_release
+    thesis_link: cicadas
+    notes: JAMSTEC seasonal IOD model projection. Positive IOD risk + ENSO joint event amplifies Australia / India downside.
