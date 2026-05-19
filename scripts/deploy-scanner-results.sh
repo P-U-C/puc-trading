@@ -154,6 +154,11 @@ fi
 
 [[ -f "$SCAN_RESULTS" ]] || fail "missing scan results: $SCAN_RESULTS"
 
+log "merging paper-book + live-book into scan-results"
+SCAN_RESULTS_PATH="$SCAN_RESULTS" PUC_TRADING_DIR="$PUC_TRADING_DIR" \
+  python3 "$PUC_TRADING_DIR/scripts/merge-book-into-scan.py" \
+  || fail "book merge failed"
+
 log "checking dashboard JSON shape"
 SCAN_RESULTS_PATH="$SCAN_RESULTS" python3 "$PUC_TRADING_DIR/scripts/check-dashboard-shape.py" \
   || fail "dashboard shape check failed"

@@ -35,6 +35,10 @@ RESULT_FIELDS = {
 
 CONVERGENCE_FIELDS = {"ticker", "theme", "score", "tier", "status"}
 
+BOOK_TOP_FIELDS = {"generated_at", "live_unlocked", "go_live_gate", "paper", "live"}
+BOOK_SIDE_FIELDS = {"open", "closed", "stats"}
+GATE_FIELDS = {"required_closed_trades", "current_closed_trades", "remaining_trades"}
+
 
 def require_mapping(value: object, label: str, errors: list[str]) -> bool:
     if not isinstance(value, dict):
@@ -56,7 +60,25 @@ def validate(payload: object) -> list[str]:
 
     root = payload
     assert isinstance(root, dict)
-    require_fields(root, {"scan_meta", "results", "convergence"}, "root", errors)
+    require_fields(root, {"scan_meta", "results", "convergence", "book"}, "root", errors)
+
+    book = root.get("book")
+    if require_mapping(book, "book", errors):
+        assert isinstance(book, dict)
+        require_fields(book, BOOK_TOP_FIELDS, "book", errors)
+        gate = book.get("go_live_gate")
+        if require_mapping(gate, "book.go_live_gate", errors):
+            assert isinstance(gate, dict)
+            require_fields(gate, GATE_FIELDS, "book.go_live_gate", errors)
+        for side in ("paper", "live"):
+            side_val = book.get(side)
+            if require_mapping(side_val, f"book.{side}", errors):
+                assert isinstance(side_val, dict)
+                require_fields(side_val, BOOK_SIDE_FIELDS, f"book.{side}", errors)
+                if not isinstance(side_val.get("open"), list):
+                    errors.append(f"book.{side}.open: expected list")
+                if not isinstance(side_val.get("closed"), list):
+                    errors.append(f"book.{side}.closed: expected list")
 
     scan_meta = root.get("scan_meta")
     if require_mapping(scan_meta, "scan_meta", errors):
