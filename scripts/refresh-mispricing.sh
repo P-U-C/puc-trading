@@ -28,3 +28,12 @@ args=(--prefer-source "$PREFER_SOURCE")
 [ "${LIVE_PUSH:-0}" = "1" ] && args+=(--live-push)
 
 python3 -m mispricing.orchestrator "${args[@]}"
+ORCH_RC=$?
+
+# Refresh the public scanner dashboard book and redeploy (GitHub Pages on
+# pft-validator). Gated on DEPLOY_PUSH so local/dry runs don't publish.
+if [ "${DEPLOY_PUSH:-0}" = "1" ]; then
+  bash "$PUC_TRADING_DIR/scripts/deploy-scanner.sh" || echo "WARN: deploy-scanner failed" >&2
+fi
+
+exit "$ORCH_RC"

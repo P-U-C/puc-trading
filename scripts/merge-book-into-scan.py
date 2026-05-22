@@ -94,9 +94,30 @@ def _summary(open_rows: list, closed_rows: list) -> dict[str, Any]:
     }
 
 
+def _dedupe_by_id(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Drop rows with a duplicate `id`, keeping first occurrence.
+
+    The orchestrator can double-write identical positions on re-runs; this
+    keeps the published book clean regardless of upstream dedup. Rows without
+    an `id` pass through untouched.
+    """
+    seen: set[str] = set()
+    out: list[dict[str, Any]] = []
+    for r in rows:
+        rid = r.get("id")
+        if rid is None:
+            out.append(r)
+            continue
+        if rid in seen:
+            continue
+        seen.add(rid)
+        out.append(r)
+    return out
+
+
 def _build_paper() -> dict[str, Any]:
-    open_rows = _read_json(PAPER_OPEN)
-    closed_rows = _read_json(PAPER_CLOSED)
+    open_rows = _dedupe_by_id(_read_json(PAPER_OPEN))
+    closed_rows = _dedupe_by_id(_read_json(PAPER_CLOSED))
     return {
         "open": open_rows,
         "closed": closed_rows,
