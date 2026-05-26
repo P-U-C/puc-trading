@@ -389,9 +389,13 @@ def run(*, prefer_source: str = "ib", deploy_push: bool = False,
     if deploy_push:
         def _phase_push():
             import subprocess
-            cmd_add = ["git", "-C", str(REPO_ROOT), "add",
-                       "paper-journal/mispricing/", "mispricing/screens/"]
-            subprocess.run(cmd_add, check=True, capture_output=True)
+            # Only the tracked artifacts (daily tickets, tracker.md, exit-rules).
+            # The runtime books (positions/closed.json) and mispricing/screens/
+            # are gitignored; adding an all-ignored pathspec makes `git add`
+            # exit non-zero, so we drop screens/ and don't hard-fail on the
+            # ignored-file advisory.
+            cmd_add = ["git", "-C", str(REPO_ROOT), "add", "paper-journal/mispricing/"]
+            subprocess.run(cmd_add, check=False, capture_output=True)
             diff = subprocess.run(["git", "-C", str(REPO_ROOT),
                                     "diff", "--cached", "--quiet"],
                                    capture_output=True)

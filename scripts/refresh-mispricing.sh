@@ -21,6 +21,15 @@ set -uo pipefail
 PUC_TRADING_DIR="${PUC_TRADING_DIR:-$HOME/puc-trading}"
 PREFER_SOURCE="${PREFER_SOURCE:-ib}"
 
+# The morning-brief phase needs TG_BOT_TOKEN / TG_CHAT_ID. cron has no shell
+# profile, so source them from the Telegram channel env (TELEGRAM_* names) if
+# they aren't already set. Without this the brief phase fails every run.
+TG_CHANNEL_ENV="${TG_CHANNEL_ENV:-$HOME/.claude/channels/telegram/.env}"
+if [ -z "${TG_BOT_TOKEN:-}" ] && [ -f "$TG_CHANNEL_ENV" ]; then
+  export TG_BOT_TOKEN="$(grep -m1 '^TELEGRAM_BOT_TOKEN=' "$TG_CHANNEL_ENV" | cut -d= -f2-)"
+  export TG_CHAT_ID="$(grep -m1 '^TELEGRAM_CHAT_ID=' "$TG_CHANNEL_ENV" | cut -d= -f2-)"
+fi
+
 cd "$PUC_TRADING_DIR"
 
 args=(--prefer-source "$PREFER_SOURCE")
