@@ -143,17 +143,35 @@ def check_pipeline(r: Report) -> None:
 
 
 def check_freshness(r: Report) -> None:
-    for label, path, warn_h in (
-        ("convergence corpus", CONVERGENCE, 36),
-        ("scanner book", SCAN_RESULTS, 28),
-    ):
-        age = _age_hours(path)
-        if age is None:
-            r.add(WARN, f"Data: {label} missing ({path.name})")
-        elif age > warn_h:
-            r.add(WARN, f"Data: {label} stale ({age:.0f}h old)")
-        else:
-            r.add(OK, f"Data: {label} fresh ({age:.0f}h)")
+    # convergence corpus: file mtime is a faithful signal (rewritten on change).
+    age = _age_hours(CONVERGENCE)
+    if age is None:
+        r.add(WARN, "Data: convergence corpus missing")
+    elif age > 36:
+        r.add(WARN, f"Data: convergence corpus stale ({age:.0f}h)")
+    else:
+        r.add(OK, f"Data: convergence corpus fresh ({age:.0f}h)")
+
+    # scanner BOOK: trust book.generated_at, NOT the file mtime — merge-book
+    # rewrites scan-results.json daily (so mtime is always fresh) while the
+    # parked options scan_meta.scanned_at can be a month old. mtime would lie.
+    bage = None
+    try:
+        d = json.loads(SCAN_RESULTS.read_text())
+        gen = (d.get("book") or {}).get("generated_at")
+        if gen:
+            bts = dt.datetime.fromisoformat(str(gen).replace("Z", "+00:00"))
+            if bts.tzinfo is None:
+                bts = bts.replace(tzinfo=dt.timezone.utc)
+            bage = (_now() - bts).total_seconds() / 3600.0
+    except (OSError, ValueError):
+        bage = None
+    if bage is None:
+        r.add(WARN, "Data: scanner book timestamp unreadable")
+    elif bage > 28:
+        r.add(WARN, f"Data: scanner book stale ({bage:.0f}h by book.generated_at)")
+    else:
+        r.add(OK, f"Data: scanner book fresh ({bage:.0f}h)")
 
 
 def _newest_mtime_hours(paths) -> float | None:
@@ -197,14 +215,19 @@ def check_corpuses(r: Report) -> None:
 
 
 def check_editorial(r: Report) -> None:
+    # Count both canonical issues AND generated drops (outbox), so a fresh
+    # cadence drop doesn't read as "stale" just because issues/ lags.
     issues = list(EDITORIAL_ISSUES.glob("*.json")) if EDITORIAL_ISSUES.exists() else []
-    age = _newest_mtime_hours(issues)
-    if not issues:
-        r.add(WARN, "Editorial: no issues found")
+    outbox = HOME / "editorial" / "outbox"
+    drops = list(outbox.glob("*/*/issue.json")) if outbox.exists() else []
+    paths = issues + drops
+    age = _newest_mtime_hours(paths)
+    if not paths:
+        r.add(WARN, "Editorial: no issues or drops found")
     elif age is None or age > 24 * 7:
-        r.add(WARN, f"Editorial: no new issue in {age/24:.0f}d (publishing is manual — Beehiiv gated)")
+        r.add(WARN, f"Editorial: no new issue/drop in {age/24:.0f}d (publishing is manual — Beehiiv gated)")
     else:
-        r.add(OK, f"Editorial: latest issue {age/24:.1f}d old ({len(issues)} total)")
+        r.add(OK, f"Editorial: latest issue/drop {age/24:.1f}d old ({len(issues)} issues, {len(drops)} drops)")
 
 
 def check_infra(r: Report) -> None:
