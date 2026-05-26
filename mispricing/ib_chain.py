@@ -66,7 +66,7 @@ class ChainSnapshot:
 
 # ---------- IB Gateway path -----------------------------------------------
 
-def _pull_via_ib(ticker: str, max_expiries: int = 6) -> ChainSnapshot:
+def _pull_via_ib(ticker: str, max_expiries: int = 16) -> ChainSnapshot:
     try:
         from ib_insync import IB, Stock, util  # noqa
     except ImportError as exc:
@@ -159,7 +159,7 @@ def _pull_via_ib(ticker: str, max_expiries: int = 6) -> ChainSnapshot:
 
 # ---------- yfinance fallback ---------------------------------------------
 
-def _pull_via_yfinance(ticker: str, max_expiries: int = 6) -> ChainSnapshot:
+def _pull_via_yfinance(ticker: str, max_expiries: int = 16) -> ChainSnapshot:
     try:
         import yfinance as yf
     except ImportError as exc:
@@ -217,7 +217,7 @@ def _pull_via_yfinance(ticker: str, max_expiries: int = 6) -> ChainSnapshot:
 # ---------- public API ----------------------------------------------------
 
 def pull_chain(ticker: str, *, prefer: str = "ib",
-               max_expiries: int = 6) -> ChainSnapshot:
+               max_expiries: int = 16) -> ChainSnapshot:
     """Pull options chain. Prefer IB, fall back to yfinance on connect failure."""
     if prefer == "ib":
         snap = _pull_via_ib(ticker, max_expiries=max_expiries)

@@ -56,6 +56,9 @@ EVENT_MOVE_MULTIPLIER = {
 NEAR_TERM_HORIZON_DAYS = 90
 LONG_TERM_HORIZON_DAYS_MIN = 365
 LONG_TERM_HORIZON_DAYS_MAX = 730
+# Income expiry must clear the catalyst by at least this many days so the
+# option still has time value to monetize the move (see _pick_expiry).
+MIN_POST_EVENT_BUFFER_DAYS = 5
 
 
 @dataclass
@@ -167,12 +170,22 @@ def _pick_expiry(snapshot: ib_chain.ChainSnapshot,
         if candidates:
             return candidates[0]
         return expiries[-1]  # furthest available
-    # income: first expiry on/after event_date (default to 30d post-today)
-    cutoff = target_date or (today + dt.timedelta(days=30))
-    candidates = [e for e in expiries if _parse_event_date(e) and _parse_event_date(e) >= cutoff]
-    if candidates:
-        return candidates[0]
-    return expiries[0] if expiries else None
+    # income: the expiry must land ON OR AFTER the catalyst, plus a buffer so
+    # there is residual time value to capture the move. If the chain has no
+    # expiry that covers the event, SKIP the trade (return None) rather than
+    # buy a near-dated option that expires before its own catalyst — that was
+    # the single biggest flaw in the first paper book (20/20 closed trades
+    # expired 42-82 days BEFORE their catalyst and died at exactly 0%).
+    if target_date is not None:
+        cutoff = target_date + dt.timedelta(days=MIN_POST_EVENT_BUFFER_DAYS)
+        candidates = [e for e in expiries
+                      if _parse_event_date(e) and _parse_event_date(e) >= cutoff]
+        return candidates[0] if candidates else None
+    # No dated catalyst: take the first expiry at least 30d out.
+    cutoff = today + dt.timedelta(days=30)
+    candidates = [e for e in expiries
+                  if _parse_event_date(e) and _parse_event_date(e) >= cutoff]
+    return candidates[0] if candidates else (expiries[-1] if expiries else None)
 
 
 def _thesis_move(*, convergence_score: float, exposure_strength: float,

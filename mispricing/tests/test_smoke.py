@@ -233,3 +233,100 @@ def test_chain_snapshot_dataclasses_serialize():
     )
     c = snap.chain_for_expiry("2026-06-19")[0]
     assert c.mid() == 0.55
+
+
+class _FakeSnap:
+    """Minimal snapshot exposing only expiries() for _pick_expiry tests."""
+    def __init__(self, expiries):
+        self._expiries = list(expiries)
+
+    def expiries(self):
+        return sorted(self._expiries)
+
+
+def test_pick_expiry_skips_when_no_expiry_covers_catalyst():
+    """Regression: the first paper book bought near-dated options that
+    expired BEFORE their catalyst (20/20 closed trades, all 0%). An income
+    trade whose chain cannot reach the event must be SKIPPED, not stuffed
+    into the nearest weekly."""
+    event = dt.date(2026, 8, 6)
+    near_only = _FakeSnap(["2026-05-22", "2026-05-29", "2026-06-18"])
+    assert detector._pick_expiry(near_only, event, "income") is None
+
+
+def test_pick_expiry_covers_catalyst_with_buffer():
+    event = dt.date(2026, 8, 6)
+    chain = _FakeSnap(["2026-05-22", "2026-07-17", "2026-08-21", "2026-09-18"])
+    # First expiry >= event + MIN_POST_EVENT_BUFFER_DAYS (Aug 11), so Aug 21.
+    assert detector._pick_expiry(chain, event, "income") == "2026-08-21"
+
+
+def test_pick_expiry_income_no_event_takes_30d_plus():
+    chain = _FakeSnap(["2026-05-22", "2026-06-30", "2026-08-21"])
+    today = dt.date.today()
+    got = detector._pick_expiry(chain, None, "income")
+    assert got is not None and dt.date.fromisoformat(got) >= today
+
+
+def test_remark_day_one_anchor_no_jump():
+    """Re-marking at entry (spot == long strike) must reproduce ~cost: no
+    artificial day-1 P&L jump off the model-proxy entry basis."""
+    from mispricing import remark
+    pos = dict(status="open", ticker="CORN", cost_per_contract_usd=35.0,
+               strike=19.0, strike_upper=20.9, entry_date="2026-05-19",
+               expiry="2026-06-18", mark=35.0, pct_pnl=0.0)
+    upd = remark.remark_position(pos, spot=19.0, today=dt.date(2026, 5, 19))
+    assert abs(upd["pct_pnl"]) < 1.0
+
+
+def test_remark_gains_when_underlying_rallies_and_caps_at_width():
+    from mispricing import remark
+    pos = dict(status="open", ticker="CORN", cost_per_contract_usd=35.0,
+               strike=19.0, strike_upper=20.9, entry_date="2026-05-19",
+               expiry="2026-06-18", mark=35.0, pct_pnl=0.0)
+    up = remark.remark_position(pos, spot=25.0, today=dt.date(2026, 5, 26))
+    base = remark.remark_position(pos, spot=19.0, today=dt.date(2026, 5, 26))
+    assert up["mark"] > base["mark"]                 # rally lifts the spread
+    assert up["mark"] <= (20.9 - 19.0) * 100 + 0.01  # capped at width × 100
+
+
+def test_remark_positions_handles_objects_and_dicts():
+    from mispricing import remark, paper_executor
+    obj = paper_executor.PaperPosition(
+        id="x", bucket="income", ticker="CORN", theme_id="t", catalyst_id="c",
+        event_date="2026-06-11", structure="call_spread", strike=19.0,
+        strike_upper=20.9, expiry="2026-06-18", quantity_contracts=5,
+        cost_per_contract_usd=35.0, cost_total_usd=175.0, entry_date="2026-05-19",
+        entry_rationale="r", mark=35.0, pct_pnl=0.0, status="open")
+    n = remark.remark_positions([obj], lambda t: 25.0, today=dt.date(2026, 5, 26))
+    assert n == 1 and obj.mark != 35.0 and obj.pct_pnl > 0
+
+
+def _open_income(pct_pnl, event_date):
+    from mispricing.paper_executor import PaperPosition
+    return PaperPosition(
+        id="t", bucket="income", ticker="CORN", theme_id="th", catalyst_id="c",
+        event_date=event_date, structure="call_spread", strike=19.0,
+        strike_upper=20.9, expiry="2026-07-17", quantity_contracts=5,
+        cost_per_contract_usd=35.0, cost_total_usd=175.0, entry_date="2026-05-19",
+        entry_rationale="r", mark=13.5, pct_pnl=pct_pnl, status="open")
+
+
+def test_loss_stop_suppressed_before_catalyst_fires_after():
+    """Option B: a -60% income trade holds while its catalyst is still
+    pending, but stops out once the catalyst has passed."""
+    from mispricing import paper_executor
+    today = dt.date(2026, 5, 26)
+    pending = _open_income(-60.0, "2026-06-11")   # catalyst still ahead
+    passed = _open_income(-60.0, "2026-05-20")    # catalyst already gone
+    closed = paper_executor.evaluate_exits([pending, passed], today=today)
+    assert pending.status == "open"               # held through catalyst
+    assert passed.status == "closed" and passed in closed
+    assert passed.close_reason == "income stop loss (-50%)"
+
+
+def test_profit_target_still_fires_pre_catalyst():
+    from mispricing import paper_executor
+    win = _open_income(55.0, "2026-06-11")
+    closed = paper_executor.evaluate_exits([win], today=dt.date(2026, 5, 26))
+    assert win.status == "closed" and win.close_reason == "+50% gain target"

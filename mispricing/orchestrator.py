@@ -171,6 +171,19 @@ def _alert_failure(manifest: RunManifest) -> None:
     _send_telegram("\n".join(lines), prefix="[puc-trading refresh]")
 
 
+def _spot_price(ticker: str) -> float | None:
+    """Current underlying price for re-marking. Uses yfinance (free, no
+    options-data subscription); returns None on any failure so the re-mark
+    simply skips that ticker rather than aborting the run."""
+    try:
+        import yfinance as yf
+        fi = yf.Ticker(ticker).fast_info
+        price = getattr(fi, "last_price", None)
+        return float(price) if price else None
+    except Exception:  # noqa: BLE001 - spot is best-effort
+        return None
+
+
 def run(*, prefer_source: str = "ib", deploy_push: bool = False,
         live_push: bool = False) -> RunManifest:
     """Run the daily mispricing-screen refresh end-to-end."""
@@ -319,6 +332,15 @@ def run(*, prefer_source: str = "ib", deploy_push: bool = False,
             paper_executor.TRACKER_PATH = stage_tracker
             new = paper_executor.open_paper(cands)
             positions = paper_executor._load_positions()
+            # Re-mark open positions from the current underlying (free spot via
+            # yfinance — no options-data subscription needed) BEFORE evaluating
+            # exits, so the +50% target / stop-losses actually have live P&L to
+            # act on. Persist explicitly: settle() reloads from disk, and
+            # evaluate_exits only saves when something closes.
+            from mispricing import remark
+            n_remarked = remark.remark_positions(positions, _spot_price)
+            paper_executor._save_positions(positions)
+            log.info("re-marked %d open positions", n_remarked)
             paper_executor.evaluate_exits(positions)
             summary = paper_executor.settle()
         finally:

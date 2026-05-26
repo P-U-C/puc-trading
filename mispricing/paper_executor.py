@@ -127,20 +127,28 @@ def evaluate_exits(positions: list[PaperPosition], *,
     just_closed: list[PaperPosition] = []
     open_positions = [p for p in positions if p.status == "open"]
     for p in open_positions:
+        event_date = _parse(p.event_date) if p.event_date else None
+        expiry_date = _parse(p.expiry) if p.expiry else None
+        # A dated thesis trade is "betting on" its catalyst — a pre-catalyst
+        # drawdown is mostly theta and an un-played-out move, so the loss-stop
+        # is suppressed until the catalyst has passed. (The first paper book's
+        # lesson was the inverse: trades that never reached their catalyst all
+        # died at 0%. Cutting a thesis before its event repeats that mistake.)
+        # The +50% target, the 1-day-pre-catalyst exit, and the expiry-week
+        # stop all still apply, so risk is capped at the event regardless.
+        catalyst_pending = event_date is not None and event_date > today
         if p.pct_pnl >= 50.0:
             _close(p, today, "+50% gain target", p.mark)
             just_closed.append(p)
             continue
-        if p.bucket == "income" and p.pct_pnl <= -50.0:
+        if p.bucket == "income" and p.pct_pnl <= -50.0 and not catalyst_pending:
             _close(p, today, "income stop loss (-50%)", p.mark)
             just_closed.append(p)
             continue
-        if p.bucket == "lottery" and p.pct_pnl <= -70.0:
+        if p.bucket == "lottery" and p.pct_pnl <= -70.0 and not catalyst_pending:
             _close(p, today, "lottery stop loss (-70%)", p.mark)
             just_closed.append(p)
             continue
-        event_date = _parse(p.event_date) if p.event_date else None
-        expiry_date = _parse(p.expiry) if p.expiry else None
         if (p.bucket == "income" and event_date
                 and (event_date - today).days == 1):
             _close(p, today, "1 day pre-catalyst (income)", p.mark)

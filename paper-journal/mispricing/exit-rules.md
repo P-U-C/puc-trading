@@ -34,6 +34,16 @@ judgment calls.
 - Why: income trades have small expected-value asymmetry; cut losses
   fast. Lottery trades expect higher implied loss probability and
   more time to recover.
+- **Catalyst-pending exception (added 2026-05-26):** the loss-stop is
+  SUPPRESSED while a position's dated catalyst is still in the future.
+  A dated thesis trade is betting on that event; a pre-catalyst drawdown
+  is mostly theta and an un-played-out move, so stopping out early would
+  kill the thesis before its trigger (the inverse of the original paper
+  book's flaw, where trades expired *before* their catalyst and all
+  resolved at 0%). The +50% target (rule 1), the 1-day-pre-catalyst exit
+  (rule 2), and the expiry-week stop (rule 4) still apply, so risk is
+  capped at the event regardless. Once the catalyst date has passed, the
+  loss-stop re-activates.
 
 ## 4. Expiry stop
 

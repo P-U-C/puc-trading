@@ -10,7 +10,12 @@ from datetime import datetime, timezone, timedelta
 
 # -- Config --
 IBKR_PORT = int(os.environ.get("IBKR_PORT", "4002"))
-OUTPUT_JSON = os.path.expanduser("~/pft-validator/scanner/scan-results.json")
+# Output path is env-overridable so the options scan can write to its own file
+# instead of clobbering the live paper-book dashboard (which now owns the
+# default scan-results.json and is refreshed daily by merge-book-into-scan.py).
+OUTPUT_JSON = os.path.expanduser(
+    os.environ.get("SCAN_OUTPUT_JSON", "~/pft-validator/scanner/scan-results.json")
+)
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 DRY_RUN = os.environ.get("DRY_RUN", "true").lower() != "false"
