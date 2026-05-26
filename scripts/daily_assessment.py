@@ -34,6 +34,10 @@ CONVERGENCE = REPO / "corpus" / "convergence-latest.json"
 SCAN_RESULTS = HOME / "pft-validator" / "scanner" / "scan-results.json"
 HEARTBEAT_STATE = HOME / "pf-scout-bot" / "deploy" / ".heartbeat-state"
 TG_ENV = HOME / ".claude" / "channels" / "telegram" / ".env"
+# System-wide corpus/surface freshness
+TREND_INTEL = HOME / "trend-intel-private"
+SWELL_DB = HOME / "swell-checker" / "db.sqlite"
+EDITORIAL_ISSUES = HOME / "editorial" / "issues"
 
 OK, WARN, FAIL = "🟢", "🟡", "🔴"
 RANK = {OK: 0, WARN: 1, FAIL: 2}
@@ -152,6 +156,57 @@ def check_freshness(r: Report) -> None:
             r.add(OK, f"Data: {label} fresh ({age:.0f}h)")
 
 
+def _newest_mtime_hours(paths) -> float | None:
+    """Hours since the most-recently-modified file in an iterable of paths."""
+    newest = None
+    for p in paths:
+        try:
+            mt = p.stat().st_mtime
+        except OSError:
+            continue
+        if newest is None or mt > newest:
+            newest = mt
+    if newest is None:
+        return None
+    return (_now().timestamp() - newest) / 3600.0
+
+
+def check_corpuses(r: Report) -> None:
+    # trend-intel-private runtime: artifacts are gitignored (so the repo looks
+    # stale), but they should regenerate each convergence refresh. Assess the
+    # ARTIFACT mtimes, not git.
+    arts = list(TREND_INTEL.glob("themes/*/artifacts/opportunity-rows.json")) if TREND_INTEL.exists() else []
+    age = _newest_mtime_hours(arts)
+    if not arts:
+        r.add(WARN, "Corpus: trend-intel-private artifacts not found")
+    elif age is None or age > 36:
+        r.add(WARN, f"Corpus: trend-intel-private artifacts stale ({age:.0f}h) — runtime not regenerating")
+    else:
+        r.add(OK, f"Corpus: trend-intel-private artifacts fresh ({age:.0f}h, {len(arts)} themes)")
+
+    # swell-checker: lives on a separate host (city-worker-301); this is only
+    # the local checkout's DB as a proxy. Flag loudly — it's a known half-built
+    # runtime, so staleness here means it isn't producing.
+    age = _age_hours(SWELL_DB)
+    if age is None:
+        r.add(WARN, "Corpus: swell-checker local DB missing")
+    elif age > 48:
+        r.add(WARN, f"Corpus: swell-checker local DB stale ({age/24:.0f}d) — remote runtime may be down/half-built")
+    else:
+        r.add(OK, f"Corpus: swell-checker DB fresh ({age:.0f}h)")
+
+
+def check_editorial(r: Report) -> None:
+    issues = list(EDITORIAL_ISSUES.glob("*.json")) if EDITORIAL_ISSUES.exists() else []
+    age = _newest_mtime_hours(issues)
+    if not issues:
+        r.add(WARN, "Editorial: no issues found")
+    elif age is None or age > 24 * 7:
+        r.add(WARN, f"Editorial: no new issue in {age/24:.0f}d (publishing is manual — Beehiiv gated)")
+    else:
+        r.add(OK, f"Editorial: latest issue {age/24:.1f}d old ({len(issues)} total)")
+
+
 def check_infra(r: Report) -> None:
     # IB Gateway API port
     try:
@@ -203,7 +258,8 @@ def main(argv=None) -> int:
     args = ap.parse_args(argv)
 
     r = Report()
-    for check in (check_book, check_pipeline, check_freshness, check_infra):
+    for check in (check_book, check_pipeline, check_freshness,
+                  check_corpuses, check_editorial, check_infra):
         try:
             check(r)
         except Exception as exc:  # noqa: BLE001 - one check must not sink the rest
