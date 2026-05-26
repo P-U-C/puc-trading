@@ -233,6 +233,37 @@ def check_infra(r: Report) -> None:
         pass
 
 
+def update_badge(repo_path: Path, verdict: str) -> bool:
+    """Update the public org-README traffic light between STATUS markers and
+    push. Deliberately overall-light-ONLY (no component details) — the org
+    README is public, so the per-component breakdown stays in the private
+    Telegram report. Returns True on push."""
+    readme = repo_path / "profile" / "README.md"
+    label = {OK: "🟢 nominal", WARN: "🟡 attention needed",
+             FAIL: "🔴 action needed"}[verdict]
+    block = (f"<!-- STATUS:START -->\n**System status:** {label} · updated "
+             f"{_now():%Y-%m-%d %H:%M UTC}\n<!-- STATUS:END -->")
+    try:
+        text = readme.read_text()
+        new = re.sub(r"<!-- STATUS:START -->.*?<!-- STATUS:END -->",
+                     block, text, flags=re.DOTALL)
+        if new == text:
+            return False
+        readme.write_text(new)
+    except OSError:
+        return False
+    env = {**os.environ}
+    def _git(*args):
+        return subprocess.run(["git", "-C", str(repo_path), *args],
+                              capture_output=True, text=True, env=env, timeout=60)
+    _git("add", "profile/README.md")
+    if _git("diff", "--cached", "--quiet").returncode == 0:
+        return False
+    _git("-c", "user.email=zeroexzoz@gmail.com", "-c", "user.name=puc-status",
+         "commit", "-q", "-m", f"status: {label} {_now():%Y-%m-%d}")
+    return _git("push", "-q", "origin", "HEAD:main").returncode == 0
+
+
 def send_telegram(text: str) -> bool:
     try:
         env = dict(line.split("=", 1) for line in TG_ENV.read_text().splitlines()
@@ -255,6 +286,8 @@ def send_telegram(text: str) -> bool:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--no-send", action="store_true", help="print only, don't Telegram")
+    ap.add_argument("--badge-repo", default=None,
+                    help="path to the org .github checkout; updates the public README traffic light")
     args = ap.parse_args(argv)
 
     r = Report()
@@ -273,6 +306,9 @@ def main(argv=None) -> int:
     if not args.no_send:
         ok = send_telegram(report)
         print(f"\n[telegram: {'sent' if ok else 'NOT sent'}]", file=sys.stderr)
+    if args.badge_repo:
+        pushed = update_badge(Path(args.badge_repo).expanduser(), verdict)
+        print(f"[org badge: {'updated' if pushed else 'unchanged/failed'}]", file=sys.stderr)
     return 0
 
 
