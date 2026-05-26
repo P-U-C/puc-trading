@@ -312,10 +312,21 @@ def _open_income(pct_pnl, event_date):
         entry_rationale="r", mark=13.5, pct_pnl=pct_pnl, status="open")
 
 
-def test_loss_stop_suppressed_before_catalyst_fires_after():
+def _isolate_paths(monkeypatch, tmp_path):
+    """evaluate_exits persists via _save_positions to module-level paths;
+    redirect them to a tmp dir so a test can NEVER touch the real book."""
+    from mispricing import paper_executor
+    monkeypatch.setattr(paper_executor, "POSITIONS_PATH", tmp_path / "positions.json")
+    monkeypatch.setattr(paper_executor, "CLOSED_PATH", tmp_path / "closed.json")
+    monkeypatch.setattr(paper_executor, "TRACKER_PATH", tmp_path / "tracker.md")
+    monkeypatch.setattr(paper_executor, "JOURNAL_DIR", tmp_path)
+
+
+def test_loss_stop_suppressed_before_catalyst_fires_after(monkeypatch, tmp_path):
     """Option B: a -60% income trade holds while its catalyst is still
     pending, but stops out once the catalyst has passed."""
     from mispricing import paper_executor
+    _isolate_paths(monkeypatch, tmp_path)
     today = dt.date(2026, 5, 26)
     pending = _open_income(-60.0, "2026-06-11")   # catalyst still ahead
     passed = _open_income(-60.0, "2026-05-20")    # catalyst already gone
@@ -325,8 +336,9 @@ def test_loss_stop_suppressed_before_catalyst_fires_after():
     assert passed.close_reason == "income stop loss (-50%)"
 
 
-def test_profit_target_still_fires_pre_catalyst():
+def test_profit_target_still_fires_pre_catalyst(monkeypatch, tmp_path):
     from mispricing import paper_executor
+    _isolate_paths(monkeypatch, tmp_path)
     win = _open_income(55.0, "2026-06-11")
     closed = paper_executor.evaluate_exits([win], today=dt.date(2026, 5, 26))
     assert win.status == "closed" and win.close_reason == "+50% gain target"
