@@ -176,10 +176,16 @@ def _spot_price(ticker: str) -> float | None:
     options-data subscription); returns None on any failure so the re-mark
     simply skips that ticker rather than aborting the run."""
     try:
+        import math
         import yfinance as yf
         fi = yf.Ticker(ticker).fast_info
         price = getattr(fi, "last_price", None)
-        return float(price) if price else None
+        if price is None:
+            return None
+        price = float(price)
+        # Reject NaN/inf: a non-finite spot would produce a NaN mark/pct_pnl
+        # that makes every exit comparison false, silently disabling stops.
+        return price if (math.isfinite(price) and price > 0) else None
     except Exception:  # noqa: BLE001 - spot is best-effort
         return None
 

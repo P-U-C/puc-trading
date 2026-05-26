@@ -342,3 +342,31 @@ def test_profit_target_still_fires_pre_catalyst(monkeypatch, tmp_path):
     win = _open_income(55.0, "2026-06-11")
     closed = paper_executor.evaluate_exits([win], today=dt.date(2026, 5, 26))
     assert win.status == "closed" and win.close_reason == "+50% gain target"
+
+
+def test_remark_expired_marks_to_intrinsic_not_stale_timevalue():
+    """Codex MEDIUM: at/after expiry a position must mark to intrinsic, not
+    retain a day of model time-value."""
+    from mispricing import remark
+    pos = dict(status="open", ticker="CORN", structure="call_spread",
+               cost_per_contract_usd=35.0, strike=19.0, strike_upper=20.9,
+               entry_date="2026-05-19", expiry="2026-06-18", mark=35.0, pct_pnl=0.0)
+    # Expired, underlying below long strike -> spread worthless (intrinsic 0),
+    # not a stale day of model time-value.
+    upd = remark.remark_position(pos, spot=17.0, today=dt.date(2026, 6, 18))
+    assert upd["mark"] == 0.0
+    # Expired deep ITM -> gains vs cost and never exceeds width × 100.
+    up = remark.remark_position(pos, spot=30.0, today=dt.date(2026, 6, 18))
+    assert up["mark"] > 35.0 and up["mark"] <= (20.9 - 19.0) * 100 + 0.01
+
+
+def test_remark_rejects_nan_spot_and_unsupported_structure():
+    from mispricing import remark
+    pos = dict(status="open", ticker="CORN", structure="call_spread",
+               cost_per_contract_usd=35.0, strike=19.0, strike_upper=20.9,
+               entry_date="2026-05-19", expiry="2026-06-18", mark=35.0, pct_pnl=0.0)
+    nan = remark.remark_position(pos, spot=float("nan"), today=dt.date(2026, 5, 26))
+    assert nan["mark"] == 35.0 and nan["pct_pnl"] == 0.0  # unchanged
+    straddle = dict(pos, structure="straddle", mark=80.0, pct_pnl=0.0)
+    out = remark.remark_position(straddle, spot=25.0, today=dt.date(2026, 5, 26))
+    assert out["mark"] == 80.0  # unsupported structure left untouched

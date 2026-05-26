@@ -86,32 +86,45 @@ def remark_position(pos: dict, spot: float, today: dt.date) -> dict:
     entry = pos.get("entry_date")
     expiry = pos.get("expiry")
     cur_mark = pos.get("mark", cost)
+    structure = pos.get("structure")
+    unchanged = {"mark": cur_mark, "pct_pnl": pos.get("pct_pnl", 0.0)}
+    # Only the call-spread cost model is supported here (cost = straddle*30).
+    # straddle / long_call / leaps invert entry cost differently, so re-marking
+    # them with this model would mismark (e.g. a long straddle gaining on a down
+    # move would show a loss). Leave their marks unchanged rather than corrupt.
+    if structure not in (None, "call_spread"):
+        return unchanged
     try:
         entry_d = dt.date.fromisoformat(str(entry)[:10])
         expiry_d = dt.date.fromisoformat(str(expiry)[:10])
     except (TypeError, ValueError):
-        return {"mark": cur_mark, "pct_pnl": pos.get("pct_pnl", 0.0)}
-    if cost is None or k_long is None or spot <= 0:
-        return {"mark": cur_mark, "pct_pnl": pos.get("pct_pnl", 0.0)}
+        return unchanged
+    if cost is None or k_long is None or not math.isfinite(spot) or spot <= 0:
+        return unchanged
 
     # Entry spot ≈ the (ATM) long strike for these structures.
     entry_spot = float(k_long)
-    t_entry = _years(entry_d, expiry_d)
-    t_now = _years(today, expiry_d)
+    t_entry = _years(entry_d, expiry_d)  # >= 1 day, only for the sigma inversion
+    # Current tenor allows 0: an expired/at-expiry position must mark to
+    # intrinsic, not retain a day of model time-value (otherwise an expired OTM
+    # spread closes at a stale positive mark on the expiry-week exit).
+    t_now = max((expiry_d - today).days, 0) / 365.0
     sigma = _implied_sigma_from_cost(float(cost), entry_spot, t_entry)
     if sigma is None:
-        return {"mark": cur_mark, "pct_pnl": pos.get("pct_pnl", 0.0)}
+        return unchanged
 
     bs_entry = _spread_value(entry_spot, float(k_long), k_short, t_entry, RISK_FREE, sigma)
     bs_now = _spread_value(float(spot), float(k_long), k_short, t_now, RISK_FREE, sigma)
     if bs_entry <= 0:
-        return {"mark": cur_mark, "pct_pnl": pos.get("pct_pnl", 0.0)}
+        return unchanged
 
     mark = float(cost) * (bs_now / bs_entry)
     # A debit spread can never be worth more than its width × 100.
     if k_short:
         mark = min(mark, abs(float(k_short) - float(k_long)) * 100.0)
     mark = max(mark, 0.0)
+    if not math.isfinite(mark):
+        return unchanged
     pct = round((mark - float(cost)) / float(cost) * 100.0, 2)
     return {"mark": round(mark, 2), "pct_pnl": pct}
 
@@ -149,10 +162,11 @@ def remark_positions(positions, spot_fn: Callable[[str], float | None],
                 LOG.warning("spot fetch failed for %s: %s", tkr, exc)
                 spot_cache[tkr] = None
         spot = spot_cache[tkr]
-        if not spot or spot <= 0:
+        if not spot or not math.isfinite(spot) or spot <= 0:
             continue
         view = {
             "cost_per_contract_usd": _get(pos, "cost_per_contract_usd"),
+            "structure": _get(pos, "structure"),
             "strike": _get(pos, "strike"),
             "strike_upper": _get(pos, "strike_upper"),
             "entry_date": _get(pos, "entry_date"),

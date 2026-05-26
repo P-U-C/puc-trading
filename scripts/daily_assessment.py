@@ -259,8 +259,10 @@ def update_badge(repo_path: Path, verdict: str) -> bool:
     _git("add", "profile/README.md")
     if _git("diff", "--cached", "--quiet").returncode == 0:
         return False
-    _git("-c", "user.email=zeroexzoz@gmail.com", "-c", "user.name=puc-status",
-         "commit", "-q", "-m", f"status: {label} {_now():%Y-%m-%d}")
+    commit = _git("-c", "user.email=zeroexzoz@gmail.com", "-c", "user.name=puc-status",
+                  "commit", "-q", "-m", f"status: {label} {_now():%Y-%m-%d}")
+    if commit.returncode != 0:
+        return False
     return _git("push", "-q", "origin", "HEAD:main").returncode == 0
 
 
@@ -307,8 +309,13 @@ def main(argv=None) -> int:
         ok = send_telegram(report)
         print(f"\n[telegram: {'sent' if ok else 'NOT sent'}]", file=sys.stderr)
     if args.badge_repo:
-        pushed = update_badge(Path(args.badge_repo).expanduser(), verdict)
-        print(f"[org badge: {'updated' if pushed else 'unchanged/failed'}]", file=sys.stderr)
+        try:
+            pushed = update_badge(Path(args.badge_repo).expanduser(), verdict)
+        except Exception as exc:  # noqa: BLE001 - badge must never fail the cron
+            pushed = False
+            print(f"[org badge: error {exc}]", file=sys.stderr)
+        else:
+            print(f"[org badge: {'updated' if pushed else 'unchanged/failed'}]", file=sys.stderr)
     return 0
 
 
