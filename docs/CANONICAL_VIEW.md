@@ -10,6 +10,15 @@
 > corrected engine produces it: **a single FXA call spread, currently +15.7%.**
 > AGTI: edge filter added (equity-longs only) + holiday fill-price bug fixed.
 > **Key finding below in §3a — the original "edge" was mostly a tenor artifact.**
+>
+> **Update 2:** thesis-direction reading added to the screen (per Chad). The
+> calendar now carries `theme_directions` (e.g. cicadas: FXA/UNG/SOYB = short,
+> grains/fertilizer = long); the screen buys PUTS for short legs, CALLS for long.
+> This caught that the surviving FXA trade was counter-thesis — it's now a **put
+> spread (short AUD), −22.2%**. (The wrong-way call looked +15.7% precisely
+> because AUD has risen, i.e. the thesis has been wrong *so far*.) detector→
+> shaper→executor→remark all direction-aware; remark now prices put spreads.
+> 27/27 tests pass.
 
 This is the single source-of-truth snapshot across every open paper book and
 standing thesis. Numbers pulled live from runtime state (`paper-journal/*/`),
@@ -21,7 +30,7 @@ not from the stale tracker docs.
 
 | Book | Engine | Open | Cost basis | Mark | Unrealized | Status |
 |------|--------|-----:|-----------:|-----:|-----------:|--------|
-| **Mispricing (convergence)** | auto-screen, cron 21:15 | **1 spread (FXA)** | $136 | $157 | **+$21 (+15.7%)** | CUT & rebuilt — see correction log |
+| **Mispricing (convergence)** | auto-screen, cron 21:15 | **1 spread (FXA put, short AUD)** | $136 | $106 | **−$30 (−22.2%)** | CUT, rebuilt, direction-corrected |
 | **AGTI attention** | auto cron 14:00 | 23 + 15 pending | n/a (notional) | flat | ~0% | healthy loop; now equity-long-only |
 | Cicadas (operator) | manual / staged | 0 (not opened) | — | — | — | observation stage |
 | UFO / Naval / Profound | manual diary | 0 (not opened) | — | — | — | thesis-only, no fills |

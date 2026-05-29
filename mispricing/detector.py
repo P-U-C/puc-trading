@@ -93,6 +93,7 @@ class MispricingRow:
     mispricing_ratio: float | None
     classification: str       # mispriced_up | fair | mispriced_down | no_chain | no_market
     bucket: str               # income | lottery | excluded
+    direction: str = "long"   # thesis direction: long (calls) | short (puts)
     notes: str = ""
 
 
@@ -101,6 +102,28 @@ def _load_calendar() -> list[dict[str, Any]]:
         return []
     d = yaml.safe_load(CALENDAR_PATH.read_text()) or {}
     return d.get("events", []) or []
+
+
+def _load_theme_directions() -> dict[str, dict[str, str]]:
+    """theme_id -> {ticker -> 'long'|'short'} from the calendar file."""
+    if not CALENDAR_PATH.exists():
+        return {}
+    d = yaml.safe_load(CALENDAR_PATH.read_text()) or {}
+    return d.get("theme_directions", {}) or {}
+
+
+def _resolve_direction(cat: dict[str, Any], theme_ids: list[str], ticker: str,
+                       theme_directions: dict[str, dict[str, str]]) -> str:
+    """Thesis direction for this (catalyst, ticker). Per-catalyst override wins,
+    then theme_directions, else default 'long' (bullish-bias, as before)."""
+    cat_dirs = cat.get("ticker_directions") or {}
+    if ticker in cat_dirs:
+        return "short" if str(cat_dirs[ticker]).lower() == "short" else "long"
+    for tid in theme_ids:
+        td = theme_directions.get(tid) or {}
+        if ticker in td:
+            return "short" if str(td[ticker]).lower() == "short" else "long"
+    return "long"
 
 
 def _load_convergence() -> dict[str, Any]:
@@ -212,6 +235,7 @@ def _thesis_move(*, convergence_score: float, exposure_strength: float,
 def screen(*, today: dt.date | None = None, prefer_source: str = "ib") -> list[MispricingRow]:
     today = today or dt.date.today()
     calendar = _load_calendar()
+    theme_directions = _load_theme_directions()
     convergence = _load_convergence()
     scores_by_pair: dict[tuple[str, str], dict[str, Any]] = {
         (r["theme_id"], r["ticker"]): r for r in convergence.get("scores", [])
@@ -239,6 +263,7 @@ def screen(*, today: dt.date | None = None, prefer_source: str = "ib") -> list[M
                     break
             if not score_row:
                 continue
+            direction = _resolve_direction(cat, theme_ids, ticker, theme_directions)
             score = float(score_row.get("score", 0))
             tier = str(score_row.get("tier", "LOW"))
             exposure_strength = float(
@@ -269,7 +294,7 @@ def screen(*, today: dt.date | None = None, prefer_source: str = "ib") -> list[M
                     spot=snap.spot, expiry_used=None, atm_strike=None,
                     atm_straddle_mid=None, market_implied_move=None,
                     thesis_implied_move=None, mispricing_ratio=None,
-                    classification="no_chain", bucket=bucket,
+                    classification="no_chain", bucket=bucket, direction=direction,
                     notes=snap.error or "no contracts pulled",
                 ))
                 continue
@@ -302,7 +327,7 @@ def screen(*, today: dt.date | None = None, prefer_source: str = "ib") -> list[M
                 spot=snap.spot, expiry_used=expiry, atm_strike=atm,
                 atm_straddle_mid=straddle, market_implied_move=market_move,
                 thesis_implied_move=thesis_move, mispricing_ratio=ratio,
-                classification=classification, bucket=bucket,
+                classification=classification, bucket=bucket, direction=direction,
             ))
     # Sort: mispriced_up first, then by ratio descending.
     def _sort_key(r: MispricingRow):

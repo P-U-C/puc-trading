@@ -104,6 +104,45 @@ def test_shaper_accumulates_same_ticker_exposure_within_run():
     assert qs_total <= 10000 * 0.05
 
 
+def test_direction_resolves_from_calendar_theme_directions():
+    """cicadas.md: FXA/UNG/SOYB are SHORT, CORN/WEAT are LONG. Unlisted -> long."""
+    td = {"cicadas": {"FXA": "short", "UNG": "short", "CORN": "long"}}
+    cat = {"id": "cat_x"}
+    assert detector._resolve_direction(cat, ["cicadas"], "FXA", td) == "short"
+    assert detector._resolve_direction(cat, ["cicadas"], "CORN", td) == "long"
+    assert detector._resolve_direction(cat, ["cicadas"], "ZZZ", td) == "long"  # default
+    # per-catalyst override beats the theme default
+    cat2 = {"id": "cat_y", "ticker_directions": {"CORN": "short"}}
+    assert detector._resolve_direction(cat2, ["cicadas"], "CORN", td) == "short"
+
+
+def test_shaper_picks_puts_for_bearish_thesis():
+    """A short-thesis mispriced_up row must be expressed as a put_spread (ATM
+    long put + lower short put), not a bullish call spread."""
+    bull = _fake_row(ticker="CORN", direction="long")
+    bear = _fake_row(ticker="FXA", direction="short", spot=70.0, atm_strike=70.0)
+    cands = shaper.shape([bull, bear])
+    by_t = {c.ticker: c for c in cands}
+    assert by_t["CORN"].structure == "call_spread"
+    assert by_t["CORN"].strike_upper > by_t["CORN"].strike      # higher short call
+    assert by_t["FXA"].structure == "put_spread"
+    assert by_t["FXA"].strike_upper < by_t["FXA"].strike        # lower short put
+    assert by_t["FXA"].direction == "short"
+
+
+def test_remark_put_spread_gains_when_underlying_falls():
+    """A bearish put spread must GAIN when the underlying drops (the call-spread
+    model would have shown a loss)."""
+    from mispricing import remark
+    pos = dict(status="open", ticker="FXA", structure="put_spread",
+               cost_per_contract_usd=60.0, strike=70.0, strike_upper=63.0,
+               entry_date="2026-05-19", expiry="2026-09-18", mark=60.0, pct_pnl=0.0)
+    down = remark.remark_position(pos, spot=64.0, today=dt.date(2026, 6, 15))
+    up = remark.remark_position(pos, spot=76.0, today=dt.date(2026, 6, 15))
+    assert down["pct_pnl"] > 0, down      # AUD fell -> bearish put gains
+    assert up["pct_pnl"] < 0, up          # AUD rose -> bearish put loses
+
+
 def test_shaper_caps_correlated_theme_and_catalyst_exposure():
     """The cicadas blow-up regression: many distinct tickers on the SAME theme +
     catalyst must not stack past the theme/catalyst caps, and no more than

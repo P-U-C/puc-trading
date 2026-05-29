@@ -36,7 +36,7 @@ def _latest_cache_spot(ticker: str) -> float | None:
 
 def main() -> None:
     BACKUP_DIR.mkdir(exist_ok=True)
-    stamp = "20260529-cicadas-rebuild"
+    stamp = "20260529-cicadas-realign"
     shutil.copy2(paper_executor.POSITIONS_PATH, BACKUP_DIR / f"positions.json.{stamp}")
     shutil.copy2(paper_executor.CLOSED_PATH, BACKUP_DIR / f"closed.json.{stamp}")
 
@@ -49,9 +49,9 @@ def main() -> None:
         p.status = "closed"
         p.closed_at = CUT_DATE
         p.close_price = p.mark
-        p.close_reason = ("cut 2026-05-29: screen-concentration-bug "
-                          "(short-tenor mispricing artifact + no theme/catalyst cap); "
-                          "re-screened correctly")
+        p.close_reason = ("re-screened 2026-05-29: concentration/tenor fix + "
+                          "thesis-direction reading (FXA is SHORT AUD per cicadas.md, "
+                          "not bullish calls); replaced with direction-correct structure")
         if p.cost_per_contract_usd is not None and p.close_price is not None:
             realized += (p.close_price - p.cost_per_contract_usd) * p.quantity_contracts
     print(f"realized P&L locked by the cut: ${realized:,.2f}")

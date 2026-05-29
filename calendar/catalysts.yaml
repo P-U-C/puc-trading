@@ -25,6 +25,30 @@
 schema_version: 1
 generated_at: "2026-05-17"
 
+# Thesis direction per (theme, ticker). The screen buys CALLS for `long` and
+# PUTS for `short`, so a bearish thesis leg is no longer expressed as a (wrong)
+# bullish call spread. Default is `long` when a ticker is unlisted, preserving
+# the original bullish-bias behaviour for every theme not enumerated here.
+# A per-catalyst `ticker_directions:` map (on an individual event) overrides this.
+# Sourced from the operator thesis docs (e.g. trades/cicadas.md).
+theme_directions:
+  cicadas:
+    # Bullish: grain/fertilizer/soft scarcity + ag equities (cicadas.md core sleeves)
+    CORN: long
+    WEAT: long
+    DBA: long
+    MOO: long
+    CF: long
+    NTR: long
+    MOS: long
+    SB: long
+    CRESY: long
+    # Bearish: short AUD (Australia dryness) and Stage-4 winter nat-gas downside;
+    # SOYB is the short leg of the long-corn/short-soy relative-value pair.
+    FXA: short
+    UNG: short
+    SOYB: short
+
 events:
 
   # ===== FOMC dates (2026 H2) =====

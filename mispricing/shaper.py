@@ -42,32 +42,42 @@ class TradeCandidate:
     rationale: str = ""
     convergence_score: float = 0
     mispricing_ratio: float | None = None
+    direction: str = "long"   # long (calls) | short (puts)
 
 
 def _income_structure(row: MispricingRow) -> tuple[str, float | None, float | None]:
-    """Pick income structure based on classification + skew assumptions.
-    Returns (structure, lower_strike, upper_strike)."""
+    """Pick income structure based on classification + thesis direction.
+    Returns (structure, lower_strike, upper_strike).
+
+    Direction comes from the thesis (detector resolves it off the calendar's
+    theme_directions): `long` -> calls, `short` -> puts. Binary events use a
+    straddle regardless of direction (direction-agnostic vol expansion)."""
     if row.classification != "mispriced_up":
         return "skip", None, None
+    short = getattr(row, "direction", "long") == "short"
     if row.spot is None or row.atm_strike is None:
-        return "long_call", row.atm_strike, None
-    # Bullish-bias default for income trades; refine when bearish exposure
-    # is tagged in the corpus (deferred per operator decision).
+        return ("long_put" if short else "long_call"), row.atm_strike, None
     if row.event_type in ("trial_readout", "fda_decision", "fda_advisory_committee"):
         # Binary event; straddle captures direction-agnostic vol expansion.
         return "straddle", row.atm_strike, None
-    # Earnings / regulatory / M&A: spread to cap cost.
+    if short:
+        # Bearish: ATM long put financed by a lower short put (10% OTM).
+        lower = round(row.atm_strike * 0.90, 2)
+        return "put_spread", row.atm_strike, lower
+    # Bullish: ATM long call financed by a higher short call (10% OTM).
     upper = round(row.atm_strike * 1.10, 2)
     return "call_spread", row.atm_strike, upper
 
 
 def _lottery_structure(row: MispricingRow) -> tuple[str, float | None, float | None]:
-    """Long-dated OTM call (LEAPS-equivalent) at delta-ish 0.20-0.30.
-    Without IB greeks, approximate via strike = spot × 1.25-1.50."""
+    """Long-dated OTM option (LEAPS-equivalent) at delta-ish 0.20-0.30.
+    Without IB greeks, approximate via strike = spot × 1.30 (calls) or × 0.70
+    (puts), keyed to thesis direction."""
     if row.spot is None:
         return "leaps", None, None
-    target = round(row.spot * 1.30, 2)
-    return "leaps", target, None
+    if getattr(row, "direction", "long") == "short":
+        return "leaps", round(row.spot * 0.70, 2), None
+    return "leaps", round(row.spot * 1.30, 2), None
 
 
 def _per_contract_cost(row: MispricingRow, structure: str,
@@ -82,9 +92,10 @@ def _per_contract_cost(row: MispricingRow, structure: str,
         return None
     if structure == "straddle":
         return round(row.atm_straddle_mid * 100, 2)
-    if structure == "long_call":
+    if structure in ("long_call", "long_put"):
+        # A single ATM leg ≈ half the straddle (put-call symmetry at ATM).
         return round((row.atm_straddle_mid / 2) * 100, 2)
-    if structure == "call_spread":
+    if structure in ("call_spread", "put_spread"):
         return round((row.atm_straddle_mid / 2 * 0.6) * 100, 2)  # spread caps gains
     if structure == "leaps":
         return round(row.spot * 0.10 * 100, 2)
@@ -192,6 +203,7 @@ def shape(rows: list[MispricingRow], *,
                 ),
                 convergence_score=row.convergence_score,
                 mispricing_ratio=row.mispricing_ratio,
+                direction=getattr(row, "direction", "long"),
             ))
             held_exposure_by_ticker[row.ticker] = ticker_already + total
             _book_correlated(row, total)
@@ -232,6 +244,7 @@ def shape(rows: list[MispricingRow], *,
                 ),
                 convergence_score=row.convergence_score,
                 mispricing_ratio=row.mispricing_ratio,
+                direction=getattr(row, "direction", "long"),
             ))
             held_exposure_by_ticker[row.ticker] = ticker_already + total
             _book_correlated(row, total)

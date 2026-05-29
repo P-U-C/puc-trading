@@ -45,6 +45,7 @@ class PaperPosition:
     entry_rationale: str
     mark: float = 0.0
     pct_pnl: float = 0.0
+    direction: str = "long"  # long (calls) | short (puts)
     status: str = "open"     # open | closed
     closed_at: str | None = None
     close_reason: str | None = None
@@ -107,7 +108,9 @@ def open_paper(candidates: list[TradeCandidate],
             entry_date=today.isoformat(),
             entry_rationale=c.rationale,
             mark=c.cost_per_contract_usd,
-            pct_pnl=0.0, status="open",
+            pct_pnl=0.0,
+            direction=getattr(c, "direction", "long"),
+            status="open",
         )
         positions.append(pos)
         new.append(pos)

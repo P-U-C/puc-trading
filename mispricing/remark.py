@@ -50,13 +50,23 @@ def bs_call(S: float, K: float, T: float, r: float, sigma: float) -> float:
     return S * _norm_cdf(d1) - K * math.exp(-r * T) * _norm_cdf(d2)
 
 
+def bs_put(S: float, K: float, T: float, r: float, sigma: float) -> float:
+    """Black-Scholes price of a European put (per share)."""
+    if T <= 0 or sigma <= 0 or S <= 0 or K <= 0:
+        return max(0.0, K - S)  # intrinsic at/after expiry
+    # Put-call parity: P = C - S + K e^{-rT}
+    return bs_call(S, K, T, r, sigma) - S + K * math.exp(-r * T)
+
+
 def _spread_value(S: float, k_long: float, k_short: float | None,
-                  T: float, r: float, sigma: float) -> float:
-    """Per-share value of a long call (k_long) optionally minus a short call
-    (k_short). With no short leg it's a plain long call / leaps."""
-    val = bs_call(S, k_long, T, r, sigma)
+                  T: float, r: float, sigma: float, is_put: bool = False) -> float:
+    """Per-share value of a long option (k_long) optionally minus a short option
+    (k_short), both calls or both puts. With no short leg it's a plain long
+    call/put (long_call/long_put/leaps)."""
+    leg = bs_put if is_put else bs_call
+    val = leg(S, k_long, T, r, sigma)
     if k_short:
-        val -= bs_call(S, k_short, T, r, sigma)
+        val -= leg(S, k_short, T, r, sigma)
     return max(val, 0.0)
 
 
@@ -88,12 +98,13 @@ def remark_position(pos: dict, spot: float, today: dt.date) -> dict:
     cur_mark = pos.get("mark", cost)
     structure = pos.get("structure")
     unchanged = {"mark": cur_mark, "pct_pnl": pos.get("pct_pnl", 0.0)}
-    # Only the call-spread cost model is supported here (cost = straddle*30).
-    # straddle / long_call / leaps invert entry cost differently, so re-marking
-    # them with this model would mismark (e.g. a long straddle gaining on a down
-    # move would show a loss). Leave their marks unchanged rather than corrupt.
-    if structure not in (None, "call_spread"):
+    # Only the call/put-spread cost model is supported here (cost = straddle*30).
+    # straddle / long_call / long_put / leaps invert entry cost differently, so
+    # re-marking them with this model would mismark (e.g. a long straddle gaining
+    # on a down move would show a loss). Leave those unchanged rather than corrupt.
+    if structure not in (None, "call_spread", "put_spread"):
         return unchanged
+    is_put = structure == "put_spread"
     try:
         entry_d = dt.date.fromisoformat(str(entry)[:10])
         expiry_d = dt.date.fromisoformat(str(expiry)[:10])
@@ -113,8 +124,8 @@ def remark_position(pos: dict, spot: float, today: dt.date) -> dict:
     if sigma is None:
         return unchanged
 
-    bs_entry = _spread_value(entry_spot, float(k_long), k_short, t_entry, RISK_FREE, sigma)
-    bs_now = _spread_value(float(spot), float(k_long), k_short, t_now, RISK_FREE, sigma)
+    bs_entry = _spread_value(entry_spot, float(k_long), k_short, t_entry, RISK_FREE, sigma, is_put)
+    bs_now = _spread_value(float(spot), float(k_long), k_short, t_now, RISK_FREE, sigma, is_put)
     if bs_entry <= 0:
         return unchanged
 
