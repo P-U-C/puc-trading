@@ -19,6 +19,7 @@ from . import (
     MAX_INCOME_PCT_PER_TRADE, MAX_INCOME_CONCURRENT,
     LOTTERY_TICKET_USD_MAX, LOTTERY_TICKET_USD_MIN, MAX_LOTTERY_CONCURRENT,
     MAX_TOTAL_TICKER_EXPOSURE_PCT,
+    MAX_THEME_EXPOSURE_PCT, MAX_CATALYST_EXPOSURE_PCT, MAX_TICKERS_PER_CATALYST,
 )
 from .detector import MispricingRow
 
@@ -100,15 +101,52 @@ def shape(rows: list[MispricingRow], *,
     """
     held_positions = held_positions or []
     held_exposure_by_ticker: dict[str, float] = {}
+    # Correlated-exposure tallies, seeded from the open book so the caps account
+    # for what's already held, not just what this run adds.
+    exposure_by_theme: dict[str, float] = {}
+    exposure_by_catalyst: dict[str, float] = {}
+    tickers_by_catalyst: dict[str, set[str]] = {}
     for p in held_positions:
+        cost = float(p.get("cost_total_usd", 0))
         held_exposure_by_ticker[p["ticker"]] = (
-            held_exposure_by_ticker.get(p["ticker"], 0) + float(p.get("cost_total_usd", 0))
+            held_exposure_by_ticker.get(p["ticker"], 0) + cost
         )
+        tid = p.get("theme_id")
+        cid = p.get("catalyst_id")
+        if tid:
+            exposure_by_theme[tid] = exposure_by_theme.get(tid, 0) + cost
+        if cid:
+            exposure_by_catalyst[cid] = exposure_by_catalyst.get(cid, 0) + cost
+            tickers_by_catalyst.setdefault(cid, set()).add(p["ticker"])
 
     income_budget = book_usd * INCOME_FRACTION
     lottery_budget = book_usd * LOTTERY_FRACTION
     max_per_trade_usd = book_usd * MAX_INCOME_PCT_PER_TRADE
     max_total_per_ticker = book_usd * MAX_TOTAL_TICKER_EXPOSURE_PCT
+    max_per_theme = book_usd * MAX_THEME_EXPOSURE_PCT
+    max_per_catalyst = book_usd * MAX_CATALYST_EXPOSURE_PCT
+
+    def _correlation_headroom(row) -> float | None:
+        """Remaining $ this row may take given theme/catalyst caps, or None if a
+        cap is already saturated (skip the row entirely). Returns the binding
+        (smallest) headroom across both caps."""
+        theme_room = max_per_theme - exposure_by_theme.get(row.theme_id, 0)
+        cat_room = max_per_catalyst - exposure_by_catalyst.get(row.catalyst_id, 0)
+        # Distinct-underlying cap: a brand-new ticker on a catalyst that already
+        # holds the max distinct names is rejected (adding to an existing name on
+        # that catalyst is still allowed, subject to the $ caps).
+        held_names = tickers_by_catalyst.get(row.catalyst_id, set())
+        if row.ticker not in held_names and len(held_names) >= MAX_TICKERS_PER_CATALYST:
+            return None
+        room = min(theme_room, cat_room)
+        return room if room > 0 else None
+
+    def _book_correlated(row, total: float) -> None:
+        exposure_by_theme[row.theme_id] = exposure_by_theme.get(row.theme_id, 0) + total
+        exposure_by_catalyst[row.catalyst_id] = (
+            exposure_by_catalyst.get(row.catalyst_id, 0) + total
+        )
+        tickers_by_catalyst.setdefault(row.catalyst_id, set()).add(row.ticker)
 
     candidates: list[TradeCandidate] = []
     income_spent = 0.0
@@ -130,8 +168,11 @@ def shape(rows: list[MispricingRow], *,
             cost_per = _per_contract_cost(row, structure, lower, upper)
             if cost_per is None or cost_per <= 0:
                 continue
+            corr_room = _correlation_headroom(row)
+            if corr_room is None:
+                continue
             sizing_cap = min(max_per_trade_usd, max_total_per_ticker - ticker_already,
-                             income_budget - income_spent)
+                             income_budget - income_spent, corr_room)
             qty = max(1, int(sizing_cap // cost_per))
             total = round(qty * cost_per, 2)
             if total <= 0 or total > sizing_cap * 1.05:
@@ -153,6 +194,7 @@ def shape(rows: list[MispricingRow], *,
                 mispricing_ratio=row.mispricing_ratio,
             ))
             held_exposure_by_ticker[row.ticker] = ticker_already + total
+            _book_correlated(row, total)
             income_spent += total
             income_count += 1
             continue
@@ -164,10 +206,13 @@ def shape(rows: list[MispricingRow], *,
             cost_per = _per_contract_cost(row, structure, lower, upper)
             if cost_per is None or cost_per <= 0:
                 continue
+            corr_room = _correlation_headroom(row)
+            if corr_room is None:
+                continue
             # Lottery ticket: spend somewhere in [MIN, MAX] per ticker.
             target = min(LOTTERY_TICKET_USD_MAX,
                          max_total_per_ticker - ticker_already,
-                         lottery_budget - lottery_spent)
+                         lottery_budget - lottery_spent, corr_room)
             if target < LOTTERY_TICKET_USD_MIN:
                 continue
             qty = max(1, int(target // cost_per))
@@ -189,6 +234,7 @@ def shape(rows: list[MispricingRow], *,
                 mispricing_ratio=row.mispricing_ratio,
             ))
             held_exposure_by_ticker[row.ticker] = ticker_already + total
+            _book_correlated(row, total)
             lottery_spent += total
             lottery_count += 1
 

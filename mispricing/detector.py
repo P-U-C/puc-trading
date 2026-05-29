@@ -57,8 +57,19 @@ NEAR_TERM_HORIZON_DAYS = 90
 LONG_TERM_HORIZON_DAYS_MIN = 365
 LONG_TERM_HORIZON_DAYS_MAX = 730
 # Income expiry must clear the catalyst by at least this many days so the
-# option still has time value to monetize the move (see _pick_expiry).
-MIN_POST_EVENT_BUFFER_DAYS = 5
+# option still has *material* time value left to monetize the move AFTER the
+# event prints (see _pick_expiry).
+#
+# History: this was 5, which let the screen buy the monthly expiry one week
+# after the catalyst. Against a multi-stage thesis (e.g. the cicadas/ENSO book,
+# where the 2026-06-11 NOAA print is a Stage-2 *verification* and the real move
+# develops over the following crop-balance prints), a +5d expiry is pure theta:
+# the whole cicadas sleeve went -32% bleeding theta into a print it expired the
+# week after. A 45d residual floor pushes the pick out to the Aug-Jan tenors the
+# chain already carries, matching the operator thesis window (trades/cicadas.md:
+# "tenor Jul 2026 - Jan 2027", "do not let theta bleed"). Still strictly > 0 so
+# the original "expires before its own catalyst" flaw stays fixed.
+MIN_POST_EVENT_BUFFER_DAYS = 45
 
 
 @dataclass

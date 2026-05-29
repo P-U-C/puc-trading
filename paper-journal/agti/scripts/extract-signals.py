@@ -37,6 +37,23 @@ POSITIONS_PATH = ROOT / "scripts" / "positions.json"
 
 MACRO_PROXY_SKIPLIST = {"XLE", "BNO", "TLT", "USO", "GLD", "SLV", "TQQQ", "SQQQ"}
 
+# Edge filter (added 2026-05-29). The closed-trade record (82 closed signals)
+# shows the book's edge is concentrated in EQUITY LONGS (62-63% hit) while the
+# other classes are dilutive drag that flatten average return to ~0:
+#     equity-long 63% | short 44% | ETF 38% | forex 40%
+# This mirrors the original backtest's "macro-proxy ETF 0-of-4" failure mode.
+# When EQUITY_LONG_ONLY is on, the cron only OPENS the proven-edge class; the
+# dilutive classes are still logged (denominator-honest, same as the macro-proxy
+# skip) but never deployed. Flip to False to revert to all-class behaviour.
+EQUITY_LONG_ONLY = True
+
+
+def _edge_allows(direction: str, structure: str) -> bool:
+    """True if the signal is in the proven-edge class (equity long)."""
+    if not EQUITY_LONG_ONLY:
+        return True
+    return direction == "long" and structure == "equity"
+
 SIGNAL_EXTRACTION_PROMPT = """You are extracting tradeable signals from a Post Fiat AGTI Intelligence Report.
 
 Output ONLY valid JSON, no prose, no markdown fences. Schema:
@@ -155,13 +172,27 @@ def add_to_positions(extracted: dict, rep_date: str) -> tuple[int, int, int]:
                 # Same direction reaffirmed -- no action, the original position stays open
                 continue
             else:
-                # Direction flip: close the old, add the new
+                # Direction flip: close the old. We close on a flip even if the
+                # new side is outside the edge class -- a report turning against
+                # an open position is still a valid exit signal.
                 existing["status"] = "closed"
                 existing["exit_date"] = rep_date
                 existing["exit_reason"] = f"direction_flip_to_{direction}_per_report_{rep_date}"
                 existing["exit_price"] = existing.get("last_mark")
                 existing["exit_pct"] = existing.get("last_mark_pct")
                 flipped += 1
+
+        # Edge filter: only OPEN positions in the proven equity-long edge class.
+        # Dilutive classes are logged for denominator honesty but not deployed.
+        if not _edge_allows(direction, sig.get("structure", "equity")):
+            positions.setdefault("_skipped", []).append({
+                "ticker": ticker,
+                "reason": (f"edge-filter {rep_date}: {direction}/"
+                           f"{sig.get('structure', 'equity')} outside proven "
+                           f"equity-long edge class (EQUITY_LONG_ONLY)"),
+            })
+            skipped += 1
+            continue
 
         new_pos = {
             "ticker": ticker,

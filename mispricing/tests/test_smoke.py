@@ -104,6 +104,53 @@ def test_shaper_accumulates_same_ticker_exposure_within_run():
     assert qs_total <= 10000 * 0.05
 
 
+def test_shaper_caps_correlated_theme_and_catalyst_exposure():
+    """The cicadas blow-up regression: many distinct tickers on the SAME theme +
+    catalyst must not stack past the theme/catalyst caps, and no more than
+    MAX_TICKERS_PER_CATALYST distinct names get loaded onto one catalyst."""
+    from mispricing import (MAX_THEME_EXPOSURE_PCT, MAX_CATALYST_EXPOSURE_PCT,
+                            MAX_TICKERS_PER_CATALYST)
+    # 6 correlated ag names, all theme=cicadas, all catalyst=NOAA-ENSO, each
+    # cheap enough that without caps they'd each take a full per-ticker slug.
+    rows = [
+        _fake_row(ticker=t, theme_id="cicadas",
+                  catalyst_id="cat_noaa_enso_2026_06",
+                  event_date="2026-06-11", days_to_event=13,
+                  spot=20.0, atm_strike=20.0, atm_straddle_mid=1.0,
+                  market_implied_move=0.05, thesis_implied_move=0.13,
+                  mispricing_ratio=2.6)
+        for t in ("WEAT", "CORN", "DBA", "FXA", "NTR", "CF")
+    ]
+    cands = shaper.shape(rows)
+    theme_total = sum(c.cost_total_usd or 0 for c in cands if c.theme_id == "cicadas")
+    cat_total = sum(c.cost_total_usd or 0 for c in cands
+                    if c.catalyst_id == "cat_noaa_enso_2026_06")
+    distinct = {c.ticker for c in cands if c.catalyst_id == "cat_noaa_enso_2026_06"}
+    assert theme_total <= 10000 * MAX_THEME_EXPOSURE_PCT + 0.01, theme_total
+    assert cat_total <= 10000 * MAX_CATALYST_EXPOSURE_PCT + 0.01, cat_total
+    assert len(distinct) <= MAX_TICKERS_PER_CATALYST, distinct
+
+
+def test_shaper_correlation_caps_account_for_held_book():
+    """Caps must see already-open positions, not just this run's adds. If the
+    book already holds the catalyst cap's worth, a new same-catalyst row gets
+    nothing."""
+    from mispricing import MAX_CATALYST_EXPOSURE_PCT
+    held = [
+        {"ticker": "WEAT", "theme_id": "cicadas",
+         "catalyst_id": "cat_noaa_enso_2026_06",
+         "cost_total_usd": 10000 * MAX_CATALYST_EXPOSURE_PCT}
+    ]
+    rows = [_fake_row(ticker="CORN", theme_id="cicadas",
+                      catalyst_id="cat_noaa_enso_2026_06",
+                      event_date="2026-06-11", days_to_event=13,
+                      spot=20.0, atm_strike=20.0, atm_straddle_mid=1.0,
+                      market_implied_move=0.05, thesis_implied_move=0.13,
+                      mispricing_ratio=2.6)]
+    cands = shaper.shape(rows, held_positions=held)
+    assert [c for c in cands if c.catalyst_id == "cat_noaa_enso_2026_06"] == []
+
+
 def test_ticket_markdown_round_trip(tmp_path, monkeypatch):
     """Just verify the writer produces non-empty markdown with all sections."""
     monkeypatch.setattr(tickets, "DAILY_DIR", tmp_path)
@@ -256,9 +303,23 @@ def test_pick_expiry_skips_when_no_expiry_covers_catalyst():
 
 def test_pick_expiry_covers_catalyst_with_buffer():
     event = dt.date(2026, 8, 6)
-    chain = _FakeSnap(["2026-05-22", "2026-07-17", "2026-08-21", "2026-09-18"])
-    # First expiry >= event + MIN_POST_EVENT_BUFFER_DAYS (Aug 11), so Aug 21.
-    assert detector._pick_expiry(chain, event, "income") == "2026-08-21"
+    # event + MIN_POST_EVENT_BUFFER_DAYS (45d) = 2026-09-20, so the screen must
+    # reach the first expiry on/after that — Oct 16, not the Aug/Sep expiries
+    # that die within weeks of the print.
+    chain = _FakeSnap(["2026-05-22", "2026-07-17", "2026-08-21", "2026-10-16"])
+    assert detector._pick_expiry(chain, event, "income") == "2026-10-16"
+
+
+def test_pick_expiry_enforces_tenor_floor_not_just_post_event():
+    """Regression for the cicadas -32% blow-up: a +1-week expiry after the
+    catalyst is pure theta. With a 45d residual floor, a 2026-06-11 catalyst
+    must NOT pick the 2026-06-18 monthly even though it technically clears the
+    event — it must reach out to a tenor that matches the multi-stage thesis."""
+    event = dt.date(2026, 6, 11)
+    chain = _FakeSnap(["2026-06-18", "2026-07-17", "2026-10-16", "2027-01-15"])
+    picked = detector._pick_expiry(chain, event, "income")
+    assert picked == "2026-10-16"  # first expiry >= event + 45d (2026-07-26)
+    assert (dt.date.fromisoformat(picked) - event).days >= detector.MIN_POST_EVENT_BUFFER_DAYS
 
 
 def test_pick_expiry_income_no_event_takes_30d_plus():

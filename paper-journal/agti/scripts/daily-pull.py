@@ -129,7 +129,15 @@ def fetch_close(ticker: str) -> float | None:
         return None
 
 def fetch_open(ticker: str, date: str) -> float | None:
-    """Open price on a specific date (YYYY-MM-DD)."""
+    """Open price on `date`, rolling forward to the next available bar.
+
+    The trading-day calendar is weekday-only (no holiday table), so a fill date
+    landing on a market holiday (e.g. 2026-05-25 Memorial Day) has no bar and
+    used to log a spurious "could not fetch fill price" error for every pending
+    signal that day. We fetch a one-week window from `date` and take the first
+    available Open, so a holiday fills at the next real session instead of
+    erroring. Returns None only if the ticker genuinely has no data in the
+    window (bad/delisted symbol)."""
     try:
         import yfinance as yf
     except ImportError:
@@ -137,7 +145,7 @@ def fetch_open(ticker: str, date: str) -> float | None:
     try:
         target = datetime.strptime(date, "%Y-%m-%d")
         h = yf.Ticker(ticker).history(start=target.strftime("%Y-%m-%d"),
-                                       end=(target + timedelta(days=1)).strftime("%Y-%m-%d"),
+                                       end=(target + timedelta(days=7)).strftime("%Y-%m-%d"),
                                        interval="1d")
         if h.empty:
             return None
