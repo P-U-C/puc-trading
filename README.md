@@ -77,6 +77,11 @@ mispricing-screen also reads O, joins it to dated catalysts, and writes a paper
 book only. The deploy script in `scripts/deploy-scanner-results.sh` lifts R to
 `P-U-C/pft-validator/scanner/scan-results.json` (P4 -> public dashboard).
 
+Downstream of editorial (not shown in B2): each **Convergence Daily** episode is
+forked through the **[convergence-hq dual-publishing engine](https://github.com/convergence-hq/convergence)**,
+which emits a signed, immutable, agent-citable **Signal** object per episode — a
+separate publishing surface that turns the corpus's calls into machine-citable record.
+
 ## Repo map
 
 ```
