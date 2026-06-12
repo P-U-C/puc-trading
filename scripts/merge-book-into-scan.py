@@ -31,6 +31,10 @@ SCAN_PATH = Path(
 )
 PAPER_OPEN = PUC / "paper-journal" / "mispricing" / "positions.json"
 PAPER_CLOSED = PUC / "paper-journal" / "mispricing" / "closed.json"
+# The long-term convergence basket (LLM-recommended trend tickers, paper)
+# lives in its own book and publishes alongside the screen's trades.
+LT_OPEN = PUC / "paper-journal" / "longterm" / "positions.json"
+LT_CLOSED = PUC / "paper-journal" / "longterm" / "closed.json"
 
 GO_LIVE_TRADES = int(os.environ.get("GO_LIVE_TRADES", "30"))
 LIVE_PUSH = os.environ.get("LIVE_PUSH", "0") == "1"
@@ -69,7 +73,13 @@ def _days_between(a: str, b: str) -> int | None:
 
 
 def _term_bucket(row: dict[str, Any]) -> str:
-    """long_term / short_term from the entry->expiry horizon at entry."""
+    """long_term / short_term from the entry->expiry horizon at entry.
+
+    Equity basket holdings have no expiry -- they ARE the long-term book
+    (buy-and-hold LLM-convergence basket).
+    """
+    if row.get("structure") == "equity":
+        return "long_term"
     dte = _days_between(row.get("entry_date"), row.get("expiry"))
     if dte is None:
         return "short_term"
@@ -149,8 +159,8 @@ def _dedupe_by_id(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def _build_paper() -> dict[str, Any]:
-    open_all = _dedupe_by_id(_read_json(PAPER_OPEN))
-    closed_all = _dedupe_by_id(_read_json(PAPER_CLOSED))
+    open_all = _dedupe_by_id(_read_json(PAPER_OPEN) + _read_json(LT_OPEN))
+    closed_all = _dedupe_by_id(_read_json(PAPER_CLOSED) + _read_json(LT_CLOSED))
 
     # Publish convergence-architecture trades only, re-bucketed by term.
     open_rows = [{**r, "bucket": _term_bucket(r)} for r in open_all if _is_public(r)]
@@ -180,7 +190,10 @@ def _build_paper() -> dict[str, Any]:
         "short_term_realized_usd": st_realized,
         "long_term_realized_usd": lt_realized,
         "long_term_open_invested_usd": lt_open_invested,
-        "long_term_capital_usd": round(lt_open_invested + st_realized + lt_realized, 2),
+        # Deployed long-term capital. The basket builder already sizes from
+        # base + compounded realized P&L, so the deployed figure IS the
+        # capital -- summing the pool in again would double-count it.
+        "long_term_capital_usd": lt_open_invested,
     }
 
     return {

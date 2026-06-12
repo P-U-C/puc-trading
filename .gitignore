@@ -41,3 +41,5 @@ paper-journal/mispricing/tracker.md
 mispricing/screens/
 
 # Mispricing daily markdown tickets stay tracked as the audit trail.
+paper-journal/longterm/positions.json
+paper-journal/longterm/closed.json
