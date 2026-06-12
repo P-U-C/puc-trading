@@ -33,6 +33,16 @@ ARTIFACT = Path(
     os.environ.get("CONVERGENCE_FILE", str(PUC / "corpus" / "convergence-latest.json"))
 )
 
+# theme_ids kept OFF the public page. The corpus artifact mixes public sector
+# themes with private trading theses -- cicadas (the ENSO commodity cycle
+# thesis) is a live trading position set, not a sector theme, and exposing
+# its ranked ticker list publishes the thesis.
+EXCLUDE_THEME_IDS = {
+    t.strip()
+    for t in os.environ.get("SCANNER_EXCLUDE_THEME_IDS", "cicadas").split(",")
+    if t.strip()
+}
+
 
 def main() -> int:
     if not ARTIFACT.exists():
@@ -59,6 +69,8 @@ def main() -> int:
 
     rows = []
     for r in artifact.get("scores", []):
+        if r.get("theme_id") in EXCLUDE_THEME_IDS:
+            continue
         ticker = r.get("ticker")
         theme = canonical.get(r.get("theme_id")) or r.get("theme") or r.get("theme_id")
         if not ticker or not theme:
