@@ -35,6 +35,19 @@ PAPER_CLOSED = PUC / "paper-journal" / "mispricing" / "closed.json"
 GO_LIVE_TRADES = int(os.environ.get("GO_LIVE_TRADES", "30"))
 LIVE_PUSH = os.environ.get("LIVE_PUSH", "0") == "1"
 
+# The published book carries only convergence-architecture trades; private
+# trading theses (cicadas/ENSO) stay in the runtime book but off the page --
+# their ranked structure would publish the thesis.
+PRIVATE_THEME_IDS = {
+    t.strip()
+    for t in os.environ.get("BOOK_PRIVATE_THEME_IDS", "cicadas").split(",")
+    if t.strip()
+}
+
+# Term split: entry->expiry horizon at entry. Short-term realized P&L
+# compounds into long-term capital (Chad's bucket directive, 2026-06-12).
+LONG_TERM_MIN_DTE = int(os.environ.get("LONG_TERM_MIN_DTE", "120"))
+
 
 def _read_json(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
@@ -53,6 +66,25 @@ def _days_between(a: str, b: str) -> int | None:
         return (date.fromisoformat(b) - date.fromisoformat(a)).days
     except (TypeError, ValueError):
         return None
+
+
+def _term_bucket(row: dict[str, Any]) -> str:
+    """long_term / short_term from the entry->expiry horizon at entry."""
+    dte = _days_between(row.get("entry_date"), row.get("expiry"))
+    if dte is None:
+        return "short_term"
+    return "long_term" if dte >= LONG_TERM_MIN_DTE else "short_term"
+
+
+def _is_public(row: dict[str, Any]) -> bool:
+    return row.get("theme_id") not in PRIVATE_THEME_IDS
+
+
+def _realized_usd(row: dict[str, Any]) -> float:
+    """pct_pnl is stored as a percent (30.12 == +30.12%), not a fraction."""
+    cost = row.get("cost_total_usd") or 0.0
+    pct = row.get("pct_pnl") or 0.0
+    return cost * pct / 100.0
 
 
 def _bucket_stats(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
@@ -77,6 +109,7 @@ def _bucket_stats(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
             "hit_rate": (wins / len(items)) if items else None,
             "mean_pct_pnl": (sum(pnls) / len(pnls)) if pnls else None,
             "median_hold_days": int(statistics.median(holds)) if holds else None,
+            "realized_usd": round(sum(_realized_usd(r) for r in items), 2),
         }
     return out
 
@@ -116,12 +149,47 @@ def _dedupe_by_id(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def _build_paper() -> dict[str, Any]:
-    open_rows = _dedupe_by_id(_read_json(PAPER_OPEN))
-    closed_rows = _dedupe_by_id(_read_json(PAPER_CLOSED))
+    open_all = _dedupe_by_id(_read_json(PAPER_OPEN))
+    closed_all = _dedupe_by_id(_read_json(PAPER_CLOSED))
+
+    # Publish convergence-architecture trades only, re-bucketed by term.
+    open_rows = [{**r, "bucket": _term_bucket(r)} for r in open_all if _is_public(r)]
+    closed_rows = [{**r, "bucket": _term_bucket(r)} for r in closed_all if _is_public(r)]
+
+    stats = _summary(open_rows, closed_rows)
+    stats["private_excluded"] = {
+        "open": len(open_all) - len(open_rows),
+        "closed": len(closed_all) - len(closed_rows),
+    }
+
+    # Compounding ledger: net realized short-term P&L flows into long-term
+    # capital. long_term_capital_usd = what's deployed long-term now plus
+    # everything short-term has contributed (realized, both signs -- losses
+    # drain the pool the same way profits feed it).
+    st_realized = round(
+        sum(_realized_usd(r) for r in closed_rows if r["bucket"] == "short_term"), 2
+    )
+    lt_realized = round(
+        sum(_realized_usd(r) for r in closed_rows if r["bucket"] == "long_term"), 2
+    )
+    lt_open_invested = round(
+        sum(r.get("cost_total_usd") or 0 for r in open_rows if r["bucket"] == "long_term"), 2
+    )
+    stats["compounding"] = {
+        "rule": "net realized short-term P&L compounds into long-term capital",
+        "short_term_realized_usd": st_realized,
+        "long_term_realized_usd": lt_realized,
+        "long_term_open_invested_usd": lt_open_invested,
+        "long_term_capital_usd": round(lt_open_invested + st_realized + lt_realized, 2),
+    }
+
     return {
         "open": open_rows,
         "closed": closed_rows,
-        "stats": _summary(open_rows, closed_rows),
+        "stats": stats,
+        # Engine-wide closed count (private legs included) -- the go-live
+        # gate measures the engine's track record, not page visibility.
+        "engine_closed_count": len(closed_all),
     }
 
 
@@ -197,7 +265,7 @@ def main() -> int:
 
     paper = _build_paper()
     live = _build_live()
-    closed_count = paper["stats"]["closed_count"]
+    closed_count = paper.pop("engine_closed_count")
 
     scan["book"] = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
