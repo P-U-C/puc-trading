@@ -105,16 +105,29 @@ class ConvergenceSeamTests(unittest.TestCase):
             )
 
     def test_fixture_populator_output_validates(self):
-        populate_convergence.main()
-        artifact = run_live_scan.validate_convergence_artifact(populate_convergence.ARTIFACT_PATH)
-        capture_path = (
-            populate_convergence.CAPTURES_ROOT
-            / artifact["generated_at"][:10]
-            / "capture-records.json"
-        )
-        self.assertTrue(capture_path.exists())
-        self.assertEqual(len(artifact["scores"]), len(populate_convergence.FIXTURE_SEED))
-        self.assertEqual(artifact["generator"]["mode"], "fixture")
+        # Redirect the populator into a tmpdir: corpus/convergence-latest.json
+        # is PRODUCTION state (live LLM-survey rows + daily generator merges).
+        # Running the fixture generator against the real paths destroyed a
+        # live survey on 2026-06-12 -- never again.
+        real_artifact = populate_convergence.ARTIFACT_PATH
+        real_captures = populate_convergence.CAPTURES_ROOT
+        with tempfile.TemporaryDirectory() as tmp:
+            populate_convergence.ARTIFACT_PATH = Path(tmp) / "convergence-latest.json"
+            populate_convergence.CAPTURES_ROOT = Path(tmp) / "captures"
+            try:
+                populate_convergence.main()
+                artifact = run_live_scan.validate_convergence_artifact(populate_convergence.ARTIFACT_PATH)
+                capture_path = (
+                    populate_convergence.CAPTURES_ROOT
+                    / artifact["generated_at"][:10]
+                    / "capture-records.json"
+                )
+                self.assertTrue(capture_path.exists())
+                self.assertEqual(len(artifact["scores"]), len(populate_convergence.FIXTURE_SEED))
+                self.assertEqual(artifact["generator"]["mode"], "fixture")
+            finally:
+                populate_convergence.ARTIFACT_PATH = real_artifact
+                populate_convergence.CAPTURES_ROOT = real_captures
 
     def test_compatibility_mapping_into_scanner_input(self):
         mapped = run_live_scan.map_convergence_scores(valid_artifact())
