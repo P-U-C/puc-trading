@@ -130,12 +130,18 @@ def target_universe() -> dict[str, dict]:
 def fetch_prices(tickers: list[str]) -> dict[str, float]:
     import yfinance as yf
 
+    import math
+
     out: dict[str, float] = {}
     for t in tickers:
         try:
             h = yf.Ticker(t).history(period="5d")["Close"]
-            if len(h):
-                out[t] = float(h.iloc[-1])
+            px = float(h.iloc[-1]) if len(h) else None
+            # NaN compares False against everything -- an explicit isnan
+            # guard or NaN walks straight into share math and poisons the
+            # whole book's totals.
+            if px is not None and not math.isnan(px) and px > 0:
+                out[t] = px
         except Exception as exc:
             print(f"WARN: no price for {t}: {exc}", file=sys.stderr)
     return out
@@ -183,15 +189,31 @@ def main() -> int:
         )
         print(f"close {t}: realized ${realized:+.2f} (left universe)")
 
-    # Buy tickers entering the universe at their target weight of capital.
+    # Buy tickers entering the universe at their target weight of capital,
+    # but never spend more than the cash actually available: capital minus
+    # what's already deployed in open holdings. Without this cap every new
+    # universe entrant was sized off TOTAL capital and the book over-deployed
+    # (invested $1,520 on $1,000 capital, caught 2026-06-12).
     total_cs = sum(u["convergence_score"] for u in universe.values())
+    already_invested = sum(p.get("cost_total_usd") or 0 for p in held.values())
+    cash = max(0.0, capital - already_invested)
+    desired = {}
     for t in entering:
-        u = universe[t]
         px = prices.get(t)
         if px is None or px <= 0:
             print(f"skip {t}: no price", file=sys.stderr)
             continue
-        alloc = capital * (u["convergence_score"] / total_cs)
+        alloc = capital * (universe[t]["convergence_score"] / total_cs)
+        if alloc >= 1.0:
+            desired[t] = alloc
+    total_desired = sum(desired.values())
+    scale = min(1.0, cash / total_desired) if total_desired > 0 else 0.0
+    if entering and scale < 1.0:
+        print(f"cash-capped: ${cash:.2f} available for ${total_desired:.2f} desired (scale {scale:.2f})")
+    for t, alloc in desired.items():
+        u = universe[t]
+        px = prices[t]
+        alloc = alloc * scale
         if alloc < 1.0:
             continue
         shares = round(alloc / px, 4)
