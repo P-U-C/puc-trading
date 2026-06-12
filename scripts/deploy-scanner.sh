@@ -15,6 +15,11 @@ PFT="${PFT_VALIDATOR_DIR:-$HOME/pft-validator}"
 
 python3 "$PUC_TRADING_DIR/scripts/merge-book-into-scan.py" || { echo "deploy-scanner: merge failed" >&2; exit 1; }
 
+# Refresh the page's theme/convergence table from the daily corpus artifact
+# (13:55 refresh-convergence). Non-fatal: a missing artifact must not block
+# the book deploy.
+python3 "$PUC_TRADING_DIR/scripts/merge-convergence-into-scan.py" || echo "deploy-scanner: convergence merge failed (book deploy continues)" >&2
+
 cd "$PFT" || { echo "deploy-scanner: $PFT missing" >&2; exit 1; }
 
 git add scanner/scan-results.json
