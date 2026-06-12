@@ -44,14 +44,21 @@ LT_CLOSED = LT_DIR / "closed.json"
 ST_CLOSED = PUC / "paper-journal" / "mispricing" / "closed.json"
 
 LT_BASE_USD = float(os.environ.get("LT_BASE_USD", "1000"))
-LT_MIN_TIER = os.environ.get("LT_MIN_TIER", "MEDIUM").upper()  # MEDIUM => HIGH+MEDIUM
+# Default LOW = ALL LLM-recommended tickers. Chad's spec is the AGGREGATE of
+# what the models recommend, so nothing the funnel points at is excluded;
+# convergence weighting already sizes weak names small.
+LT_MIN_TIER = os.environ.get("LT_MIN_TIER", "LOW").upper()
 LONG_TERM_MIN_DTE = int(os.environ.get("LONG_TERM_MIN_DTE", "120"))
 PRIVATE_THEME_IDS = {
     t.strip()
     for t in os.environ.get("BOOK_PRIVATE_THEME_IDS", "cicadas").split(",")
     if t.strip()
 }
-TIER_OK = {"HIGH"} if LT_MIN_TIER == "HIGH" else {"HIGH", "MEDIUM"}
+TIER_OK = {
+    "HIGH": {"HIGH"},
+    "MEDIUM": {"HIGH", "MEDIUM"},
+    "LOW": {"HIGH", "MEDIUM", "LOW"},
+}.get(LT_MIN_TIER, {"HIGH", "MEDIUM", "LOW"})
 
 
 def _read_json(path: Path, default):
