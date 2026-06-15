@@ -83,9 +83,31 @@ PROMPT_TEMPLATE = (
 )
 
 
+import shutil
+
+
+def _bin(name: str) -> str:
+    """Resolve a CLI to an absolute path. cron's PATH does NOT include
+    ~/.npm-global/bin or ~/.local/bin, so a bare name silently fails in cron
+    (the 2026-06-15 first weekly run: every codex call errored "No such file
+    or directory: 'codex'", so the survey ran Claude-only at half signal)."""
+    found = shutil.which(name)
+    if found:
+        return found
+    for cand in (
+        os.path.expanduser(f"~/.npm-global/bin/{name}"),
+        os.path.expanduser(f"~/.local/bin/{name}"),
+        f"/usr/local/bin/{name}",
+        f"/usr/bin/{name}",
+    ):
+        if os.path.exists(cand):
+            return cand
+    return name  # last resort: let subprocess raise a clear error
+
+
 def call_claude(prompt: str) -> str:
     r = subprocess.run(
-        ["claude", "-p", "--strict-mcp-config", "--model", "sonnet", "--output-format", "text"],
+        [_bin("claude"), "-p", "--strict-mcp-config", "--model", "sonnet", "--output-format", "text"],
         input=prompt, capture_output=True, text=True, timeout=PER_CALL_TIMEOUT,
     )
     if r.returncode != 0:
@@ -95,7 +117,7 @@ def call_claude(prompt: str) -> str:
 
 def call_codex(prompt: str) -> str:
     r = subprocess.run(
-        ["codex", "exec", "--skip-git-repo-check", "-s", "read-only", prompt],
+        [_bin("codex"), "exec", "--skip-git-repo-check", "-s", "read-only", prompt],
         capture_output=True, text=True, timeout=PER_CALL_TIMEOUT, cwd="/tmp",
     )
     if r.returncode != 0:
