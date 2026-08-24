@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T13:55:03Z",
+  "generated_at": "2026-08-24T13:55:03Z",
   "generator": {
     "mode": "merge",
     "name": "merge_convergence",
@@ -1744,7 +1744,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.7,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.7836,
+        "freshness_weight": 0.7808,
         "llm_score": 0.79,
         "tradability_weight": 1.0
       },
@@ -1896,7 +1896,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.7,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.7836,
+        "freshness_weight": 0.7808,
         "llm_score": 0.784,
         "tradability_weight": 1.0
       },
@@ -2073,7 +2073,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.7,
         "exposure_strength": 0.8,
-        "freshness_weight": 0.7836,
+        "freshness_weight": 0.7808,
         "llm_score": 0.774,
         "tradability_weight": 1.0
       },
@@ -2442,7 +2442,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.8,
         "exposure_strength": 0.5,
-        "freshness_weight": 0.7836,
+        "freshness_weight": 0.7808,
         "llm_score": 0.755,
         "tradability_weight": 1.0
       },
@@ -2721,7 +2721,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.8,
         "exposure_strength": 0.45,
-        "freshness_weight": 0.7836,
+        "freshness_weight": 0.7808,
         "llm_score": 0.745,
         "tradability_weight": 1.0
       },
@@ -2860,7 +2860,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.7,
         "exposure_strength": 0.6,
-        "freshness_weight": 0.7836,
+        "freshness_weight": 0.7808,
         "llm_score": 0.74,
         "tradability_weight": 1.0
       },
@@ -3027,7 +3027,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.8,
         "exposure_strength": 0.3,
-        "freshness_weight": 0.7836,
+        "freshness_weight": 0.7808,
         "llm_score": 0.715,
         "tradability_weight": 1.0
       },
