@@ -47,12 +47,25 @@ RELATIVE_EDGE_BASKET_FIELDS = {
     "kind",
     "benchmark",
     "state",
+    "phase",
+    "phase_label",
+    "action",
+    "action_priority",
+    "timing",
     "tickers",
     "priced_tickers",
     "metrics",
     "leaders",
 }
 RELATIVE_EDGE_METRIC_FIELDS = {"basket_return", "benchmark_return", "excess_return", "breadth"}
+RELATIVE_EDGE_TIMING_FIELDS = {
+    "first_trigger_date",
+    "first_active_date",
+    "trading_days_since_first_trigger",
+    "trading_days_since_first_active",
+    "first_trigger_age",
+    "first_active_age",
+}
 
 
 def require_mapping(value: object, label: str, errors: list[str]) -> bool:
@@ -139,6 +152,18 @@ def validate(payload: object) -> list[str]:
                     require_fields(item, RELATIVE_EDGE_BASKET_FIELDS, label, errors)
                     if item.get("state") not in {"active", "trigger", "watch"}:
                         errors.append(f"{label}.state: expected active, trigger, or watch")
+                    if not isinstance(item.get("phase"), str):
+                        errors.append(f"{label}.phase: expected string")
+                    if not isinstance(item.get("phase_label"), str):
+                        errors.append(f"{label}.phase_label: expected string")
+                    if not isinstance(item.get("action"), str):
+                        errors.append(f"{label}.action: expected string")
+                    if not isinstance(item.get("action_priority"), int):
+                        errors.append(f"{label}.action_priority: expected int")
+                    timing = item.get("timing")
+                    if require_mapping(timing, f"{label}.timing", errors):
+                        assert isinstance(timing, dict)
+                        require_fields(timing, RELATIVE_EDGE_TIMING_FIELDS, f"{label}.timing", errors)
                     if not isinstance(item.get("tickers"), list):
                         errors.append(f"{label}.tickers: expected list")
                     if not isinstance(item.get("priced_tickers"), list):

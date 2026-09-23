@@ -45,6 +45,8 @@ ACTIVE_BREADTH = 0.60
 TRIGGER_63D_EXCESS = 0.10
 TRIGGER_126D_EXCESS = 0.15
 TRIGGER_BREADTH = 0.50
+EARLY_ACTIVE_MAX_TRADING_DAYS = 126
+FRESH_TRIGGER_MAX_TRADING_DAYS = 63
 
 # Private theses must not leak to the public scanner. This mirrors
 # merge-convergence-into-scan.py.
@@ -121,6 +123,15 @@ def clean_float(value: object) -> float | None:
     if math.isnan(number) or math.isinf(number):
         return None
     return round(number, 4)
+
+
+def clean_int(value: object) -> int | None:
+    if value is None:
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
 
 
 def load_json(path: Path) -> Any:
@@ -348,6 +359,108 @@ def classify_state(metrics: dict[str, dict[str, float | None]], priced_count: in
     return "watch"
 
 
+def trading_days_since(date_str: str | None, index: pd.Index, end_date: pd.Timestamp) -> int | None:
+    if not date_str:
+        return None
+    start = pd.Timestamp(date_str)
+    dates = pd.DatetimeIndex(index)
+    sample = dates[(dates >= start) & (dates <= end_date)]
+    if len(sample) == 0:
+        return None
+    return max(0, len(sample) - 1)
+
+
+def age_label(trading_days: int | None) -> str | None:
+    if trading_days is None:
+        return None
+    if trading_days < 21:
+        return f"{trading_days}d"
+    months = trading_days / 21
+    if months < 18:
+        return f"{months:.1f}mo"
+    return f"{trading_days / 252:.1f}y"
+
+
+def timing_payload(
+    first_trigger_date: str | None,
+    first_active_date: str | None,
+    index: pd.Index,
+    end_date: pd.Timestamp,
+) -> dict[str, Any]:
+    trigger_days = trading_days_since(first_trigger_date, index, end_date)
+    active_days = trading_days_since(first_active_date, index, end_date)
+    return {
+        "first_trigger_date": first_trigger_date,
+        "first_active_date": first_active_date,
+        "trading_days_since_first_trigger": clean_int(trigger_days),
+        "trading_days_since_first_active": clean_int(active_days),
+        "first_trigger_age": age_label(trigger_days),
+        "first_active_age": age_label(active_days),
+    }
+
+
+def classify_phase(state: str, metrics: dict[str, dict[str, float | None]], timing: dict[str, Any]) -> dict[str, Any]:
+    m63 = metrics.get("63d", {})
+    m126 = metrics.get("126d", {})
+    excess_63 = m63.get("excess_return") or 0.0
+    excess_126 = m126.get("excess_return") or 0.0
+    breadth_63 = m63.get("breadth") or 0.0
+    active_days = timing.get("trading_days_since_first_active")
+    trigger_days = timing.get("trading_days_since_first_trigger")
+
+    if state == "active":
+        if active_days is not None and active_days <= EARLY_ACTIVE_MAX_TRADING_DAYS:
+            return {
+                "phase": "early_active",
+                "phase_label": "Early active",
+                "action": "Best entry/add window; size only while 63d, 126d and breadth stay above thresholds.",
+                "action_priority": 1,
+            }
+        return {
+            "phase": "mature_active",
+            "phase_label": "Mature active",
+            "action": "Hold or trail existing exposure; avoid fresh chase unless it resets and re-accelerates.",
+            "action_priority": 3,
+        }
+
+    if state == "trigger":
+        if active_days is None and trigger_days is not None and trigger_days <= FRESH_TRIGGER_MAX_TRADING_DAYS:
+            return {
+                "phase": "fresh_trigger",
+                "phase_label": "Fresh trigger",
+                "action": "Research queue or starter only; wait for active confirmation before sizing.",
+                "action_priority": 2,
+            }
+        return {
+            "phase": "re_accelerating",
+            "phase_label": "Re-accelerating",
+            "action": "Second-impulse candidate; wait for 126d confirmation or a pullback that preserves breadth.",
+            "action_priority": 2,
+        }
+
+    if state == "watch" and (active_days is not None or trigger_days is not None):
+        if excess_63 > 0 and excess_126 > 0 and breadth_63 >= 0.40:
+            return {
+                "phase": "reset_watch",
+                "phase_label": "Reset watch",
+                "action": "No new trade yet; watch for renewed trigger/active status after the reset.",
+                "action_priority": 4,
+            }
+        return {
+            "phase": "fading_watch",
+            "phase_label": "Fading watch",
+            "action": "No new trade; prior edge is stale or losing benchmark-relative breadth.",
+            "action_priority": 5,
+        }
+
+    return {
+        "phase": "insufficient_data",
+        "phase_label": "Insufficient data",
+        "action": "No trade; price history, benchmark history, or breadth is insufficient.",
+        "action_priority": 6,
+    }
+
+
 def first_date_for_state(
     state: str,
     prices: pd.DataFrame,
@@ -429,6 +542,18 @@ def analyze_basket(basket_def: dict[str, Any], prices: pd.DataFrame) -> dict[str
         "missing_tickers": sorted(missing_tickers),
         "priced_count": len(priced_tickers),
         "state": "watch",
+        "phase": "insufficient_data",
+        "phase_label": "Insufficient data",
+        "action": "No trade; price history, benchmark history, or breadth is insufficient.",
+        "action_priority": 6,
+        "timing": {
+            "first_trigger_date": None,
+            "first_active_date": None,
+            "trading_days_since_first_trigger": None,
+            "trading_days_since_first_active": None,
+            "first_trigger_age": None,
+            "first_active_age": None,
+        },
         "metrics": {f"{window}d": {"basket_return": None, "benchmark_return": None, "excess_return": None, "breadth": None} for window in WINDOWS},
         "first_trigger_date": None,
         "first_active_date": None,
@@ -445,14 +570,20 @@ def analyze_basket(basket_def: dict[str, Any], prices: pd.DataFrame) -> dict[str
     end_date = pd.Timestamp(combined.index[-1])
     metrics = compute_metrics_at(prices, basket, priced_tickers, benchmark, end_date)
     state = classify_state(metrics, len(priced_tickers))
+    first_trigger_date = first_date_for_state("trigger", prices, basket, priced_tickers, benchmark)
+    first_active_date = first_date_for_state("active", prices, basket, priced_tickers, benchmark)
+    timing = timing_payload(first_trigger_date, first_active_date, combined.index, end_date)
+    phase = classify_phase(state, metrics, timing)
 
     result.update(
         {
             "state": state,
+            **phase,
             "as_of_date": end_date.strftime("%Y-%m-%d"),
             "metrics": metrics,
-            "first_trigger_date": first_date_for_state("trigger", prices, basket, priced_tickers, benchmark),
-            "first_active_date": first_date_for_state("active", prices, basket, priced_tickers, benchmark),
+            "first_trigger_date": first_trigger_date,
+            "first_active_date": first_active_date,
+            "timing": timing,
             "leaders": latest_leaders(prices, priced_tickers, benchmark, end_date),
         }
     )
@@ -460,10 +591,11 @@ def analyze_basket(basket_def: dict[str, Any], prices: pd.DataFrame) -> dict[str
 
 
 def state_sort_key(row: dict[str, Any]) -> tuple[int, float, float, str]:
-    rank = {"active": 0, "trigger": 1, "watch": 2}.get(row.get("state"), 3)
+    phase_rank = row.get("action_priority") or 9
+    state_rank = {"active": 0, "trigger": 1, "watch": 2}.get(row.get("state"), 3)
     m126 = ((row.get("metrics") or {}).get("126d") or {}).get("excess_return")
     m63 = ((row.get("metrics") or {}).get("63d") or {}).get("excess_return")
-    return (rank, -(m126 or -999), -(m63 or -999), str(row.get("theme") or ""))
+    return (phase_rank, state_rank, -(m126 or -999), -(m63 or -999), str(row.get("theme") or ""))
 
 
 def build_relative_edge(artifact: dict[str, Any]) -> dict[str, Any]:
@@ -472,6 +604,7 @@ def build_relative_edge(artifact: dict[str, Any]) -> dict[str, Any]:
     rows = [analyze_basket(basket, prices) for basket in baskets]
     rows.sort(key=state_sort_key)
     counts = Counter(row["state"] for row in rows)
+    phase_counts = Counter(row["phase"] for row in rows)
     latest_dates = [row.get("as_of_date") for row in rows if row.get("as_of_date")]
 
     return {
@@ -483,7 +616,10 @@ def build_relative_edge(artifact: dict[str, Any]) -> dict[str, Any]:
         "rules": {
             "basket_construction": f"equal-weight adjusted-close baskets; corpus themes use top {THEME_MAX_TICKERS} tickers by score",
             "history_note": "first_trigger_date and first_active_date are retrospective for the published basket membership; corpus availability must be audited separately",
+            "phase_note": "trade timing comes from current state plus signal age; old first-active dates are not fresh entries",
             "min_priced_tickers": MIN_PRICED_TICKERS,
+            "fresh_trigger_max_trading_days": FRESH_TRIGGER_MAX_TRADING_DAYS,
+            "early_active_max_trading_days": EARLY_ACTIVE_MAX_TRADING_DAYS,
             "active": {
                 "excess_63d_gte": ACTIVE_63D_EXCESS,
                 "excess_126d_gte": ACTIVE_126D_EXCESS,
@@ -501,6 +637,12 @@ def build_relative_edge(artifact: dict[str, Any]) -> dict[str, Any]:
             "active": counts.get("active", 0),
             "trigger": counts.get("trigger", 0),
             "watch": counts.get("watch", 0),
+            "entry_window": phase_counts.get("early_active", 0),
+            "research_queue": phase_counts.get("fresh_trigger", 0) + phase_counts.get("re_accelerating", 0),
+            "no_trade": phase_counts.get("reset_watch", 0)
+            + phase_counts.get("fading_watch", 0)
+            + phase_counts.get("insufficient_data", 0),
+            "phase_counts": dict(sorted(phase_counts.items())),
         },
         "baskets": rows,
     }

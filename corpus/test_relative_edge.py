@@ -43,6 +43,41 @@ class RelativeEdgeTests(unittest.TestCase):
         }
         self.assertEqual(self.module.classify_state(metrics, priced_count=3), "trigger")
 
+    def test_classifies_fresh_trigger_phase(self):
+        phase = self.module.classify_phase(
+            "trigger",
+            {"63d": {"excess_return": 0.12, "breadth": 0.67}, "126d": {"excess_return": 0.10}},
+            {
+                "trading_days_since_first_trigger": 21,
+                "trading_days_since_first_active": None,
+            },
+        )
+        self.assertEqual(phase["phase"], "fresh_trigger")
+        self.assertEqual(phase["action_priority"], 2)
+
+    def test_classifies_old_trigger_as_re_accelerating(self):
+        phase = self.module.classify_phase(
+            "trigger",
+            {"63d": {"excess_return": 0.12, "breadth": 0.67}, "126d": {"excess_return": -0.02}},
+            {
+                "trading_days_since_first_trigger": 600,
+                "trading_days_since_first_active": 540,
+            },
+        )
+        self.assertEqual(phase["phase"], "re_accelerating")
+
+    def test_classifies_stale_watch_as_no_trade(self):
+        phase = self.module.classify_phase(
+            "watch",
+            {"63d": {"excess_return": -0.06, "breadth": 0.20}, "126d": {"excess_return": 0.18}},
+            {
+                "trading_days_since_first_trigger": 500,
+                "trading_days_since_first_active": 300,
+            },
+        )
+        self.assertEqual(phase["phase"], "fading_watch")
+        self.assertGreaterEqual(phase["action_priority"], 5)
+
     def test_requires_minimum_priced_breadth(self):
         metrics = {
             "63d": {"excess_return": 0.30, "breadth": 1.0},
@@ -74,6 +109,9 @@ class RelativeEdgeTests(unittest.TestCase):
         self.assertEqual(row["benchmark"], "SPY")
         self.assertEqual(row["priced_count"], 4)
         self.assertEqual(row["missing_tickers"], ["MISSING"])
+        self.assertEqual(row["phase"], "early_active")
+        self.assertIn("Best entry", row["action"])
+        self.assertIsNotNone(row["timing"]["first_active_age"])
         self.assertGreater(row["metrics"]["63d"]["excess_return"], 0.15)
         self.assertGreaterEqual(row["metrics"]["63d"]["breadth"], 0.75)
         self.assertIsNotNone(row["first_active_date"])
@@ -121,6 +159,18 @@ class RelativeEdgeTests(unittest.TestCase):
                         "kind": "curated",
                         "benchmark": "SPY",
                         "state": "active",
+                        "phase": "early_active",
+                        "phase_label": "Early active",
+                        "action": "Best entry/add window.",
+                        "action_priority": 1,
+                        "timing": {
+                            "first_trigger_date": "2026-01-01",
+                            "first_active_date": "2026-01-08",
+                            "trading_days_since_first_trigger": 10,
+                            "trading_days_since_first_active": 5,
+                            "first_trigger_age": "10d",
+                            "first_active_age": "5d",
+                        },
                         "tickers": ["AAA", "BBB", "CCC"],
                         "priced_tickers": ["AAA", "BBB", "CCC"],
                         "metrics": {
