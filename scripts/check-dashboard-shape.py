@@ -39,6 +39,21 @@ BOOK_TOP_FIELDS = {"generated_at", "live_unlocked", "go_live_gate", "paper", "li
 BOOK_SIDE_FIELDS = {"open", "closed", "stats"}
 GATE_FIELDS = {"required_closed_trades", "current_closed_trades", "remaining_trades"}
 
+RELATIVE_EDGE_TOP_FIELDS = {"generated_at", "source", "rules", "summary", "baskets"}
+RELATIVE_EDGE_SUMMARY_FIELDS = {"baskets", "active", "trigger", "watch"}
+RELATIVE_EDGE_BASKET_FIELDS = {
+    "basket_id",
+    "theme",
+    "kind",
+    "benchmark",
+    "state",
+    "tickers",
+    "priced_tickers",
+    "metrics",
+    "leaders",
+}
+RELATIVE_EDGE_METRIC_FIELDS = {"basket_return", "benchmark_return", "excess_return", "breadth"}
+
 
 def require_mapping(value: object, label: str, errors: list[str]) -> bool:
     if not isinstance(value, dict):
@@ -60,7 +75,7 @@ def validate(payload: object) -> list[str]:
 
     root = payload
     assert isinstance(root, dict)
-    require_fields(root, {"scan_meta", "results", "convergence", "book"}, "root", errors)
+    require_fields(root, {"scan_meta", "results", "convergence", "book", "relative_edge"}, "root", errors)
 
     book = root.get("book")
     if require_mapping(book, "book", errors):
@@ -105,6 +120,40 @@ def validate(payload: object) -> list[str]:
                 assert isinstance(item, dict)
                 require_fields(item, CONVERGENCE_FIELDS, label, errors)
 
+    relative_edge = root.get("relative_edge")
+    if require_mapping(relative_edge, "relative_edge", errors):
+        assert isinstance(relative_edge, dict)
+        require_fields(relative_edge, RELATIVE_EDGE_TOP_FIELDS, "relative_edge", errors)
+        summary = relative_edge.get("summary")
+        if require_mapping(summary, "relative_edge.summary", errors):
+            assert isinstance(summary, dict)
+            require_fields(summary, RELATIVE_EDGE_SUMMARY_FIELDS, "relative_edge.summary", errors)
+        baskets = relative_edge.get("baskets")
+        if not isinstance(baskets, list):
+            errors.append("relative_edge.baskets: expected list")
+        else:
+            for idx, item in enumerate(baskets):
+                label = f"relative_edge.baskets[{idx}]"
+                if require_mapping(item, label, errors):
+                    assert isinstance(item, dict)
+                    require_fields(item, RELATIVE_EDGE_BASKET_FIELDS, label, errors)
+                    if item.get("state") not in {"active", "trigger", "watch"}:
+                        errors.append(f"{label}.state: expected active, trigger, or watch")
+                    if not isinstance(item.get("tickers"), list):
+                        errors.append(f"{label}.tickers: expected list")
+                    if not isinstance(item.get("priced_tickers"), list):
+                        errors.append(f"{label}.priced_tickers: expected list")
+                    metrics = item.get("metrics")
+                    if require_mapping(metrics, f"{label}.metrics", errors):
+                        assert isinstance(metrics, dict)
+                        for window in ("63d", "126d"):
+                            metric = metrics.get(window)
+                            if require_mapping(metric, f"{label}.metrics.{window}", errors):
+                                assert isinstance(metric, dict)
+                                require_fields(metric, RELATIVE_EDGE_METRIC_FIELDS, f"{label}.metrics.{window}", errors)
+                    if not isinstance(item.get("leaders"), list):
+                        errors.append(f"{label}.leaders: expected list")
+
     return errors
 
 
@@ -132,4 +181,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

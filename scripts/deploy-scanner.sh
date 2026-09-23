@@ -19,6 +19,7 @@ python3 "$PUC_TRADING_DIR/scripts/merge-book-into-scan.py" || { echo "deploy-sca
 # (13:55 refresh-convergence). Non-fatal: a missing artifact must not block
 # the book deploy.
 python3 "$PUC_TRADING_DIR/scripts/merge-convergence-into-scan.py" || echo "deploy-scanner: convergence merge failed (book deploy continues)" >&2
+python3 "$PUC_TRADING_DIR/scripts/merge-relative-edge-into-scan.py" || echo "deploy-scanner: relative-edge merge failed (book deploy continues)" >&2
 
 cd "$PFT" || { echo "deploy-scanner: $PFT missing" >&2; exit 1; }
 
