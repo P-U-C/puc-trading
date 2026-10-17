@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T13:55:07Z",
+  "generated_at": "2026-10-17T13:55:07Z",
   "generator": {
     "mode": "merge",
     "name": "merge_convergence",
@@ -21,9 +21,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4082,
+        "evidence_strength": 0.408,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.3677,
+        "freshness_weight": 0.3624,
         "llm_score": 0.928,
         "tradability_weight": 1.0
       },
@@ -67,7 +67,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.4546,
+        "freshness_weight": 0.451,
         "llm_score": 0.928,
         "tradability_weight": 1.0
       },
@@ -106,9 +106,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4383,
+        "evidence_strength": 0.4385,
         "exposure_strength": 0.95,
-        "freshness_weight": 0.5327,
+        "freshness_weight": 0.5245,
         "llm_score": 0.9244,
         "tradability_weight": 1.0
       },
@@ -164,9 +164,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4688,
+        "evidence_strength": 0.469,
         "exposure_strength": 0.9,
-        "freshness_weight": 0.4423,
+        "freshness_weight": 0.4395,
         "llm_score": 0.9205,
         "tradability_weight": 1.0
       },
@@ -209,7 +209,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4411,
         "exposure_strength": 0.93,
-        "freshness_weight": 0.5579,
+        "freshness_weight": 0.5538,
         "llm_score": 0.9167,
         "tradability_weight": 1.0
       },
@@ -267,7 +267,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.88,
-        "freshness_weight": 0.8457,
+        "freshness_weight": 0.8429,
         "llm_score": 0.9156,
         "tradability_weight": 1.0
       },
@@ -305,7 +305,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.9,
-        "freshness_weight": 0.287,
+        "freshness_weight": 0.2824,
         "llm_score": 0.9147,
         "tradability_weight": 1.0
       },
@@ -343,9 +343,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4447,
+        "evidence_strength": 0.4446,
         "exposure_strength": 0.9,
-        "freshness_weight": 0.5242,
+        "freshness_weight": 0.5175,
         "llm_score": 0.9107,
         "tradability_weight": 1.0
       },
@@ -392,9 +392,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4247,
+        "evidence_strength": 0.425,
         "exposure_strength": 0.9,
-        "freshness_weight": 0.5029,
+        "freshness_weight": 0.496,
         "llm_score": 0.9084,
         "tradability_weight": 1.0
       },
@@ -443,7 +443,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.4374,
+        "freshness_weight": 0.4326,
         "llm_score": 0.9074,
         "tradability_weight": 1.0
       },
@@ -479,9 +479,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4233,
+        "evidence_strength": 0.4229,
         "exposure_strength": 0.9,
-        "freshness_weight": 0.3751,
+        "freshness_weight": 0.3685,
         "llm_score": 0.9066,
         "tradability_weight": 1.0
       },
@@ -527,9 +527,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4061,
+        "evidence_strength": 0.4059,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.4329,
+        "freshness_weight": 0.4273,
         "llm_score": 0.9047,
         "tradability_weight": 1.0
       },
@@ -569,9 +569,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4439,
+        "evidence_strength": 0.443,
         "exposure_strength": 0.7,
-        "freshness_weight": 0.2375,
+        "freshness_weight": 0.2295,
         "llm_score": 0.9017,
         "tradability_weight": 1.0
       },
@@ -608,9 +608,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4173,
+        "evidence_strength": 0.4167,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.4698,
+        "freshness_weight": 0.4612,
         "llm_score": 0.896,
         "tradability_weight": 1.0
       },
@@ -651,9 +651,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4679,
+        "evidence_strength": 0.4681,
         "exposure_strength": 0.8,
-        "freshness_weight": 0.6415,
+        "freshness_weight": 0.6347,
         "llm_score": 0.8947,
         "tradability_weight": 1.0
       },
@@ -695,9 +695,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4497,
+        "evidence_strength": 0.4495,
         "exposure_strength": 0.76,
-        "freshness_weight": 0.6628,
+        "freshness_weight": 0.6579,
         "llm_score": 0.8926,
         "tradability_weight": 1.0
       },
@@ -735,7 +735,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.7,
-        "freshness_weight": 0.4411,
+        "freshness_weight": 0.4397,
         "llm_score": 0.8861,
         "tradability_weight": 1.0
       },
@@ -771,7 +771,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.451,
         "exposure_strength": 0.72,
-        "freshness_weight": 0.5708,
+        "freshness_weight": 0.5689,
         "llm_score": 0.8846,
         "tradability_weight": 1.0
       },
@@ -802,9 +802,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4728,
+        "evidence_strength": 0.4724,
         "exposure_strength": 0.7,
-        "freshness_weight": 0.4386,
+        "freshness_weight": 0.4307,
         "llm_score": 0.8842,
         "tradability_weight": 1.0
       },
@@ -842,7 +842,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.72,
-        "freshness_weight": 0.2944,
+        "freshness_weight": 0.2833,
         "llm_score": 0.8836,
         "tradability_weight": 1.0
       },
@@ -878,9 +878,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4672,
+        "evidence_strength": 0.4669,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.3235,
+        "freshness_weight": 0.3164,
         "llm_score": 0.8803,
         "tradability_weight": 1.0
       },
@@ -983,9 +983,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4656,
+        "evidence_strength": 0.4652,
         "exposure_strength": 0.86,
-        "freshness_weight": 0.2214,
+        "freshness_weight": 0.2119,
         "llm_score": 0.869,
         "tradability_weight": 1.0
       },
@@ -1022,9 +1022,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4891,
+        "evidence_strength": 0.4894,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.67,
+        "freshness_weight": 0.6628,
         "llm_score": 0.8595,
         "tradability_weight": 1.0
       },
@@ -1087,9 +1087,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4222,
+        "evidence_strength": 0.4213,
         "exposure_strength": 0.65,
-        "freshness_weight": 0.21,
+        "freshness_weight": 0.2033,
         "llm_score": 0.8527,
         "tradability_weight": 1.0
       },
@@ -1121,7 +1121,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4172,
         "exposure_strength": 0.5,
-        "freshness_weight": 0.6743,
+        "freshness_weight": 0.6685,
         "llm_score": 0.8442,
         "tradability_weight": 1.0
       },
@@ -1170,9 +1170,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.468,
+        "evidence_strength": 0.4681,
         "exposure_strength": 0.65,
-        "freshness_weight": 0.1042,
+        "freshness_weight": 0.1,
         "llm_score": 0.8403,
         "tradability_weight": 1.0
       },
@@ -1206,7 +1206,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.3932,
+        "freshness_weight": 0.3918,
         "llm_score": 0.8384,
         "tradability_weight": 1.0
       },
@@ -1237,9 +1237,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4663,
+        "evidence_strength": 0.4662,
         "exposure_strength": 0.9,
-        "freshness_weight": 0.5047,
+        "freshness_weight": 0.5022,
         "llm_score": 0.8328,
         "tradability_weight": 1.0
       },
@@ -1283,9 +1283,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4668,
+        "evidence_strength": 0.467,
         "exposure_strength": 0.9,
-        "freshness_weight": 0.5865,
+        "freshness_weight": 0.5826,
         "llm_score": 0.8328,
         "tradability_weight": 1.0
       },
@@ -1327,9 +1327,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4763,
+        "evidence_strength": 0.476,
         "exposure_strength": 0.88,
-        "freshness_weight": 0.5951,
+        "freshness_weight": 0.5858,
         "llm_score": 0.8293,
         "tradability_weight": 1.0
       },
@@ -1371,9 +1371,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4788,
+        "evidence_strength": 0.4784,
         "exposure_strength": 0.4,
-        "freshness_weight": 0.5406,
+        "freshness_weight": 0.5299,
         "llm_score": 0.8275,
         "tradability_weight": 1.0
       },
@@ -1409,7 +1409,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.4911,
+        "freshness_weight": 0.4841,
         "llm_score": 0.8249,
         "tradability_weight": 1.0
       },
@@ -1444,7 +1444,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.4074,
+        "freshness_weight": 0.3975,
         "llm_score": 0.8249,
         "tradability_weight": 1.0
       },
@@ -1482,7 +1482,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.398,
+        "freshness_weight": 0.3897,
         "llm_score": 0.8245,
         "tradability_weight": 1.0
       },
@@ -1527,9 +1527,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4592,
+        "evidence_strength": 0.459,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.4134,
+        "freshness_weight": 0.4066,
         "llm_score": 0.8245,
         "tradability_weight": 1.0
       },
@@ -1621,7 +1621,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.75,
-        "freshness_weight": 0.4625,
+        "freshness_weight": 0.4591,
         "llm_score": 0.822,
         "tradability_weight": 1.0
       },
@@ -1657,7 +1657,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.8,
-        "freshness_weight": 0.6876,
+        "freshness_weight": 0.6758,
         "llm_score": 0.8139,
         "tradability_weight": 1.0
       },
@@ -1690,11 +1690,11 @@
       ],
       "score": 0.8129,
       "score_components": {
-        "catalyst_weight": 1.0,
+        "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.76,
-        "freshness_weight": 0.25,
+        "freshness_weight": 0.2417,
         "llm_score": 0.8129,
         "tradability_weight": 1.0
       },
@@ -1756,7 +1756,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.75,
-        "freshness_weight": 0.3948,
+        "freshness_weight": 0.3878,
         "llm_score": 0.8115,
         "tradability_weight": 1.0
       },
@@ -1791,7 +1791,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.75,
-        "freshness_weight": 0.4005,
+        "freshness_weight": 0.3929,
         "llm_score": 0.8115,
         "tradability_weight": 1.0
       },
@@ -1826,7 +1826,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.4,
-        "freshness_weight": 0.5462,
+        "freshness_weight": 0.5403,
         "llm_score": 0.8079,
         "tradability_weight": 1.0
       },
@@ -1866,9 +1866,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4899,
+        "evidence_strength": 0.4913,
         "exposure_strength": 0.75,
-        "freshness_weight": 0.1833,
+        "freshness_weight": 0.1704,
         "llm_score": 0.8049,
         "tradability_weight": 1.0
       },
@@ -1899,9 +1899,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4346,
+        "evidence_strength": 0.4343,
         "exposure_strength": 0.78,
-        "freshness_weight": 0.4579,
+        "freshness_weight": 0.4489,
         "llm_score": 0.8029,
         "tradability_weight": 1.0
       },
@@ -1962,9 +1962,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4711,
+        "evidence_strength": 0.4716,
         "exposure_strength": 0.7,
-        "freshness_weight": 0.3817,
+        "freshness_weight": 0.3746,
         "llm_score": 0.8015,
         "tradability_weight": 1.0
       },
@@ -2003,9 +2003,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4825,
+        "evidence_strength": 0.4828,
         "exposure_strength": 0.25,
-        "freshness_weight": 0.6923,
+        "freshness_weight": 0.6791,
         "llm_score": 0.7975,
         "tradability_weight": 1.0
       },
@@ -2035,11 +2035,11 @@
       ],
       "score": 0.797,
       "score_components": {
-        "catalyst_weight": 1.0,
+        "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4265,
+        "evidence_strength": 0.4261,
         "exposure_strength": 0.8,
-        "freshness_weight": 0.2356,
+        "freshness_weight": 0.2311,
         "llm_score": 0.797,
         "tradability_weight": 1.0
       },
@@ -2100,7 +2100,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4439,
         "exposure_strength": 0.65,
-        "freshness_weight": 0.5651,
+        "freshness_weight": 0.5634,
         "llm_score": 0.7915,
         "tradability_weight": 1.0
       },
@@ -2142,7 +2142,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.75,
+        "freshness_weight": 0.7333,
         "llm_score": 0.79,
         "tradability_weight": 1.0
       },
@@ -2238,9 +2238,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4497,
+        "evidence_strength": 0.4502,
         "exposure_strength": 0.65,
-        "freshness_weight": 0.829,
+        "freshness_weight": 0.8193,
         "llm_score": 0.7849,
         "tradability_weight": 1.0
       },
@@ -2270,7 +2270,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.65,
-        "freshness_weight": 0.4156,
+        "freshness_weight": 0.4051,
         "llm_score": 0.7845,
         "tradability_weight": 1.0
       },
@@ -2303,7 +2303,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.0625,
+        "freshness_weight": 0.0583,
         "llm_score": 0.784,
         "tradability_weight": 1.0
       },
@@ -2337,9 +2337,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.471,
+        "evidence_strength": 0.4714,
         "exposure_strength": 0.68,
-        "freshness_weight": 0.5559,
+        "freshness_weight": 0.5439,
         "llm_score": 0.7829,
         "tradability_weight": 1.0
       },
@@ -2375,7 +2375,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.83,
-        "freshness_weight": 0.5288,
+        "freshness_weight": 0.5232,
         "llm_score": 0.7808,
         "tradability_weight": 1.0
       },
@@ -2492,7 +2492,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.8,
-        "freshness_weight": 0.3904,
+        "freshness_weight": 0.3839,
         "llm_score": 0.774,
         "tradability_weight": 1.0
       },
@@ -2595,7 +2595,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.88,
-        "freshness_weight": 0.3611,
+        "freshness_weight": 0.35,
         "llm_score": 0.7713,
         "tradability_weight": 1.0
       },
@@ -2633,7 +2633,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.7,
-        "freshness_weight": 0.7231,
+        "freshness_weight": 0.7159,
         "llm_score": 0.7678,
         "tradability_weight": 1.0
       },
@@ -2695,9 +2695,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4445,
+        "evidence_strength": 0.4444,
         "exposure_strength": 0.55,
-        "freshness_weight": 0.4704,
+        "freshness_weight": 0.4626,
         "llm_score": 0.7645,
         "tradability_weight": 1.0
       },
@@ -2725,9 +2725,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4252,
+        "evidence_strength": 0.4251,
         "exposure_strength": 0.15,
-        "freshness_weight": 0.5844,
+        "freshness_weight": 0.5772,
         "llm_score": 0.7643,
         "tradability_weight": 1.0
       },
@@ -2924,7 +2924,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.15,
-        "freshness_weight": 0.0972,
+        "freshness_weight": 0.0833,
         "llm_score": 0.7566,
         "tradability_weight": 1.0
       },
@@ -2960,9 +2960,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4558,
+        "evidence_strength": 0.4557,
         "exposure_strength": 0.5,
-        "freshness_weight": 0.2639,
+        "freshness_weight": 0.2528,
         "llm_score": 0.755,
         "tradability_weight": 1.0
       },
@@ -2997,7 +2997,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.5,
-        "freshness_weight": 0.4222,
+        "freshness_weight": 0.4078,
         "llm_score": 0.7549,
         "tradability_weight": 1.0
       },
@@ -3028,7 +3028,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.5,
-        "freshness_weight": 0.4009,
+        "freshness_weight": 0.3926,
         "llm_score": 0.7549,
         "tradability_weight": 1.0
       },
@@ -3057,9 +3057,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4737,
+        "evidence_strength": 0.4733,
         "exposure_strength": 0.5,
-        "freshness_weight": 0.4966,
+        "freshness_weight": 0.4873,
         "llm_score": 0.7539,
         "tradability_weight": 1.0
       },
@@ -3091,9 +3091,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4435,
+        "evidence_strength": 0.4436,
         "exposure_strength": 0.75,
-        "freshness_weight": 0.5208,
+        "freshness_weight": 0.5148,
         "llm_score": 0.7528,
         "tradability_weight": 1.0
       },
@@ -3124,9 +3124,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4091,
+        "evidence_strength": 0.4088,
         "exposure_strength": 0.2,
-        "freshness_weight": 0.3923,
+        "freshness_weight": 0.38,
         "llm_score": 0.7527,
         "tradability_weight": 1.0
       },
@@ -3168,7 +3168,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.2,
-        "freshness_weight": 0.1956,
+        "freshness_weight": 0.19,
         "llm_score": 0.7527,
         "tradability_weight": 1.0
       },
@@ -3202,7 +3202,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.2,
-        "freshness_weight": 0.7068,
+        "freshness_weight": 0.7048,
         "llm_score": 0.7527,
         "tradability_weight": 1.0
       },
@@ -3239,7 +3239,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.1,
-        "freshness_weight": 0.8712,
+        "freshness_weight": 0.8685,
         "llm_score": 0.7526,
         "tradability_weight": 1.0
       },
@@ -3270,9 +3270,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4151,
+        "evidence_strength": 0.4148,
         "exposure_strength": 0.8,
-        "freshness_weight": 0.4038,
+        "freshness_weight": 0.3946,
         "llm_score": 0.7505,
         "tradability_weight": 1.0
       },
@@ -3310,9 +3310,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.469,
+        "evidence_strength": 0.4691,
         "exposure_strength": 0.65,
-        "freshness_weight": 0.3222,
+        "freshness_weight": 0.3056,
         "llm_score": 0.745,
         "tradability_weight": 1.0
       },
@@ -3347,9 +3347,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4657,
+        "evidence_strength": 0.4654,
         "exposure_strength": 0.45,
-        "freshness_weight": 0.5014,
+        "freshness_weight": 0.4903,
         "llm_score": 0.745,
         "tradability_weight": 1.0
       },
@@ -3404,7 +3404,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.45,
-        "freshness_weight": 0.3613,
+        "freshness_weight": 0.3601,
         "llm_score": 0.7445,
         "tradability_weight": 1.0
       },
@@ -3441,7 +3441,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.15,
-        "freshness_weight": 0.3611,
+        "freshness_weight": 0.3519,
         "llm_score": 0.7427,
         "tradability_weight": 1.0
       },
@@ -3472,9 +3472,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4138,
+        "evidence_strength": 0.4136,
         "exposure_strength": 0.35,
-        "freshness_weight": 0.5633,
+        "freshness_weight": 0.5599,
         "llm_score": 0.742,
         "tradability_weight": 1.0
       },
@@ -3512,7 +3512,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.6,
-        "freshness_weight": 0.1732,
+        "freshness_weight": 0.1726,
         "llm_score": 0.74,
         "tradability_weight": 1.0
       },
@@ -3564,11 +3564,11 @@
       ],
       "score": 0.7317,
       "score_components": {
-        "catalyst_weight": 1.0,
+        "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.55,
-        "freshness_weight": 0.5,
+        "freshness_weight": 0.4833,
         "llm_score": 0.7317,
         "tradability_weight": 1.0
       },
@@ -3596,9 +3596,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4388,
+        "evidence_strength": 0.4389,
         "exposure_strength": 0.75,
-        "freshness_weight": 0.5178,
+        "freshness_weight": 0.5137,
         "llm_score": 0.7292,
         "tradability_weight": 1.0
       },
@@ -3635,7 +3635,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.45,
-        "freshness_weight": 0.718,
+        "freshness_weight": 0.713,
         "llm_score": 0.728,
         "tradability_weight": 1.0
       },
@@ -3696,9 +3696,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.469,
+        "evidence_strength": 0.4691,
         "exposure_strength": 0.55,
-        "freshness_weight": 0.3222,
+        "freshness_weight": 0.3056,
         "llm_score": 0.725,
         "tradability_weight": 1.0
       },
@@ -3728,9 +3728,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4153,
+        "evidence_strength": 0.4143,
         "exposure_strength": 0.74,
-        "freshness_weight": 0.464,
+        "freshness_weight": 0.4508,
         "llm_score": 0.7249,
         "tradability_weight": 1.0
       },
@@ -3767,7 +3767,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.2229,
+        "freshness_weight": 0.2186,
         "llm_score": 0.7248,
         "tradability_weight": 1.0
       },
@@ -3830,7 +3830,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.35,
-        "freshness_weight": 0.4444,
+        "freshness_weight": 0.4333,
         "llm_score": 0.7158,
         "tradability_weight": 1.0
       },
@@ -3860,9 +3860,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4663,
+        "evidence_strength": 0.466,
         "exposure_strength": 0.3,
-        "freshness_weight": 0.3899,
+        "freshness_weight": 0.3799,
         "llm_score": 0.715,
         "tradability_weight": 1.0
       },
@@ -3942,11 +3942,11 @@
       ],
       "score": 0.7075,
       "score_components": {
-        "catalyst_weight": 1.0,
+        "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4214,
+        "evidence_strength": 0.4209,
         "exposure_strength": 0.65,
-        "freshness_weight": 0.3897,
+        "freshness_weight": 0.386,
         "llm_score": 0.7075,
         "tradability_weight": 0.0
       },
@@ -3982,7 +3982,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.3,
-        "freshness_weight": 0.9315,
+        "freshness_weight": 0.9288,
         "llm_score": 0.7058,
         "tradability_weight": 1.0
       },
@@ -4060,9 +4060,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4884,
+        "evidence_strength": 0.4887,
         "exposure_strength": 0.85,
-        "freshness_weight": 0.3902,
+        "freshness_weight": 0.3803,
         "llm_score": 0.6996,
         "tradability_weight": 1.0
       },
@@ -4097,7 +4097,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.08,
-        "freshness_weight": 0.6037,
+        "freshness_weight": 0.6018,
         "llm_score": 0.6935,
         "tradability_weight": 1.0
       },
@@ -4131,9 +4131,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4155,
+        "evidence_strength": 0.4143,
         "exposure_strength": 0.82,
-        "freshness_weight": 0.3222,
+        "freshness_weight": 0.3111,
         "llm_score": 0.6923,
         "tradability_weight": 1.0
       },
@@ -4169,7 +4169,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4139,
         "exposure_strength": 0.18,
-        "freshness_weight": 0.7195,
+        "freshness_weight": 0.7125,
         "llm_score": 0.6858,
         "tradability_weight": 1.0
       },
@@ -4280,7 +4280,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.35,
-        "freshness_weight": 0.7674,
+        "freshness_weight": 0.7573,
         "llm_score": 0.6773,
         "tradability_weight": 1.0
       },
@@ -4345,7 +4345,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.1,
-        "freshness_weight": 0.937,
+        "freshness_weight": 0.9342,
         "llm_score": 0.6739,
         "tradability_weight": 1.0
       },
@@ -4377,7 +4377,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.86,
-        "freshness_weight": 0.4795,
+        "freshness_weight": 0.4781,
         "llm_score": 0.6687,
         "tradability_weight": 1.0
       },
@@ -4432,7 +4432,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.55,
-        "freshness_weight": 0.3783,
+        "freshness_weight": 0.3739,
         "llm_score": 0.6644,
         "tradability_weight": 1.0
       },
@@ -4459,9 +4459,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4647,
+        "evidence_strength": 0.4654,
         "exposure_strength": 0.35,
-        "freshness_weight": 0.6607,
+        "freshness_weight": 0.651,
         "llm_score": 0.664,
         "tradability_weight": 1.0
       },
@@ -4518,7 +4518,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.35,
-        "freshness_weight": 0.5667,
+        "freshness_weight": 0.55,
         "llm_score": 0.6567,
         "tradability_weight": 1.0
       },
@@ -4591,7 +4591,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.64,
-        "freshness_weight": 0.2417,
+        "freshness_weight": 0.2333,
         "llm_score": 0.653,
         "tradability_weight": 1.0
       },
@@ -4646,7 +4646,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.55,
-        "freshness_weight": 0.3372,
+        "freshness_weight": 0.33,
         "llm_score": 0.6455,
         "tradability_weight": 1.0
       },
@@ -4703,7 +4703,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.55,
-        "freshness_weight": 0.1,
+        "freshness_weight": 0.0944,
         "llm_score": 0.6438,
         "tradability_weight": 1.0
       },
@@ -4756,9 +4756,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4895,
+        "evidence_strength": 0.4907,
         "exposure_strength": 0.45,
-        "freshness_weight": 0.2226,
+        "freshness_weight": 0.2153,
         "llm_score": 0.6402,
         "tradability_weight": 1.0
       },
@@ -4790,9 +4790,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4098,
+        "evidence_strength": 0.4097,
         "exposure_strength": 0.4,
-        "freshness_weight": 0.4934,
+        "freshness_weight": 0.482,
         "llm_score": 0.6372,
         "tradability_weight": 1.0
       },
@@ -4831,7 +4831,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.62,
-        "freshness_weight": 0.9534,
+        "freshness_weight": 0.9507,
         "llm_score": 0.6368,
         "tradability_weight": 1.0
       },
@@ -4861,7 +4861,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.35,
-        "freshness_weight": 0.4,
+        "freshness_weight": 0.3833,
         "llm_score": 0.6333,
         "tradability_weight": 1.0
       },
@@ -4978,11 +4978,11 @@
       ],
       "score": 0.6131,
       "score_components": {
-        "catalyst_weight": 1.0,
+        "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4377,
+        "evidence_strength": 0.437,
         "exposure_strength": 0.45,
-        "freshness_weight": 0.3318,
+        "freshness_weight": 0.327,
         "llm_score": 0.6131,
         "tradability_weight": 1.0
       },
@@ -5010,7 +5010,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4319,
         "exposure_strength": 0.35,
-        "freshness_weight": 0.8548,
+        "freshness_weight": 0.8521,
         "llm_score": 0.6085,
         "tradability_weight": 1.0
       },
@@ -5060,9 +5060,9 @@
       "score_components": {
         "catalyst_weight": 1.0,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4191,
+        "evidence_strength": 0.4187,
         "exposure_strength": 0.25,
-        "freshness_weight": 0.5411,
+        "freshness_weight": 0.5333,
         "llm_score": 0.5942,
         "tradability_weight": 1.0
       },
@@ -5089,9 +5089,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4477,
+        "evidence_strength": 0.448,
         "exposure_strength": 0.25,
-        "freshness_weight": 0.4891,
+        "freshness_weight": 0.4799,
         "llm_score": 0.5918,
         "tradability_weight": 1.0
       },
@@ -5325,7 +5325,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.5,
         "exposure_strength": 0.4,
-        "freshness_weight": 0.6119,
+        "freshness_weight": 0.61,
         "llm_score": 0.5833,
         "tradability_weight": 1.0
       },
@@ -5425,7 +5425,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.26,
-        "freshness_weight": 0.3167,
+        "freshness_weight": 0.3083,
         "llm_score": 0.55,
         "tradability_weight": 1.0
       },
@@ -5455,7 +5455,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.2,
-        "freshness_weight": 0.8301,
+        "freshness_weight": 0.8274,
         "llm_score": 0.5451,
         "tradability_weight": 1.0
       },
@@ -5482,7 +5482,7 @@
         "data_quality_weight": 1.0,
         "evidence_strength": 0.4,
         "exposure_strength": 0.05,
-        "freshness_weight": 0.937,
+        "freshness_weight": 0.9342,
         "llm_score": 0.5173,
         "tradability_weight": 1.0
       },
@@ -5557,9 +5557,9 @@
       "score_components": {
         "catalyst_weight": 0.5,
         "data_quality_weight": 1.0,
-        "evidence_strength": 0.4561,
+        "evidence_strength": 0.4562,
         "exposure_strength": 0.2,
-        "freshness_weight": 0.5808,
+        "freshness_weight": 0.579,
         "llm_score": 0.4939,
         "tradability_weight": 1.0
       },
